@@ -1,0 +1,42 @@
+create database librarydb;
+use librarydb;
+
+create table Books (
+    id int auto_increment primary key ,
+    title varchar(255) not null ,
+    author varchar(255) not null ,
+    year_published int ,
+    is_available boolean default true
+);
+
+create table Students (
+    id int auto_increment primary key ,
+    name varchar(255) not null ,
+    email varchar(255),
+    phone varchar(15),
+    course varchar(255)
+);
+
+create table BorrowRecords (
+    id int auto_increment primary key ,
+    book_id int,
+    student_id int,
+    borrow_date date,
+    return_date date,
+    is_returned boolean default false,
+    foreign key (book_id) references Books(id),
+    foreign key (student_id) references Students(id)
+);
+
+create table Catagories (
+    id int auto_increment primary key ,
+    name varchar(255) not null,
+    description TEXT
+);
+
+alter table Books add category_id int, add foreign key (category_id) references Catagories(id);
+select * from catagories;
+insert into Books(title, author) values ('Xac xuat thong ke', 'Dang Hung Thang');
+insert into Books(title, author) values ('Xac xuat thong ke', 'Hoang Thi Diep');
+insert into Books(title, author) values ('Lap trinh huong doi tuong', 'Kieu Van Tuyen');
+select * from Books;
