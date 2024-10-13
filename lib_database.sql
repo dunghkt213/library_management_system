@@ -38,7 +38,7 @@ create table Loans (
     loansID int primary key auto_increment,
     bookID varchar(20),
     studentID int,
-    loadDate date not null ,
+    loanDate date not null ,
     returnDate date,
     dueDate date not null ,
     status enum ('Active', 'Returned', 'Overdue') not null ,
@@ -46,7 +46,7 @@ create table Loans (
     foreign key (studentID) references Students(studentID)
 );
 
-#Tao bang LoanHistory (Lich su muon sach)
+#Tao bang LoanHistory - Lich su muon sach
 create table LoanHistory (
     historyID int primary key auto_increment,
     bookID varchar(20),
