@@ -1,6 +1,6 @@
 package model;
 
-public class Staff {
+public class staff {
     private int staffId;
     private String firstName;
     private String lastName;
@@ -8,7 +8,7 @@ public class Staff {
     private String phoneNumber;
     private String position;
 
-    public Staff(int staffId, String firstName, String lastName, String email, String phoneNumber, String position) {
+    public staff(int staffId, String firstName, String lastName, String email, String phoneNumber, String position) {
         this.staffId = staffId;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -64,3 +64,4 @@ public class Staff {
         this.position = position;
     }
 }
+

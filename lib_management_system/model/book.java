@@ -11,6 +11,31 @@ public class book {
     private int remainingBooks ;
     private String availability ;
     private int categoryID ;
+    private String categoryName ;
+
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
+    }
+    public book(){
+    }
+    public book(String bookID, int categoryID, String availability, int remainingBooks
+            , String language, String edition, String bookAuthor, String bookTitle, String bookPublisher, int quantity,String categoryName) {
+        this.bookID = bookID;
+        this.categoryID = categoryID;
+        this.availability = availability;
+        this.remainingBooks = remainingBooks;
+        this.language = language;
+        this.edition = edition;
+        this.bookAuthor = bookAuthor;
+        this.bookTitle = bookTitle;
+        this.bookPublisher = bookPublisher;
+        this.quantity = quantity;
+        this.categoryName = categoryName;
+    }
 
     public String getAvailability() {
         return availability;
