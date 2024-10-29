@@ -41,38 +41,6 @@ public class student extends person {
         this.major = major;
     }
 
-    public String getBirthdayDate() {
-        return birthday;
-    }
-
-    public void setBirthdayDate(String birthdayDate) {
-        this.birthday = birthdayDate;
-    }
-
-    public String getStudentEmailAddress() {
-        return email;
-    }
-
-    public void setStudentEmailAddress(String studentEmailAddress) {
-        this.email = studentEmailAddress;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public String getStudentName() {
-        return name;
-    }
-
-    public void setStudentName(String studentName) {
-        this.name = studentName;
-    }
-
     public void print(){
         System.out.println("Student ID: " + studentID);
         System.out.println("Student Name: " + name);

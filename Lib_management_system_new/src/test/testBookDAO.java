@@ -15,11 +15,12 @@ public class testBookDAO {
         for(book b : a) {
             System.out.println(b.getBookID());
         }*/
-        student newstudent = new student("","","","0984021814","","");
-        ArrayList<student> student = studentDAO.getInstance().getByCondition(newstudent);
+        student newstudent = new student("2","dung","23021493@vnu.en.vn","0984021814","2005-01-31","tec");
+/*        ArrayList<student> student = studentDAO.getInstance().getByCondition(newstudent);
         for(student s : student){
             s.print();
-        }
+        }*/
+        studentDAO.getInstance().insert(newstudent);
     }
 
 }

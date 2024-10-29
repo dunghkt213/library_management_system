@@ -21,10 +21,10 @@ public class studentDAO implements dao.DAOInterface<student> {
         try (Connection conn = JDBCUtil.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             // Gán giá trị cho từng dấu ?
-            pstmt.setString(1, student.getStudentName());
+            pstmt.setString(1, student.getName());
             pstmt.setString(2, student.getPhoneNumber());
-            pstmt.setString(3, student.getStudentEmailAddress());
-            pstmt.setString(4, student.getBirthdayDate());
+            pstmt.setString(3, student.getEmail());
+            pstmt.setString(4, student.getBirthday());
             pstmt.setString(5, student.getMajor());
             // Thực thi câu lệnh INSERT
             result = pstmt.executeUpdate();
@@ -47,10 +47,10 @@ public class studentDAO implements dao.DAOInterface<student> {
         try (Connection conn = JDBCUtil.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             // Gán giá trị cho từng dấu ?
-            pstmt.setString(1, student.getStudentName());
+            pstmt.setString(1, student.getName());
             pstmt.setString(2, student.getPhoneNumber());
-            pstmt.setString(3, student.getStudentEmailAddress());
-            pstmt.setString(4, student.getBirthdayDate());
+            pstmt.setString(3, student.getEmail());
+            pstmt.setString(4, student.getBirthday());
             pstmt.setString(5, student.getMajor());
             pstmt.setString(6, student.getStudentID());
             // Thực thi câu lệnh INSERT
@@ -176,7 +176,7 @@ public class studentDAO implements dao.DAOInterface<student> {
         if (searchCriteria.getStudentID() != null && !searchCriteria.getStudentID().isEmpty()) {
             sql.append(" AND studentID = ?");
         }
-        if (searchCriteria.getStudentName() != null && !searchCriteria.getStudentName().isEmpty()) {
+        if (searchCriteria.getName() != null && !searchCriteria.getName().isEmpty()) {
             sql.append(" AND studentName LIKE ?");
         }
         if (searchCriteria.getPhoneNumber() != null && !searchCriteria.getPhoneNumber().isEmpty()) {
@@ -190,8 +190,8 @@ public class studentDAO implements dao.DAOInterface<student> {
             if (searchCriteria.getStudentID() != null && !searchCriteria.getStudentID().isEmpty()) {
                 pstmt.setString(index++, searchCriteria.getStudentID());
             }
-            if (searchCriteria.getStudentName() != null && !searchCriteria.getStudentName().isEmpty()) {
-                pstmt.setString(index++, "%" + searchCriteria.getStudentName() + "%");
+            if (searchCriteria.getName() != null && !searchCriteria.getName().isEmpty()) {
+                pstmt.setString(index++, "%" + searchCriteria.getName() + "%");
             }
             if (searchCriteria.getPhoneNumber() != null && !searchCriteria.getPhoneNumber().isEmpty()) {
                 pstmt.setString(index++, "%" + searchCriteria.getPhoneNumber() + "%");
