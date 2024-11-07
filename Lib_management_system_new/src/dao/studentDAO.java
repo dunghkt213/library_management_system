@@ -70,14 +70,7 @@ public class studentDAO implements dao.DAOInterface<student> {
     public int delete(student student) {
         int KetQua = 0;
         String sql = "DELETE FROM students WHERE studentID=  ?";
-        String sql2= "UPDATE students " +
-                "SET studentID = (" +
-                "    SELECT COUNT(*) " +
-                "    FROM students AS inner_students " +
-                "    WHERE inner_students.studentID <= students.studentID" +
-                ");";
 
-        String sql3 = "ALTER TABLE students AUTO_INCREMENT = ?";
 
         try (Connection conn = JDBCUtil.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
@@ -86,25 +79,6 @@ public class studentDAO implements dao.DAOInterface<student> {
 
             System.out.println("Câu lệnh đã được thực thi thành công.");
             System.out.println("Có " + KetQua + " dòng đã bị xóa.");
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        try (Connection conn = JDBCUtil.getConnection(); Statement st = conn.createStatement()) {
-
-            st.execute(sql2);
-            System.out.println("đã xét lại các thứ tự sau khi xóa.");
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        student.setCount(student.getCount()-1);
-        try (Connection conn = JDBCUtil.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql3)) {
-
-            pstmt.setInt(1, student.getCount()+1);
-            KetQua = pstmt.executeUpdate();
-
-            System.out.println("Đã cập nhật lại AUTO_INCREMENT");
 
         } catch (SQLException e) {
             e.printStackTrace();
