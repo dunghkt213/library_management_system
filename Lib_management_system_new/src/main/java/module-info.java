@@ -6,6 +6,12 @@ module com.example.libarary_management_system {
     requires java.sql;
     requires mysql.connector.java;
 
-    opens com.example.libarary_management_system to javafx.fxml;
-    exports com.example.libarary_management_system;
+    opens signup to javafx.fxml;
+    exports signup;
+
+    opens login to javafx.fxml;
+    exports login;
+
+    opens admindashboard to javafx.fxml;
+    exports admindashboard;
 }
