@@ -10,6 +10,7 @@ public class loan {
     String status;
     int increment = 0;
 
+    public loan() {}
     public loan(String status, String dueDate, String loanDate, String returnDate,String studentID, String bookID) {
         this.status = status;
         this.dueDate = dueDate;

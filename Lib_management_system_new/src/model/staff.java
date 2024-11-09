@@ -3,7 +3,9 @@ package model;
 public class staff extends person{
     private int staffId;
     private String position;
-
+    public staff() {
+        super();
+    }
     public staff(int staffId, String firstName, String lastName, String email, String phoneNumber, String position) {
         this.staffId = staffId;
         this.email = email;

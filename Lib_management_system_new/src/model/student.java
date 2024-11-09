@@ -4,6 +4,10 @@ public class student extends person {
     private String studentID;
     private String major;
     private int count = 0;
+
+    public student() {
+        super();
+    }
     public student(String studentName, String phoneNumber, String studentEmailAddress, String birthdayDate, String major) {
         super(studentName,birthdayDate,phoneNumber,studentEmailAddress);
         this.major = major;

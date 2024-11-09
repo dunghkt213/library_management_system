@@ -25,8 +25,13 @@ public class testBookDAO {
         }*/
 
         loan newloan = new loan("Active","2024-12-30","2024-12-30","2025-12-30","1","10112");
-        loan loan1 = new loan("1");
-        loanDAO.getInstance().getById(loan1).printInfo();
+        loan loan1 = new loan();
+        loan1.setBookID("10112");
+        ArrayList<loan> loanList = loanDAO.getInstance().getByCondition(loan1);
+        for (loan l : loanList) {
+            l.printInfo();
+            System.out.println();
+        }
     }
 
 }
