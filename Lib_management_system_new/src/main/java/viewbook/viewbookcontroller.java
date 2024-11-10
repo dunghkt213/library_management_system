@@ -1,7 +1,5 @@
-package manage;
+package viewbook;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -13,7 +11,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Objects;
 
-public class managebookcontroller {
+public class viewbookcontroller {
     @FXML
     private TextField textField;
 

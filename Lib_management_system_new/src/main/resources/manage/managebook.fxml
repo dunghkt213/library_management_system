@@ -18,19 +18,24 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" styleClass="Anchor-background" stylesheets="@managebook.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="signup.signupcontroller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" styleClass="Anchor-background" stylesheets="@managebook.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="manage.managebookcontroller">
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="LIGHTCORAL" height="700.0" stroke="BLACK" strokeType="INSIDE" width="649.0" />
-      <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="54.0" styleClass="back-button" stylesheets="@managebook.css" />
-      <ImageView fitHeight="22.0" fitWidth="30.0" layoutX="16.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@back.png" />
-         </image>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="LIGHTCORAL" height="700.0" stroke="BLACK" strokeType="INSIDE" styleClass="left-rounded-corner" width="649.0" />
+      <Button mnemonicParsing="false" onAction="#handleadmin" prefHeight="26.0" prefWidth="54.0" styleClass="back-button" stylesheets="@managebook.css">
+         <graphic>
+            <ImageView fitHeight="22.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@back.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+         </graphic>
          <cursor>
             <Cursor fx:constant="HAND" />
-         </cursor>
-      </ImageView>
-      <HBox layoutX="61.0" layoutY="125.0" prefHeight="423.0" prefWidth="600.0">
+         </cursor></Button>
+      <HBox layoutX="25.0" layoutY="123.0" prefHeight="423.0" prefWidth="600.0">
          <children>
             <VBox prefHeight="582.0" prefWidth="300.0" stylesheets="@managebook.css">
                <children>
@@ -126,7 +131,7 @@
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Label>
-                  <TextField prefHeight="40.0" prefWidth="450.0" promptText="Enter Category ID" style="-fx-background-radius: 50;" stylesheets="@managebook.css">
+                  <TextField fx:id="textField" prefHeight="40.0" prefWidth="450.0" promptText="Enter Category ID" style="-fx-background-radius: 50;" stylesheets="@managebook.css">
                      <VBox.margin>
                         <Insets bottom="30.0" left="20.0" right="20.0" />
                      </VBox.margin>
@@ -202,7 +207,7 @@
             </VBox>
          </children>
       </HBox>
-      <Button layoutX="116.0" layoutY="558.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="156.0" style="-fx-background-radius: 50;" text="ADD">
+      <Button layoutX="97.0" layoutY="548.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="156.0" style="-fx-background-radius: 50;" text="ADD">
          <stylesheets>
             <URL value="@managebook.css" />
             <URL value="@../signup/signup.css" />
@@ -218,7 +223,7 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Button layoutX="283.0" layoutY="558.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="156.0" style="-fx-background-radius: 50;" text="UPDATE">
+      <Button layoutX="264.0" layoutY="548.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="156.0" style="-fx-background-radius: 50;" text="UPDATE">
          <stylesheets>
             <URL value="@managebook.css" />
             <URL value="@../signup/signup.css" />
@@ -234,7 +239,7 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Button layoutX="451.0" layoutY="558.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="156.0" style="-fx-background-radius: 50;" text="DELETE">
+      <Button layoutX="432.0" layoutY="548.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="156.0" style="-fx-background-radius: 50;" text="DELETE">
          <stylesheets>
             <URL value="@managebook.css" />
             <URL value="@../signup/signup.css" />
@@ -250,14 +255,18 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <TableView layoutX="658.0" layoutY="194.0" prefHeight="335.0" prefWidth="527.0" style="-fx-background-radius: 10;" stylesheets="@../admindashboard/admindashboard.css">
-         <columns>
-            <TableColumn prefWidth="130.0" text="Book ID" />
-            <TableColumn prefWidth="137.60000610351562" text="Book Title" />
-            <TableColumn prefWidth="128.79998779296875" text="Author" />
-            <TableColumn prefWidth="132.79998779296875" text="Quantity" />
-         </columns>
-      </TableView>
+      <AnchorPane layoutX="669.0" layoutY="174.0" prefHeight="351.0" prefWidth="530.0" style="-fx-background-radius: 20;" styleClass="mid-background" stylesheets="@../viewissuedbook/viewissuedbook.css">
+         <children>
+            <TableView layoutX="7.0" layoutY="8.0" prefHeight="335.0" prefWidth="516.0" style="-fx-background-radius: 10;" stylesheets="@../admindashboard/admindashboard.css">
+               <columns>
+                  <TableColumn prefWidth="130.0" text="Book ID" />
+                  <TableColumn prefWidth="137.60000610351562" text="Book Title" />
+                  <TableColumn prefWidth="128.79998779296875" text="Author" />
+                  <TableColumn prefWidth="132.79998779296875" text="Quantity" />
+               </columns>
+            </TableView>
+         </children>
+      </AnchorPane>
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="1050.0" layoutY="548.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@read.png" />
@@ -284,7 +293,7 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="876.0" layoutY="152.0" prefHeight="27.0" prefWidth="156.0" text="BOOK OVERVIEW" textFill="LIGHTCORAL">
+      <Label layoutX="876.0" layoutY="137.0" prefHeight="27.0" prefWidth="156.0" text="BOOK OVERVIEW" textFill="LIGHTCORAL">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>

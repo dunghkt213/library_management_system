@@ -61,7 +61,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" styleClass="button-left" stylesheets="@admindashboard.css" text="Manage Books" textFill="WHITE">
+            <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handlemanagebook" prefHeight="50.0" prefWidth="250.0" styleClass="button-left" stylesheets="@admindashboard.css" text="Manage Books" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -82,7 +82,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" styleClass="button-left" stylesheets="@admindashboard.css" text="Manage Student" textFill="WHITE">
+            <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handlemanagestudent" prefHeight="50.0" prefWidth="250.0" styleClass="button-left" stylesheets="@admindashboard.css" text="Manage Student" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -103,7 +103,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="221.0" styleClass="button-left" stylesheets="@admindashboard.css" text="Issue Book" textFill="WHITE">
+            <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handleissuebook" prefHeight="50.0" prefWidth="221.0" styleClass="button-left" stylesheets="@admindashboard.css" text="Issue Book" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -124,7 +124,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" styleClass="button-left" stylesheets="@admindashboard.css" text="Return Book" textFill="WHITE">
+            <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handlereturn" prefHeight="50.0" prefWidth="250.0" styleClass="button-left" stylesheets="@admindashboard.css" text="Return Book" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -145,7 +145,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" styleClass="button-left" stylesheets="@admindashboard.css" text="View Book" textFill="WHITE">
+            <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handleviewbook" prefHeight="50.0" prefWidth="250.0" styleClass="button-left" stylesheets="@admindashboard.css" text="View Book" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -166,7 +166,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" styleClass="button-left" stylesheets="@admindashboard.css" text="View Issue Book" textFill="WHITE">
+            <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handleviewissuedbook" prefHeight="50.0" prefWidth="250.0" styleClass="button-left" stylesheets="@admindashboard.css" text="View Issued Book" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -175,7 +175,7 @@
                   </ImageView>
                </graphic>
                <VBox.margin>
-                  <Insets />
+                  <Insets bottom="20.0" />
                </VBox.margin>
                <padding>
                   <Insets left="30.0" top="10.0" />
@@ -187,28 +187,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" styleClass="button-left" stylesheets="@admindashboard.css" text="Defaulter List" textFill="WHITE">
-               <graphic>
-                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@list.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-               <padding>
-                  <Insets left="30.0" top="10.0" />
-               </padding>
-               <font>
-                  <Font name="System Bold" size="13.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-            <Button alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" styleClass="button-left" stylesheets="@admindashboard.css" text="Log Out" textFill="WHITE">
+            <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handlelogout" prefHeight="50.0" prefWidth="250.0" styleClass="button-left" stylesheets="@admindashboard.css" text="Log Out" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -271,34 +250,99 @@
             <Insets bottom="20.0" />
          </padding>
       </HBox>
-      <AnchorPane layoutX="257.0" layoutY="168.0" prefHeight="99.0" prefWidth="200.0" style="-fx-background-radius: 30;" styleClass="pane-border-shadow" stylesheets="@admindashboard.css">
+      <AnchorPane layoutX="253.0" layoutY="164.0" prefHeight="112.0" prefWidth="906.0" style="-fx-background-radius: 30;" styleClass="mid-background" stylesheets="@../viewissuedbook/viewissuedbook.css">
          <children>
-            <Label alignment="CENTER" layoutX="21.0" layoutY="16.0" prefHeight="38.0" prefWidth="71.0" text="50">
-               <font>
-                  <Font name="System Bold" size="24.0" />
-               </font>
-            </Label>
-            <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="150.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@students.png" />
-               </image>
-            </ImageView>
-            <Label layoutX="19.0" layoutY="54.0" text="Total students" textFill="CORAL">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Label>
+            <AnchorPane layoutX="4.0" layoutY="4.0" prefHeight="99.0" prefWidth="200.0" style="-fx-background-radius: 30;" styleClass="pane-border-shadow" stylesheets="@admindashboard.css">
+               <children>
+                  <Label alignment="CENTER" layoutX="21.0" layoutY="16.0" prefHeight="38.0" prefWidth="71.0" text="50">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="150.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@students.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="19.0" layoutY="54.0" text="Total students" textFill="CORAL">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="236.0" layoutY="4.0" prefHeight="99.0" prefWidth="200.0" style="-fx-background-radius: 30;" styleClass="pane-border-shadow" stylesheets="@admindashboard.css">
+               <children>
+                  <Label alignment="CENTER" layoutX="21.0" layoutY="16.0" prefHeight="38.0" prefWidth="71.0" text="50">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="150.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@book.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="23.0" layoutY="54.0" text="Total Books" textFill="CORAL">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="465.0" layoutY="4.0" prefHeight="99.0" prefWidth="200.0" style="-fx-background-radius: 30;" styleClass="pane-border-shadow" stylesheets="@admindashboard.css">
+               <children>
+                  <Label alignment="CENTER" layoutX="28.0" layoutY="14.0" prefHeight="38.0" prefWidth="71.0" text="50">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="152.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@issued.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="24.0" layoutY="54.0" text="Issued Books" textFill="CORAL">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="706.0" layoutY="4.0" prefHeight="99.0" prefWidth="200.0" style="-fx-background-radius: 30;" styleClass="pane-border-shadow" stylesheets="@admindashboard.css">
+               <children>
+                  <Label alignment="CENTER" layoutX="28.0" layoutY="16.0" prefHeight="38.0" prefWidth="71.0" text="50">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="154.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@clock.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="23.0" layoutY="54.0" text="Overdue Books" textFill="CORAL">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
          </children>
       </AnchorPane>
-      <TableView layoutX="269.0" layoutY="330.0" prefHeight="312.0" prefWidth="527.0" style="-fx-background-radius: 10;" stylesheets="@admindashboard.css">
-        <columns>
-          <TableColumn prefWidth="130.0" text="Book ID" />
-            <TableColumn prefWidth="137.60000610351562" text="Book Title" />
-            <TableColumn prefWidth="128.79998779296875" text="Author" />
-            <TableColumn prefWidth="132.79998779296875" text="Quantity" />
-        </columns>
-      </TableView>
-      <Label layoutX="269.0" layoutY="292.0" prefHeight="38.0" prefWidth="200.0" text="BOOK DETAILS" textFill="CORAL">
+      <AnchorPane layoutX="239.0" layoutY="323.0" prefHeight="351.0" prefWidth="572.0" style="-fx-background-radius: 20;" styleClass="mid-background" stylesheets="@../viewissuedbook/viewissuedbook.css">
+         <children>
+            <TableView layoutX="22.0" layoutY="22.0" prefHeight="312.0" prefWidth="527.0" style="-fx-background-radius: 10;" stylesheets="@admindashboard.css">
+              <columns>
+                <TableColumn prefWidth="130.0" text="Book ID" />
+                  <TableColumn prefWidth="137.60000610351562" text="Book Title" />
+                  <TableColumn prefWidth="128.79998779296875" text="Author" />
+                  <TableColumn prefWidth="132.79998779296875" text="Quantity" />
+              </columns>
+            </TableView>
+         </children>
+      </AnchorPane>
+      <Label layoutX="489.0" layoutY="291.0" prefHeight="38.0" prefWidth="200.0" text="BOOK DETAILS" textFill="CORAL">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
@@ -324,62 +368,5 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <AnchorPane layoutX="489.0" layoutY="168.0" prefHeight="99.0" prefWidth="200.0" style="-fx-background-radius: 30;" styleClass="pane-border-shadow" stylesheets="@admindashboard.css">
-         <children>
-            <Label alignment="CENTER" layoutX="21.0" layoutY="16.0" prefHeight="38.0" prefWidth="71.0" text="50">
-               <font>
-                  <Font name="System Bold" size="24.0" />
-               </font>
-            </Label>
-            <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="150.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@book.png" />
-               </image>
-            </ImageView>
-            <Label layoutX="23.0" layoutY="54.0" text="Total Books" textFill="CORAL">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Label>
-         </children>
-      </AnchorPane>
-      <AnchorPane layoutX="718.0" layoutY="168.0" prefHeight="99.0" prefWidth="200.0" style="-fx-background-radius: 30;" styleClass="pane-border-shadow" stylesheets="@admindashboard.css">
-         <children>
-            <Label alignment="CENTER" layoutX="28.0" layoutY="14.0" prefHeight="38.0" prefWidth="71.0" text="50">
-               <font>
-                  <Font name="System Bold" size="24.0" />
-               </font>
-            </Label>
-            <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="152.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@issued.png" />
-               </image>
-            </ImageView>
-            <Label layoutX="24.0" layoutY="54.0" text="Issued Books" textFill="CORAL">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Label>
-         </children>
-      </AnchorPane>
-      <AnchorPane layoutX="959.0" layoutY="168.0" prefHeight="99.0" prefWidth="200.0" style="-fx-background-radius: 30;" styleClass="pane-border-shadow" stylesheets="@admindashboard.css">
-         <children>
-            <Label alignment="CENTER" layoutX="28.0" layoutY="16.0" prefHeight="38.0" prefWidth="71.0" text="50">
-               <font>
-                  <Font name="System Bold" size="24.0" />
-               </font>
-            </Label>
-            <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="154.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@clock.png" />
-               </image>
-            </ImageView>
-            <Label layoutX="23.0" layoutY="54.0" text="Overdue Books" textFill="CORAL">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Label>
-         </children>
-      </AnchorPane>
    </children>
 </AnchorPane>
