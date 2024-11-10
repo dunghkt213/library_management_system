@@ -1,4 +1,4 @@
-package manage;
+package issuebook;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Objects;
 
-public class managebookcontroller {
+public class issuebookcontroller {
     @FXML
     private TextField textField;
 
