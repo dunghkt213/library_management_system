@@ -16,8 +16,8 @@ public class studentDAO implements dao.DAOInterface<student> {
     @Override
     public int insert(student student) {
         int result = 0;
-        String sql = "INSERT INTO students(studentName,phoneNumber,studentEmailAddress,birthdayDate,major)"
-                +  "VALUES(?,?,?,?,?)";
+        String sql = "INSERT INTO students(studentName,phoneNumber,studentEmailAddress,birthdayDate,major,password,studentID)"
+                +  "VALUES(?,?,?,?,?,?,?)";
         try (Connection conn = JDBCUtil.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             // Gán giá trị cho từng dấu ?
@@ -26,6 +26,8 @@ public class studentDAO implements dao.DAOInterface<student> {
             pstmt.setString(3, student.getEmail());
             pstmt.setString(4, student.getBirthday());
             pstmt.setString(5, student.getMajor());
+            pstmt.setString(6, student.getPassword());
+            pstmt.setString(7, student.getStudentID());
             // Thực thi câu lệnh INSERT
             result = pstmt.executeUpdate();
 
@@ -42,7 +44,7 @@ public class studentDAO implements dao.DAOInterface<student> {
     @Override
     public int update(student student) {
         int result = 0;
-        String sql = "UPDATE  students SET studentName = ? ,phoneNumber=? ,studentEmailAddress=? ,birthdayDate= ?,major=?"
+        String sql = "UPDATE  students SET studentName = ? ,phoneNumber=? ,studentEmailAddress=? ,birthdayDate= ?,major=,password=?"
                 + "WHERE studentId = ?";
         try (Connection conn = JDBCUtil.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
@@ -53,6 +55,7 @@ public class studentDAO implements dao.DAOInterface<student> {
             pstmt.setString(4, student.getBirthday());
             pstmt.setString(5, student.getMajor());
             pstmt.setString(6, student.getStudentID());
+            pstmt.setString(7, student.getPassword());
             // Thực thi câu lệnh INSERT
             result = pstmt.executeUpdate();
 
