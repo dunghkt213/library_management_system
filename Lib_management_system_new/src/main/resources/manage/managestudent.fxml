@@ -18,19 +18,24 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" styleClass="Anchor-background" stylesheets="@managebook.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="signup.signupcontroller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" styleClass="Anchor-background" stylesheets="@managebook.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="manage.managestudentcontroller">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="LIGHTCORAL" height="700.0" stroke="BLACK" strokeType="INSIDE" width="649.0" />
-      <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="54.0" styleClass="back-button" stylesheets="@managebook.css" />
-      <ImageView fitHeight="22.0" fitWidth="30.0" layoutX="16.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@back.png" />
-         </image>
+      <Button mnemonicParsing="false" onAction="#handleadmin" prefHeight="26.0" prefWidth="54.0" styleClass="back-button" stylesheets="@managebook.css">
+         <graphic>
+            <ImageView fitHeight="22.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@back.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+         </graphic>
          <cursor>
             <Cursor fx:constant="HAND" />
-         </cursor>
-      </ImageView>
-      <HBox layoutX="61.0" layoutY="125.0" prefHeight="423.0" prefWidth="600.0">
+         </cursor></Button>
+      <HBox layoutX="25.0" layoutY="109.0" prefHeight="329.0" prefWidth="600.0">
          <children>
             <VBox prefHeight="582.0" prefWidth="300.0" stylesheets="@managebook.css">
                <children>
@@ -82,7 +87,7 @@
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Label>
-                  <TextField prefHeight="40.0" prefWidth="450.0" promptText="Enter Book Title" style="-fx-background-radius: 50;" stylesheets="@managebook.css">
+                  <TextField prefHeight="40.0" prefWidth="450.0" promptText="Enter Phone Number" style="-fx-background-radius: 50;" stylesheets="@managebook.css">
                      <VBox.margin>
                         <Insets bottom="30.0" left="20.0" right="20.0" />
                      </VBox.margin>
@@ -106,7 +111,7 @@
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Label>
-                  <TextField prefHeight="40.0" prefWidth="450.0" promptText="Enter Category ID" style="-fx-background-radius: 50;" stylesheets="@managebook.css">
+                  <TextField fx:id="textField" prefHeight="40.0" prefWidth="450.0" promptText="Enter Birthday" style="-fx-background-radius: 50;" stylesheets="@managebook.css">
                      <VBox.margin>
                         <Insets bottom="30.0" left="20.0" right="20.0" />
                      </VBox.margin>
@@ -126,7 +131,7 @@
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Label>
-                  <TextField prefHeight="40.0" prefWidth="450.0" promptText="Enter Category Name" style="-fx-background-radius: 50;" stylesheets="@managebook.css">
+                  <TextField prefHeight="40.0" prefWidth="450.0" promptText="Enter Major" style="-fx-background-radius: 50;" stylesheets="@managebook.css">
                      <VBox.margin>
                         <Insets bottom="30.0" left="20.0" right="20.0" />
                      </VBox.margin>
@@ -146,7 +151,7 @@
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Label>
-                  <TextField prefHeight="40.0" prefWidth="450.0" promptText="Enter Publisher" style="-fx-background-radius: 50;" stylesheets="@managebook.css">
+                  <TextField prefHeight="40.0" prefWidth="450.0" promptText="Enter Email" style="-fx-background-radius: 50;" stylesheets="@managebook.css">
                      <VBox.margin>
                         <Insets left="20.0" right="20.0" />
                      </VBox.margin>
@@ -162,7 +167,7 @@
             </VBox>
          </children>
       </HBox>
-      <Button layoutX="116.0" layoutY="558.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="156.0" style="-fx-background-radius: 50;" text="ADD">
+      <Button layoutX="80.0" layoutY="476.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="156.0" style="-fx-background-radius: 50;" text="ADD">
          <stylesheets>
             <URL value="@managebook.css" />
             <URL value="@../signup/signup.css" />
@@ -178,7 +183,7 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Button layoutX="283.0" layoutY="558.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="156.0" style="-fx-background-radius: 50;" text="UPDATE">
+      <Button layoutX="247.0" layoutY="476.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="156.0" style="-fx-background-radius: 50;" text="UPDATE">
          <stylesheets>
             <URL value="@managebook.css" />
             <URL value="@../signup/signup.css" />
@@ -194,7 +199,7 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Button layoutX="451.0" layoutY="558.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="156.0" style="-fx-background-radius: 50;" text="DELETE">
+      <Button layoutX="415.0" layoutY="476.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="156.0" style="-fx-background-radius: 50;" text="DELETE">
          <stylesheets>
             <URL value="@managebook.css" />
             <URL value="@../signup/signup.css" />

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" styleClass="Anchor-background" stylesheets="@../manage/managebook.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewissuedbook.viewissuedbookcontroller">
+   <children>
+      <AnchorPane prefHeight="263.0" prefWidth="1200.0" stylesheets="@viewissuedbook.css">
+         <children>
+            <ImageView fitHeight="128.0" fitWidth="144.0" layoutX="512.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@book.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="516.0" layoutY="114.0" prefHeight="27.0" prefWidth="120.0" text="ISSUED BOOK" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <AnchorPane layoutX="341.0" layoutY="155.0" prefHeight="86.0" prefWidth="206.0" style="-fx-background-radius: 30;" styleClass="an-background" stylesheets="@viewissuedbook.css">
+               <children>
+                  <DatePicker fx:id="textField" layoutX="15.0" layoutY="43.0" />
+                  <Label layoutX="51.0" layoutY="14.0" prefHeight="18.0" prefWidth="154.0" text="ISSUE DATE:" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <Button fx:id="submit" layoutX="895.0" layoutY="178.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="141.0" style="-fx-background-radius: 50;" text="FIND">
+               <stylesheets>
+                  <URL value="@../manage/managebook.css" />
+                  <URL value="@../signup/signup.css" />
+               </stylesheets>
+               <styleClass>
+                  <String fx:value="button-border" />
+                  <String fx:value="button-login" />
+               </styleClass>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#handleadmin" prefHeight="26.0" prefWidth="54.0" styleClass="back-button" stylesheets="@../manage/managebook.css">
+               <graphic>
+                  <ImageView fitHeight="22.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../manage/back.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <AnchorPane layoutX="615.0" layoutY="155.0" prefHeight="86.0" prefWidth="206.0" style="-fx-background-radius: 30;" styleClass="an-background" stylesheets="@viewissuedbook.css">
+               <children>
+                  <DatePicker layoutX="15.0" layoutY="43.0" />
+                  <Label layoutX="51.0" layoutY="14.0" prefHeight="18.0" prefWidth="154.0" text="ISSUE DATE:" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </children>
+         <styleClass>
+            <String fx:value="top-background" />
+            <String fx:value="left-rounded-corner" />
+         </styleClass>
+      </AnchorPane>
+      <AnchorPane layoutX="161.0" layoutY="282.0" prefHeight="402.0" prefWidth="834.0" style="-fx-background-radius: 20;" styleClass="mid-background" stylesheets="@viewissuedbook.css">
+         <children>
+            <TableView layoutX="25.0" layoutY="14.0" prefHeight="370.0" prefWidth="801.0" style="-fx-background-radius: 10;" stylesheets="@../admindashboard/admindashboard.css">
+               <columns>
+                  <TableColumn prefWidth="130.0" text="Book ID" />
+                  <TableColumn prefWidth="137.60000610351562" text="Book Title" />
+                  <TableColumn prefWidth="128.79998779296875" text="Student Name" />
+                  <TableColumn prefWidth="132.79998779296875" text="Issue Date" />
+                  <TableColumn prefWidth="137.60000610351562" text="Due Date" />
+                  <TableColumn prefWidth="137.60000610351562" text="Quantity" />
+               </columns>
+            </TableView>
+            <ImageView fitHeight="55.0" fitWidth="54.0" layoutX="-2.0" layoutY="-13.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../returnbook/searching.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="813.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../manage/study.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
