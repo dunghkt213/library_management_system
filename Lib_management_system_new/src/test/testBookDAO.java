@@ -20,7 +20,7 @@ public class testBookDAO {
             System.out.println(b.getBookID());
         }*/
 
-        student newstudent = new student("23021493","dung","23021493@vnu.en.vn","0984021814","2005-01-31","tec","1211");
+        student newstudent = new student("230214933","dung","23021493@vnu.en.vn","0984021814","2005-01-31","tec","1211");
 /*        ArrayList<student> student = studentDAO.getInstance().getByCondition(newstudent);
         for(student s : student){
             s.print();

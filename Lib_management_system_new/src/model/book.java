@@ -1,17 +1,17 @@
 package model;
 
 public class book {
-    private String bookID ;
-    private String bookTitle ;
-    private String bookAuthor ;
-    private String bookPublisher ;
-    private String edition ;
-    private String language ;
-    private int quantity ;
-    private int remainingBooks ;
-    private String availability ;
-    private int categoryID ;
-    private String categoryName ;
+    private String bookID;
+    private String bookTitle;
+    private String bookAuthor;
+    private String bookPublisher;
+    private String edition;
+    private String language;
+    private int quantity;
+    private int remainingBooks;
+    private String availability;
+    private int categoryID;
+    private String categoryName;
 
     public String getCategoryName() {
         return categoryName;
@@ -20,10 +20,12 @@ public class book {
     public void setCategoryName(String categoryName) {
         this.categoryName = categoryName;
     }
-    public book(){
+
+    public book() {
     }
+
     public book(String bookID, int categoryID, String availability, int remainingBooks
-            , String language, String edition, String bookAuthor, String bookTitle, String bookPublisher, int quantity,String categoryName) {
+            , String language, String edition, String bookAuthor, String bookTitle, String bookPublisher, int quantity, String categoryName) {
         this.bookID = bookID;
         this.categoryID = categoryID;
         this.availability = availability;
@@ -35,6 +37,15 @@ public class book {
         this.bookPublisher = bookPublisher;
         this.quantity = quantity;
         this.categoryName = categoryName;
+    }
+
+    public book(String bookID, String bookTitle, String bookAuthor, String bookPublisher, String categoryName,String language, int quantity) {
+        this.bookID = bookID;
+        this.bookTitle = bookTitle;
+        this.bookAuthor = bookAuthor;
+        this.bookPublisher = bookPublisher;
+        this.categoryName = categoryName;
+        this.quantity = quantity;
     }
 
     public String getAvailability() {
