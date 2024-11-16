@@ -26,7 +26,7 @@ public class testBookDAO {
             s.print();
         }*/
 
-        student nvb = new student("23021477","bien","23021493@vnu.en.vn","0984021814","2005-01-31","tec","1211");
+        student nvb = new student("2311111","bien","23021493@vnu.en.vn","0984021814","2005-01-31","tec","1211");
         //studentDAO.getInstance().insert(newstudent);
         studentDAO.getInstance().insert(nvb);
     }
