@@ -12,6 +12,7 @@ public class book {
     private String availability;
     private int categoryID;
     private String categoryName;
+    private String imageUrl;
 
     public String getCategoryName() {
         return categoryName;
@@ -128,5 +129,13 @@ public class book {
 
     public void setBookID(String bookID) {
         this.bookID = bookID;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }

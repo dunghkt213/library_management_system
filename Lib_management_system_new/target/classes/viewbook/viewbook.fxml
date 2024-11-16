@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
+<?import java.lang.String?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" stylesheets="@../viewissuedbook/viewissuedbook.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewbook.viewbookcontroller">
    <children>
-      <AnchorPane layoutY="-1.0" prefHeight="98.0" prefWidth="1200.0" styleClass="an-background" stylesheets="@../viewissuedbook/viewissuedbook.css">
+      <!-- Thanh Tìm Kiếm -->
+      <AnchorPane layoutY="20.0" prefHeight="98.0" prefWidth="1200.0" styleClass="an-background" stylesheets="@../viewissuedbook/viewissuedbook.css">
          <children>
-            <TextField fx:id="textField" layoutX="439.0" layoutY="22.0" prefHeight="39.0" prefWidth="358.0" promptText="Search" style="-fx-background-radius: 30;" stylesheets="@viewbook.css">
-               <padding>
+            <TextField fx:id="searchField" layoutX="420.0" layoutY="30.0" prefHeight="39.0" prefWidth="350.0" promptText="Search" style="-fx-background-radius: 30;" stylesheets="@viewbook.css" onKeyReleased="#handleKeyReleased">
+            <padding>
                   <Insets left="40.0" />
                </padding>
                <styleClass>
@@ -29,7 +29,9 @@
             </TextField>
          </children>
       </AnchorPane>
-      <Button layoutY="-1.0" mnemonicParsing="false" onAction="#handleadmin" prefHeight="26.0" prefWidth="54.0" styleClass="back-button" stylesheets="@../manage/managebook.css">
+
+      <!-- Nút Quay Lại -->
+      <Button layoutY="20.0" layoutX="20.0" mnemonicParsing="false" onAction="#handleadmin" prefHeight="26.0" prefWidth="54.0" styleClass="back-button" stylesheets="@../manage/managebook.css">
          <graphic>
             <ImageView fitHeight="22.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -44,70 +46,17 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <VBox alignment="TOP_CENTER" layoutX="27.0" layoutY="117.0" prefHeight="582.0" prefWidth="186.0" stylesheets="@viewbook.css">
+
+      <!-- Danh sách kết quả tìm kiếm -->
+      <ListView fx:id="resultsListView" layoutX="300.0" layoutY="150.0" prefHeight="500.0" prefWidth="600.0" />
+
+      <!-- Hiển thị chi tiết sách -->
+      <TextArea fx:id="bookDetailsTextArea" layoutX="920.0" layoutY="150.0" prefHeight="300.0" prefWidth="250.0" wrapText="true" editable="false" style="-fx-background-radius: 10; -fx-border-color: lightgray; -fx-border-radius: 10;" />
+
+      <!-- Hình ảnh sách và các thông tin liên quan -->
+      <VBox alignment="CENTER" layoutX="40.0" layoutY="150.0" prefHeight="500.0" prefWidth="180.0" stylesheets="@viewbook.css" spacing="20">
          <children>
-            <ImageView fitHeight="211.0" fitWidth="162.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@0014656842-L.jpg" />
-               </image>
-               <VBox.margin>
-                  <Insets top="20.0" />
-               </VBox.margin>
-            </ImageView>
-            <Button mnemonicParsing="false" prefHeight="58.0" prefWidth="122.0" text="Want to read">
-               <VBox.margin>
-                  <Insets top="50.0" />
-               </VBox.margin>
-            </Button>
-         </children>
-         <styleClass>
-            <String fx:value="mid-background" />
-            <String fx:value="left-rounded-corner" />
-         </styleClass>
-      </VBox>
-      <VBox alignment="TOP_CENTER" layoutX="252.0" layoutY="117.0" prefHeight="345.0" prefWidth="924.0" style="-fx-background-radius: 30;" styleClass="mid-background" stylesheets="@viewbook.css">
-         <children>
-            <Label prefHeight="35.0" prefWidth="451.0" text="Harry Potter and the Half-Blood Prince">
-               <font>
-                  <Font name="System Bold" size="24.0" />
-               </font>
-               <VBox.margin>
-                  <Insets bottom="10.0" />
-               </VBox.margin>
-            </Label>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="by J. K. Rowling and Mary GrandPré" wrappingWidth="198.9366579055786">
-               <VBox.margin>
-                  <Insets bottom="20.0" />
-               </VBox.margin>
-            </Text>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="2,225 Want to read 151 Currently reading" wrappingWidth="220.53669452667236">
-               <VBox.margin>
-                  <Insets bottom="20.0" />
-               </VBox.margin>
-            </Text>
-            <TextArea prefHeight="223.0" prefWidth="863.0" styleClass="text-area" stylesheets="@viewbook.css" text="The war against Voldemort is not going well: even Muggle governments are noticing. Ron scans the obituary pages of The Daily Prophet looking for familiar names. Dumbledore is absent from Hogwarts for long stretches of time, and the Order of the Phoenix has already suffered losses.&#10;&#10;And yet …&#10;&#10;As in all wars, life goes on. Sixth-year students learn to Apparate, and lose a few eyebrows in the process. The Weasley twins expand their business. Teenagers flirt and fight and fall in love. Classes are never straightforward, though Harry receives some extraordinary help from the mysterious Half-Blood Prince.&#10;&#10;So it's the home front that takes center stage in the multilayered sixth installment of the story of Harry Potter. Here at Hogwart's , Harry will search for the full and complex story of the boy who became Lord Voldemort - and thereby find what may be his only vulnerability." wrapText="true">
-               <VBox.margin>
-                  <Insets left="30.0" right="30.0" />
-               </VBox.margin>
-            </TextArea>
-         </children>
-      </VBox>
-      <VBox alignment="CENTER" layoutX="322.0" layoutY="536.0" prefHeight="73.0" prefWidth="172.0" style="-fx-background-radius: 30;" styleClass="mid-background" stylesheets="@viewbook.css">
-         <children>
-            <Label prefHeight="18.0" prefWidth="62.0" text="Publisher" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Arthur A. Levine Books" wrappingWidth="135.7367067337036" />
-         </children>
-      </VBox>
-      <VBox alignment="CENTER" layoutX="628.0" layoutY="536.0" prefHeight="73.0" prefWidth="172.0" style="-fx-background-radius: 30;" styleClass="mid-background" stylesheets="@viewbook.css">
-         <children>
-            <Label prefHeight="18.0" prefWidth="62.0" text="Publisher" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Arthur A. Levine Books" wrappingWidth="135.7367067337036" />
-         </children>
-      </VBox>
-      <VBox alignment="CENTER" layoutX="942.0" layoutY="536.0" prefHeight="73.0" prefWidth="172.0" style="-fx-background-radius: 30;" styleClass="mid-background" stylesheets="@viewbook.css">
-         <children>
-            <Label prefHeight="18.0" prefWidth="62.0" text="Publisher" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Arthur A. Levine Books" wrappingWidth="135.7367067337036" />
+            <Button mnemonicParsing="false" prefHeight="58.0" prefWidth="122.0" text="Want to read" style="-fx-background-radius: 20; -fx-border-radius: 20;" />
          </children>
       </VBox>
    </children>
