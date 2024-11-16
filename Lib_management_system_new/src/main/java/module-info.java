@@ -5,6 +5,7 @@ module com.example.libarary_management_system {
     requires com.dlsc.formsfx;
     requires java.sql;
     requires mysql.connector.java;
+    requires java.management;
 
     opens signup to javafx.fxml;
     exports signup;
@@ -29,4 +30,7 @@ module com.example.libarary_management_system {
 
     opens viewissuedbook to javafx.fxml;
     exports viewissuedbook to javafx.fxml;
+
+
+
 }

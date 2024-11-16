@@ -26,7 +26,6 @@ public class testBookDAO {
             s.print();
         }*/
 
-
         studentDAO.getInstance().insert(newstudent);
     }
 

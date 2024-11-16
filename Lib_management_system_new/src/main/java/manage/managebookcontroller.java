@@ -93,5 +93,4 @@ public class managebookcontroller {
         bookDAO.getInstance().insert(newBook);
     }
 
-
 }

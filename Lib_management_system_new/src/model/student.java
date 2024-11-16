@@ -68,5 +68,6 @@ public class student extends person {
         System.out.println("Student Phone Number: " + phoneNumber);
         System.out.println("Student Birthday Date: " + birthday);
         System.out.println("Student Major: " + major);
+        System.out.println("Student Password: " + password);
     }
 }
