@@ -62,6 +62,5 @@ public class signupcontroller {
             e.printStackTrace();
         }
     }
-
 }
 

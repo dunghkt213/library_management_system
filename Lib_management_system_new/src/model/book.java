@@ -25,7 +25,8 @@ public class book {
     }
 
     public book(String bookID, int categoryID, String availability, int remainingBooks
-            , String language, String edition, String bookAuthor, String bookTitle, String bookPublisher, int quantity, String categoryName) {
+            , String language, String edition, String bookAuthor, String bookTitle
+            , String bookPublisher, int quantity, String categoryName) {
         this.bookID = bookID;
         this.categoryID = categoryID;
         this.availability = availability;
@@ -39,7 +40,8 @@ public class book {
         this.categoryName = categoryName;
     }
 
-    public book(String bookID, String bookTitle, String bookAuthor, String bookPublisher, String categoryName,String language, int quantity) {
+    public book(String bookID, String bookTitle, String bookAuthor, String bookPublisher
+            , String categoryName,String language, int quantity) {
         this.bookID = bookID;
         this.bookTitle = bookTitle;
         this.bookAuthor = bookAuthor;
