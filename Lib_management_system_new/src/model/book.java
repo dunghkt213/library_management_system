@@ -12,6 +12,7 @@ public class book {
     private String availability;
     private int categoryID;
     private String categoryName;
+    private String imageUrl;
 
     public String getCategoryName() {
         return categoryName;
@@ -25,7 +26,8 @@ public class book {
     }
 
     public book(String bookID, int categoryID, String availability, int remainingBooks
-            , String language, String edition, String bookAuthor, String bookTitle, String bookPublisher, int quantity, String categoryName) {
+            , String language, String edition, String bookAuthor, String bookTitle
+            , String bookPublisher, int quantity, String categoryName) {
         this.bookID = bookID;
         this.categoryID = categoryID;
         this.availability = availability;
@@ -39,7 +41,8 @@ public class book {
         this.categoryName = categoryName;
     }
 
-    public book(String bookID, String bookTitle, String bookAuthor, String bookPublisher, String categoryName,String language, int quantity) {
+    public book(String bookID, String bookTitle, String bookAuthor, String bookPublisher
+            , String categoryName,String language, int quantity) {
         this.bookID = bookID;
         this.bookTitle = bookTitle;
         this.bookAuthor = bookAuthor;
@@ -126,5 +129,13 @@ public class book {
 
     public void setBookID(String bookID) {
         this.bookID = bookID;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }
