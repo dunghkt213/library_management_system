@@ -72,6 +72,12 @@ public class GoogleBooksService {
                     }
                 }
 
+                // Lấy thêm các thông tin mới
+                String description = book.has("description") ? book.get("description").getAsString() : "No description available.";
+                int pageCount = book.has("pageCount") ? book.get("pageCount").getAsInt() : 0;
+                float averageRating = book.has("averageRating") ? book.get("averageRating").getAsFloat() : 0.0f;
+                String maturityRating = book.has("maturityRating") ? book.get("maturityRating").getAsString() : "UNKNOWN";
+
                 book newBook = new book();
                 newBook.setBookTitle(title);
                 newBook.setBookAuthor(authors);
@@ -79,10 +85,16 @@ public class GoogleBooksService {
                 newBook.setEdition(edition);
                 newBook.setLanguage(language);
                 newBook.setCategoryName(categoryName);
-                newBook.setQuantity(1);
-                newBook.setRemainingBooks(1);
-                newBook.setAvailability("Available");
-                newBook.setCategoryID(1);
+                //newBook.setQuantity(1);
+                //newBook.setRemainingBooks(1);
+                //newBook.setAvailability("Available");
+                //newBook.setCategoryID(1);
+
+                // Set các thông tin mới vào đối tượng book
+                newBook.setDescription(description);
+                newBook.setPageCount(pageCount);
+                newBook.setAverageRating(averageRating);
+                newBook.setMaturityRating(maturityRating);
 
                 if (book.has("imageLinks")) {
                     JsonObject imageLinks = book.getAsJsonObject("imageLinks");

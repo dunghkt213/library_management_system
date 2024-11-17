@@ -13,6 +13,10 @@ public class book {
     private int categoryID;
     private String categoryName;
     private String imageUrl;
+    private String description;
+    private int pageCount;
+    private float averageRating;
+    private String maturityRating;
 
     public String getCategoryName() {
         return categoryName;
@@ -131,11 +135,40 @@ public class book {
         this.bookID = bookID;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
+    public String getImageUrl() { return imageUrl; }
+
+    public void setImageUrl(String imageUrl) { this.imageUrl = imageUrl; }
+
+    // Các getter và setter cho các thuộc tính mới
+    public String getDescription() {
+        return description;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public int getPageCount() {
+        return pageCount;
+    }
+
+    public void setPageCount(int pageCount) {
+        this.pageCount = pageCount;
+    }
+
+    public float getAverageRating() {
+        return averageRating;
+    }
+
+    public void setAverageRating(float averageRating) {
+        this.averageRating = averageRating;
+    }
+
+    public String getMaturityRating() {
+        return maturityRating;
+    }
+
+    public void setMaturityRating(String maturityRating) {
+        this.maturityRating = maturityRating;
     }
 }
