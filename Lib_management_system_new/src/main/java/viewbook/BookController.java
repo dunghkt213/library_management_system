@@ -13,6 +13,7 @@ public class BookController {
         this.bookDao = new bookDAO();
     }
 
+    //Tìm kiếm trên API
     public ArrayList<book> searchBooksOnline(String keyword) {
         if (keyword == null || keyword.trim().isEmpty()) {
             throw new IllegalArgumentException("Từ khóa tìm kiếm không hợp lệ!");
@@ -20,10 +21,12 @@ public class BookController {
         return GoogleBooksService.searchBooks(keyword);
     }
 
+    //Tìm kiếm trên Database
     public ArrayList<book> searchBooksInDatabase(book searchCriteria) {
         return bookDao.getByCondition(searchCriteria);
     }
 
+    //Tìm kiếm chủ động
     public ArrayList<book> searchBooks(book searchCriteria, boolean isOnline) {
         ArrayList<book> result = new ArrayList<>();
 

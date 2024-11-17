@@ -1,16 +1,18 @@
 package viewbook;
 
 import API.GoogleBooksService;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.image.ImageView;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import model.book;
 
@@ -29,28 +31,21 @@ public class viewbookcontroller {
     @FXML
     private TextArea bookDetailsTextArea;
 
-    private final BookController bookController;
-
-    public viewbookcontroller() {
-        this.bookController = new BookController();
-    }
+    @FXML
+    private Button searchButton;
 
     @FXML
     private void initialize() {
-        searchField.textProperty().addListener((observable, oldValue, newValue) -> searchBooks(newValue));
-
-        resultsListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> showBookDetails(newValue.getBookTitle()));
-
         resultsListView.setCellFactory(param -> createBookListCell());
+        resultsListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> showBookDetails(newValue));
     }
 
     @FXML
-    private void handleKeyReleased(KeyEvent event) {
+    private void handleSearchAction(ActionEvent event) {
         String keyword = searchField.getText();
         searchBooks(keyword);
     }
 
-    @FXML
     private void searchBooks(String keyword) {
         if (keyword.isEmpty()) {
             resultsListView.getItems().clear();
@@ -59,12 +54,11 @@ public class viewbookcontroller {
 
         try {
             resultsListView.getItems().clear();
-
             ArrayList<book> booksOnline = GoogleBooksService.searchBooks(keyword);
+            ObservableList<book> observableBooks = FXCollections.observableArrayList(booksOnline);
+            resultsListView.setItems(observableBooks);
 
-            resultsListView.getItems().addAll(booksOnline);
-
-            if (resultsListView.getItems().isEmpty()) {
+            if (observableBooks.isEmpty()) {
                 showAlert("Không có kết quả", "Không tìm thấy sách với từ khóa đã nhập.");
             }
         } catch (Exception e) {
@@ -72,43 +66,29 @@ public class viewbookcontroller {
         }
     }
 
-    private void showBookDetails(String bookTitle) {
-        if (bookTitle == null || bookTitle.trim().isEmpty()) {
+    private void showBookDetails(book selectedBook) {
+        if (selectedBook == null) {
             return;
         }
 
-        try {
-            ArrayList<book> booksOnline = GoogleBooksService.searchBooks(bookTitle);
+        String bookDetails = "• Title: " + selectedBook.getBookTitle() + "\n\n";
+        bookDetails += "• Authors: " + selectedBook.getBookAuthor() + "\n\n";
+        bookDetails += "• Publisher: " + selectedBook.getBookPublisher() + "\n\n";
+        bookDetails += "• Edition: " + selectedBook.getEdition() + "\n\n";
+        bookDetails += "• Language: " + selectedBook.getLanguage() + "\n\n";
+        bookDetails += "• Category Name: " + selectedBook.getCategoryName() + "\n\n";
 
-            if (!booksOnline.isEmpty()) {
-                book selectedBook = booksOnline.get(0);
+        bookDetails += "• Description: " + selectedBook.getDescription() + "\n\n";
+        bookDetails += "• Page Count: " + selectedBook.getPageCount() + "\n\n";
+        bookDetails += "• Average Rating: " + selectedBook.getAverageRating() + "\n\n";
+        bookDetails += "• Maturity Rating: " + selectedBook.getMaturityRating() + "\n";
 
-                String bookDetails = "Tiêu đề: " + selectedBook.getBookTitle() + "\n";
-                bookDetails += "Tác giả: " + selectedBook.getBookAuthor() + "\n";
-                bookDetails += "Nhà xuất bản: " + selectedBook.getBookPublisher() + "\n";
-                bookDetails += "Phiên bản: " + selectedBook.getEdition() + "\n";
-                bookDetails += "Ngôn ngữ: " + selectedBook.getLanguage() + "\n";
-                bookDetails += "Thể loại: " + selectedBook.getCategoryName() + "\n";
-                bookDetails += "Số lượng: " + selectedBook.getQuantity() + "\n";
-                bookDetails += "Hàng trong kho: " + selectedBook.getRemainingBooks() + "\n";
-                bookDetails += "Trạng thái: " + selectedBook.getAvailability() + "\n";
-                bookDetails += "Mã thể loại: " + selectedBook.getCategoryID() + "\n";
+        //bookDetails += "Số lượng: " + selectedBook.getQuantity() + "\n";
+        //bookDetails += "Hàng trong kho: " + selectedBook.getRemainingBooks() + "\n";
+        //bookDetails += "Trạng thái: " + selectedBook.getAvailability() + "\n";
+        //bookDetails += "Mã thể loại: " + selectedBook.getCategoryID() + "\n";
 
-                bookDetailsTextArea.setText(bookDetails);
-            } else {
-                showAlert("Không có kết quả", "Không tìm thấy sách với từ khóa đã nhập.");
-            }
-        } catch (Exception e) {
-            showAlert("Lỗi", "Đã xảy ra lỗi khi hiển thị chi tiết sách.");
-        }
-    }
-
-    private void showAlert(String title, String message) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
+        bookDetailsTextArea.setText(bookDetails);
     }
 
     private ListCell<book> createBookListCell() {
@@ -117,26 +97,34 @@ public class viewbookcontroller {
             protected void updateItem(book item, boolean empty) {
                 super.updateItem(item, empty);
                 if (empty || item == null) {
-                    setGraphic(null);
                     setText(null);
+                    setGraphic(null);
                 } else {
                     HBox hbox = new HBox(10);
                     ImageView imageView = new ImageView();
-                    imageView.setFitHeight(50);
-                    imageView.setFitWidth(50);
+                    imageView.setFitHeight(80);
+                    imageView.setFitWidth(80);
 
                     // Kiểm tra nếu có URL ảnh
                     if (item.getImageUrl() != null && !item.getImageUrl().isEmpty()) {
-                        Image image = new Image(item.getImageUrl());
-                        imageView.setImage(image);
+                        imageView.setImage(new Image(item.getImageUrl()));
                     }
 
                     Label bookTitle = new Label(item.getBookTitle());
-                    hbox.getChildren().addAll(imageView, bookTitle);
+                    Label bookAuthor = new Label(item.getBookAuthor());
+                    hbox.getChildren().addAll(imageView, bookTitle, bookAuthor);
                     setGraphic(hbox);
                 }
             }
         };
+    }
+
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 
     @FXML
