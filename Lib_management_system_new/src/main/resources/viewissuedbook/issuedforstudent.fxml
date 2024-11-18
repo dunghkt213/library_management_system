@@ -61,7 +61,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handlemanagebook" prefHeight="50.0" prefWidth="250.0" styleClass="button-left" stylesheets="@../admindashboard/admindashboard.css" text="Manage Books" textFill="WHITE">
+            <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handlemanagebook" prefHeight="50.0" prefWidth="250.0" styleClass="button-left" stylesheets="@../admindashboard/admindashboard.css" text="Books" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -82,7 +82,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handlemanagestudent" prefHeight="50.0" prefWidth="250.0" styleClass="button-left" stylesheets="@../admindashboard/admindashboard.css" text="Manage Students" textFill="WHITE">
+            <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handlemanagestudent" prefHeight="50.0" prefWidth="250.0" styleClass="button-left" stylesheets="@../admindashboard/admindashboard.css" text="Student Info" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -108,27 +108,6 @@
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../admindashboard/issuebook.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-               <padding>
-                  <Insets left="10.0" top="10.0" />
-               </padding>
-               <font>
-                  <Font name="System Bold" size="13.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-            <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handleviewbook" prefHeight="50.0" prefWidth="250.0" styleClass="button-left" stylesheets="@../admindashboard/admindashboard.css" text="View Book" textFill="WHITE">
-               <graphic>
-                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../admindashboard/viewbook.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -216,7 +195,7 @@
                   <Insets left="700.0" />
                </HBox.margin>
             </ImageView>
-            <Label prefHeight="38.0" prefWidth="139.0" text="Welcome Admin" textFill="CORAL">
+            <Label prefHeight="38.0" prefWidth="139.0" text="Welcome You" textFill="CORAL">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
@@ -229,55 +208,29 @@
             <Insets bottom="20.0" />
          </padding>
       </HBox>
-      <AnchorPane layoutX="191.0" layoutY="182.0" prefHeight="510.0" prefWidth="634.0" style="-fx-background-radius: 20;" styleClass="mid-background" stylesheets="@viewissuedbook.css">
+      <VBox alignment="CENTER" layoutX="951.0" layoutY="234.0" prefHeight="182.0" prefWidth="222.0" style="-fx-background-radius: 20;" styleClass="mid-background" stylesheets="@viewissuedbook.css">
          <children>
-            <TableView layoutX="22.0" layoutY="14.0" prefHeight="482.0" prefWidth="590.0" style="-fx-background-radius: 30;" stylesheets="@../admindashboard/admindashboard.css">
-               <columns>
-                  <TableColumn prefWidth="55.19999694824219" text="Book ID" />
-                  <TableColumn prefWidth="114.4000244140625" text="Book Title" />
-                  <TableColumn prefWidth="124.0" text="Student Name" />
-                  <TableColumn prefWidth="111.20001220703125" text="Issue Date" />
-                  <TableColumn prefWidth="89.5999755859375" text="Due Date" />
-                  <TableColumn prefWidth="89.5999755859375" text="Quantity" />
-               </columns>
-            </TableView>
-         </children>
-      </AnchorPane>
-      <VBox layoutX="600.0" layoutY="14.0" prefHeight="127.0" prefWidth="139.0">
-         <children>
-            <ImageView fitHeight="141.0" fitWidth="155.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@school.png" />
-               </image>
-            </ImageView>
-            <Label prefHeight="27.0" prefWidth="131.0" text="ISSUED BOOK" textFill="LIGHTCORAL">
+            <Label prefHeight="18.0" prefWidth="154.0" text="ISSUE DATE:">
                <font>
-                  <Font name="System Bold" size="18.0" />
+                  <Font name="System Bold" size="12.0" />
                </font>
-               <padding>
-                  <Insets top="-20.0" />
-               </padding>
+            </Label>
+            <DatePicker fx:id="textField1" prefHeight="30.0" prefWidth="190.0">
                <VBox.margin>
-                  <Insets left="15.0" />
+                  <Insets bottom="10.0" />
                </VBox.margin>
-            </Label>
-         </children>
-      </VBox>
-      <AnchorPane layoutX="857.0" layoutY="224.0" prefHeight="283.0" prefWidth="311.0" style="-fx-background-radius: 20;" styleClass="mid-background" stylesheets="@viewissuedbook.css">
-         <children>
-            <DatePicker layoutX="52.0" layoutY="153.0" prefHeight="40.0" prefWidth="230.0" />
-            <DatePicker fx:id="textField1" layoutX="52.0" layoutY="79.0" prefHeight="40.0" prefWidth="230.0" />
-            <Label layoutX="52.0" layoutY="44.0" prefHeight="18.0" prefWidth="154.0" text="ISSUE DATE:">
+            </DatePicker>
+            <Label prefHeight="18.0" prefWidth="154.0" text="DUE DATE:">
                <font>
-                  <Font name="System Bold" size="14.0" />
+                  <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <Label layoutX="52.0" layoutY="121.0" prefHeight="18.0" prefWidth="154.0" text="DUE DATE:">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-            </Label>
-            <Button layoutX="52.0" layoutY="214.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="175.0" style="-fx-background-radius: 50;" stylesheets="@../issuebook/issuebook.css" text="FIND" textFill="WHITE">
+            <DatePicker prefHeight="30.0" prefWidth="190.0">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </DatePicker>
+            <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="126.0" style="-fx-background-radius: 50;" stylesheets="@../issuebook/issuebook.css" text="FIND" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -290,15 +243,39 @@
                </styleClass>
             </Button>
          </children>
+      </VBox>
+      <VBox layoutX="600.0" layoutY="14.0" prefHeight="127.0" prefWidth="139.0">
+         <children>
+            <ImageView fitHeight="152.0" fitWidth="141.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@school.png" />
+               </image>
+            </ImageView>
+         </children>
+      </VBox>
+      <AnchorPane layoutX="193.0" layoutY="126.0" prefHeight="563.0" prefWidth="739.0" style="-fx-background-radius: 20;" styleClass="mid-background" stylesheets="@viewissuedbook.css">
+         <children>
+            <TableView layoutX="20.0" layoutY="14.0" prefHeight="530.0" prefWidth="698.0" style="-fx-background-radius: 20;" stylesheets="@../admindashboard/admindashboard.css">
+               <columns>
+                  <TableColumn prefWidth="61.60005187988281" text="ID" />
+                  <TableColumn prefWidth="153.5999755859375" text="Book Title" />
+                  <TableColumn prefWidth="119.19992065429688" text="Author" />
+                  <TableColumn prefWidth="64.800048828125" text="Quantity" />
+                  <TableColumn prefWidth="89.5999755859375" text="Category" />
+                  <TableColumn prefWidth="103.99993896484375" text="Issued Date" />
+                  <TableColumn prefWidth="108.0001220703125" text="Due Date" />
+               </columns>
+            </TableView>
+         </children>
       </AnchorPane>
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="788.0" layoutY="536.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@painting.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="75.0" fitWidth="74.0" layoutX="788.0" layoutY="145.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="75.0" fitWidth="74.0" layoutX="877.0" layoutY="89.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../lmsdashboard/paper-clip.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="866.0" layoutY="550.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@painting.png" />
          </image>
       </ImageView>
    </children>
