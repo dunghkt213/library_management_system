@@ -8,7 +8,6 @@ import java.util.ArrayList;
 
 public class bookDAO implements DAOInterface<book> {
 
-
     public static DAOInterface<book> getInstance() {
         return new bookDAO();
     }

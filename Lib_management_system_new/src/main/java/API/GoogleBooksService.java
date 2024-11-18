@@ -23,10 +23,14 @@ public class GoogleBooksService {
         return URLEncoder.encode(value, StandardCharsets.UTF_8);
     }
 
-    public static ArrayList<book> searchBooks(String query) {
+    public static ArrayList<book> searchBooks(String query, int pageNumber, int pageSize) {
         try {
             query = query.trim();
-            String url = "https://www.googleapis.com/books/v1/volumes?q=" + encodeValue(query) + "&key=" + API_KEY;
+            int startIndex = pageNumber * pageSize;
+
+            String url = "https://www.googleapis.com/books/v1/volumes?q=" + encodeValue(query)
+                    +  "&startIndex=" + startIndex + "&maxResults=" + pageSize
+                    + "&key=" + API_KEY;
             URL apiUrl = URI.create(url).toURL();
             HttpURLConnection connection = (HttpURLConnection) apiUrl.openConnection();
             connection.setRequestMethod("GET");
@@ -64,19 +68,13 @@ public class GoogleBooksService {
                 String publisher = book.has("publisher") ? book.get("publisher").getAsString() : "Unknown Publisher";
                 String edition = book.has("edition") ? book.get("edition").getAsString() : "Unknown Edition";
                 String language = book.has("language") ? book.get("language").getAsString() : "Unknown Language";
-                String categoryName = "Unknown Category";
-                if (book.has("categories")) {
-                    JsonArray categories = book.getAsJsonArray("categories");
-                    if (categories != null && categories.size() > 0) {
-                        categoryName = categories.get(0).getAsString();
-                    }
-                }
+                String categoryName = book.has("categories") ? book.getAsJsonArray("categories").get(0).getAsString() : "Unknown Category";
 
                 // Lấy thêm các thông tin mới
                 String description = book.has("description") ? book.get("description").getAsString() : "No description available.";
                 int pageCount = book.has("pageCount") ? book.get("pageCount").getAsInt() : 0;
-                float averageRating = book.has("averageRating") ? book.get("averageRating").getAsFloat() : 0.0f;
-                String maturityRating = book.has("maturityRating") ? book.get("maturityRating").getAsString() : "UNKNOWN";
+                //float averageRating = book.has("averageRating") ? book.get("averageRating").getAsFloat() : 0.0f;
+                //String maturityRating = book.has("maturityRating") ? book.get("maturityRating").getAsString() : "UNKNOWN";
 
                 book newBook = new book();
                 newBook.setBookTitle(title);
@@ -93,8 +91,8 @@ public class GoogleBooksService {
                 // Set các thông tin mới vào đối tượng book
                 newBook.setDescription(description);
                 newBook.setPageCount(pageCount);
-                newBook.setAverageRating(averageRating);
-                newBook.setMaturityRating(maturityRating);
+                //newBook.setAverageRating(averageRating);
+                //newBook.setMaturityRating(maturityRating);
 
                 if (book.has("imageLinks")) {
                     JsonObject imageLinks = book.getAsJsonObject("imageLinks");
