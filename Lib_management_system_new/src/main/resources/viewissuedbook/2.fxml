@@ -265,8 +265,8 @@
       </VBox>
       <AnchorPane layoutX="857.0" layoutY="224.0" prefHeight="283.0" prefWidth="311.0" style="-fx-background-radius: 20;" styleClass="mid-background" stylesheets="@viewissuedbook.css">
          <children>
-            <DatePicker layoutX="52.0" layoutY="153.0" prefHeight="40.0" prefWidth="230.0" />
-            <DatePicker fx:id="textField1" layoutX="52.0" layoutY="79.0" prefHeight="40.0" prefWidth="230.0" />
+            <DatePicker layoutX="52.0" layoutY="153.0" prefHeight="30.0" prefWidth="230.0" />
+            <DatePicker fx:id="textField1" layoutX="52.0" layoutY="79.0" prefHeight="30.0" prefWidth="230.0" />
             <Label layoutX="52.0" layoutY="44.0" prefHeight="18.0" prefWidth="154.0" text="ISSUE DATE:">
                <font>
                   <Font name="System Bold" size="14.0" />
@@ -277,7 +277,7 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <Button layoutX="52.0" layoutY="214.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="175.0" style="-fx-background-radius: 50;" stylesheets="@../issuebook/issuebook.css" text="FIND" textFill="WHITE">
+            <Button layoutX="122.0" layoutY="214.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="90.0" style="-fx-background-radius: 50;" stylesheets="@../issuebook/issuebook.css" text="FIND" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>

@@ -15,94 +15,110 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" styleClass="Anchor-background" stylesheets="@signup.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="signup.signupcontroller">
    <children>
-      <VBox depthTest="DISABLE" layoutX="799.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="600.0" prefWidth="400.0" styleClass="Vbox-background" stylesheets="@signup.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="799.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox alignment="CENTER_LEFT" layoutX="799.2" layoutY="1.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" styleClass="Vbox-background" stylesheets="@signup.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="799.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <AnchorPane prefHeight="709.0" prefWidth="427.0">
+            <Label alignment="CENTER" prefHeight="18.0" prefWidth="439.0" text="SignUp Page" textFill="WHITE">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <font>
+                  <Font name="System Bold" size="36.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="18.0" prefWidth="439.0" text="Create New Account Here" textFill="WHITE">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label prefHeight="18.0" prefWidth="74.0" text="Username" textFill="WHITE">
+               <VBox.margin>
+                  <Insets left="70.0" top="60.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <TextField fx:id="usernameField" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="450.0" promptText="Enter Username..." style="-fx-background-radius: 50;" stylesheets="@signup.css">
+               <VBox.margin>
+                  <Insets bottom="20.0" left="20.0" right="40.0" />
+               </VBox.margin>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <styleClass>
+                  <String fx:value="text-field-user-with-icon" />
+                  <String fx:value="text-field-with-icon" />
+               </styleClass>
+            </TextField>
+            <Label prefHeight="18.0" prefWidth="74.0" text="Password" textFill="WHITE">
+               <VBox.margin>
+                  <Insets left="70.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <PasswordField maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="450.0" promptText="Enter Password..." style="-fx-background-radius: 50;" stylesheets="@signup.css">
+               <VBox.margin>
+                  <Insets bottom="20.0" left="20.0" right="40.0" />
+               </VBox.margin>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <styleClass>
+                  <String fx:value="text-field-password-with-icon" />
+                  <String fx:value="text-field-with-icon" />
+               </styleClass>
+            </PasswordField>
+            <Label prefHeight="18.0" prefWidth="74.0" text="Email" textFill="WHITE">
+               <VBox.margin>
+                  <Insets left="70.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <TextField maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="450.0" promptText="Enter Email..." style="-fx-background-radius: 50;" stylesheets="@signup.css">
+               <VBox.margin>
+                  <Insets bottom="20.0" left="20.0" right="40.0" />
+               </VBox.margin>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <styleClass>
+                  <String fx:value="text-field-email-with-icon" />
+                  <String fx:value="text-field-with-icon" />
+               </styleClass>
+            </TextField>
+            <Label prefHeight="18.0" prefWidth="74.0" text="Contact" textFill="WHITE">
+               <VBox.margin>
+                  <Insets left="70.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <TextField maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="450.0" promptText="Enter Phone Number..." style="-fx-background-radius: 50;" stylesheets="@signup.css">
+               <VBox.margin>
+                  <Insets bottom="20.0" left="20.0" right="40.0" />
+               </VBox.margin>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <styleClass>
+                  <String fx:value="text-field-contact-with-icon" />
+                  <String fx:value="text-field-with-icon" />
+               </styleClass>
+            </TextField>
+            <VBox alignment="BOTTOM_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="167.0" prefWidth="422.0">
                <children>
-                  <TextField fx:id="usernameField" layoutX="28.0" layoutY="175.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="333.0" promptText="Enter Username..." style="-fx-background-radius: 50;" stylesheets="@signup.css">
-                     <padding>
-                        <Insets left="50.0" />
-                     </padding>
-                     <styleClass>
-                        <String fx:value="text-field-user-with-icon" />
-                        <String fx:value="text-field-with-icon" />
-                     </styleClass>
-                  </TextField>
-                  <Label layoutX="77.0" layoutY="157.0" prefHeight="18.0" prefWidth="74.0" text="Username" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" layoutX="-12.0" layoutY="37.0" prefHeight="18.0" prefWidth="439.0" text="SignUp Page" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="36.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" layoutX="-25.0" layoutY="96.0" prefHeight="18.0" prefWidth="439.0" text="Create New Account Here" textFill="WHITE">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-                  <PasswordField fx:id="passwordField" layoutX="28.0" layoutY="252.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="333.0" promptText="Enter Password..." style="-fx-background-radius: 50;" stylesheets="@signup.css">
-                     <padding>
-                        <Insets left="50.0" />
-                     </padding>
-                     <styleClass>
-                        <String fx:value="text-field-password-with-icon" />
-                        <String fx:value="text-field-with-icon" />
-                     </styleClass>
-                  </PasswordField>
-                  <Label layoutX="77.0" layoutY="234.0" prefHeight="18.0" prefWidth="74.0" text="Password" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Label>
-      
-                  <Label layoutX="77.0" layoutY="303.0" prefHeight="18.0" prefWidth="74.0" text="Email" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="emailField" layoutX="28.0" layoutY="321.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="333.0" promptText="Enter Email..." style="-fx-background-radius: 50;" stylesheets="@signup.css">
-                     <padding>
-                        <Insets left="50.0" />
-                     </padding>
-                     <styleClass>
-                        <String fx:value="text-field-email-with-icon" />
-                        <String fx:value="text-field-with-icon" />
-                     </styleClass>
-                  </TextField>
-                  <TextField fx:id="contactField" layoutX="27.0" layoutY="396.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="333.0" promptText="Enter Phone Number..." style="-fx-background-radius: 50;" stylesheets="@signup.css">
-                     <padding>
-                        <Insets left="50.0" />
-                     </padding>
-                     <styleClass>
-                        <String fx:value="text-field-contact-with-icon" />
-                        <String fx:value="text-field-with-icon" />
-                     </styleClass>
-                  </TextField>
-                  <TextField fx:id="studentIDField" layoutX="28.0" layoutY="468.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="333.0" promptText="Enter Student ID..." style="-fx-background-radius: 50;" stylesheets="@signup.css">
-                     <styleClass>
-                        <String fx:value="text-field-user-with-icon" />
-                        <String fx:value="text-field-with-icon" />
-                     </styleClass>
-                     <padding>
-                        <Insets left="50.0" />
-                     </padding>
-                  </TextField>
-                  <Button alignment="CENTER" layoutX="85.0" layoutY="608.0" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#handleloginbutton" prefHeight="40.0" prefWidth="220.0" style="-fx-background-radius: 50;" stylesheets="@signup.css" text="LOG IN" textFill="CORAL">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                     <styleClass>
-                        <String fx:value="button-login" />
-                        <String fx:value="button-border" />
-                     </styleClass>
-                  </Button>
-                  <Button alignment="CENTER" contentDisplay="CENTER" layoutX="83.0" layoutY="547.0" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#handleSignUpButton" prefHeight="40.0" prefWidth="220.0" style="-fx-background-radius: 50;" stylesheets="@signup.css" text="SIGN UP NOW" textFill="CORAL">
+                  <Button alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="220.0" style="-fx-background-radius: 50;" stylesheets="@signup.css" text="SIGN UP NOW" textFill="CORAL">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
@@ -114,18 +130,23 @@
                         <String fx:value="button-border" />
                      </styleClass>
                   </Button>
-                  <Label layoutX="77.0" layoutY="378.0" prefHeight="18.0" prefWidth="90.0" text="Phone Number" textFill="WHITE">
+                  <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#handleloginbutton" prefHeight="40.0" prefWidth="220.0" style="-fx-background-radius: 50;" stylesheets="@signup.css" text="LOG IN" textFill="CORAL">
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
-                  </Label>
-                  <Label layoutX="77.0" layoutY="450.0" prefHeight="18.0" prefWidth="90.0" text="Student ID" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Label>
+                     <styleClass>
+                        <String fx:value="button-login" />
+                        <String fx:value="button-border" />
+                     </styleClass>
+                  </Button>
                </children>
-            </AnchorPane>
+            </VBox>
          </children>
       </VBox>
       <ImageView fitHeight="700.0" fitWidth="746.0" pickOnBounds="true" preserveRatio="true">
