@@ -34,7 +34,7 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label prefHeight="18.0" prefWidth="74.0" text="StudentID" textFill="WHITE">
+            <Label prefHeight="18.0" prefWidth="74.0" text="Username" textFill="WHITE">
                <VBox.margin>
                   <Insets left="70.0" top="60.0" />
                </VBox.margin>
@@ -42,7 +42,7 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <TextField fx:id="studentIDField" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="450.0" promptText="Enter StudentID..." style="-fx-background-radius: 50;">
+            <TextField fx:id="usernameField" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="450.0" promptText="Enter Username..." style="-fx-background-radius: 50;">
                <VBox.margin>
                   <Insets bottom="20.0" left="20.0" right="40.0" />
                </VBox.margin>
@@ -82,15 +82,7 @@
                   <URL value="@../signup/signup.css" />
                </stylesheets>
             </PasswordField>
-            <Label fx:id="errorMessageLabel" alignment="CENTER" contentDisplay="RIGHT" prefHeight="67.0" prefWidth="338.0" textFill="#bc0000">
-               <font>
-                  <Font name="Arial Bold" size="17.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="60.0" right="50.0" top="-10.0" />
-               </VBox.margin>
-            </Label>
-            <VBox alignment="BOTTOM_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="112.0" prefWidth="422.0" stylesheets="@login.css">
+            <VBox alignment="BOTTOM_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="167.0" prefWidth="422.0" stylesheets="@login.css">
                <children>
                   <Button alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#handleloginbutton" prefHeight="47.0" prefWidth="220.0" style="-fx-background-radius: 50;" stylesheets="@login.css" text="LOG IN NOW" textFill="CORAL">
                      <VBox.margin>
