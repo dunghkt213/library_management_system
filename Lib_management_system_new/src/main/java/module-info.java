@@ -8,7 +8,8 @@ module com.example.libarary_management_system {
     requires com.google.gson;
     requires java.sql;
     requires com.github.benmanes.caffeine;
-
+    requires java.desktop;
+    requires java.smartcardio;
     exports API;
 
     opens signup to javafx.fxml;
@@ -34,4 +35,9 @@ module com.example.libarary_management_system {
 
     opens viewissuedbook to javafx.fxml;
     exports viewissuedbook to javafx.fxml;
+        opens post to javafx.fxml;
+    exports post to javafx.fxml;
+
+    opens trendingbook to javafx.fxml;
+    exports trendingbook to javafx.fxml;
 }
