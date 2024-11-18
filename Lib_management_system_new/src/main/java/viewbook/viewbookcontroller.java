@@ -17,8 +17,10 @@ import javafx.stage.Stage;
 import model.book;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.concurrent.CompletableFuture;
 
 public class viewbookcontroller {
 
@@ -35,35 +37,58 @@ public class viewbookcontroller {
     private Button searchButton;
 
     @FXML
+    private Button nextButton;
+
+    @FXML
+    private Button prevButton;
+
+    private int currentPage = 0;
+    private final int pageSize = 6;
+    private final BookController bookController = new BookController();
+
+    @FXML
     private void initialize() {
+        searchButton.setOnAction(this::handleSearchAction);
+        nextButton.setOnAction(event -> {
+            currentPage++;
+            searchBooks(searchField.getText(), currentPage, pageSize);
+        });
+
+        prevButton.setOnAction(event -> {
+            if (currentPage > 0) {
+                currentPage--;
+                searchBooks(searchField.getText(), currentPage, pageSize);
+            }
+        });
+
         resultsListView.setCellFactory(param -> createBookListCell());
         resultsListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> showBookDetails(newValue));
     }
 
     @FXML
     private void handleSearchAction(ActionEvent event) {
-        String keyword = searchField.getText();
-        searchBooks(keyword);
+        currentPage = 0;
+        searchBooks(searchField.getText(), currentPage, pageSize);
     }
 
-    private void searchBooks(String keyword) {
-        if (keyword.isEmpty()) {
-            resultsListView.getItems().clear();
-            return;
-        }
+    private void searchBooks(String keyword, int pageNumber, int pageSize) {
+        // Gọi phương thức không đồng bộ từ BookController
+        CompletableFuture<ArrayList<book>> futureBooks = bookController.searchBooksOnlineAsync(keyword, pageNumber, pageSize);
+        futureBooks.thenAccept(books -> {
+            ObservableList<book> observableBooks = FXCollections.observableArrayList(books);
 
-        try {
-            resultsListView.getItems().clear();
-            ArrayList<book> booksOnline = GoogleBooksService.searchBooks(keyword);
-            ObservableList<book> observableBooks = FXCollections.observableArrayList(booksOnline);
-            resultsListView.setItems(observableBooks);
+            // Update UI ở JavaFX Application Thread
+            javafx.application.Platform.runLater(() -> {
+                resultsListView.setItems(observableBooks);
 
-            if (observableBooks.isEmpty()) {
-                showAlert("Không có kết quả", "Không tìm thấy sách với từ khóa đã nhập.");
-            }
-        } catch (Exception e) {
-            showAlert("Lỗi", "Đã xảy ra lỗi khi tìm kiếm.");
-        }
+                if (observableBooks.isEmpty()) {
+                    showAlert("Không có kết quả", "Không tìm thấy sách với từ khóa đã nhập.");
+                }
+            });
+        }).exceptionally(ex -> {
+            javafx.application.Platform.runLater(() -> showAlert("Lỗi", "Đã xảy ra lỗi khi tìm kiếm."));
+            return null;
+        });
     }
 
     private void showBookDetails(book selectedBook) {
@@ -80,8 +105,8 @@ public class viewbookcontroller {
 
         bookDetails += "• Description: " + selectedBook.getDescription() + "\n\n";
         bookDetails += "• Page Count: " + selectedBook.getPageCount() + "\n\n";
-        bookDetails += "• Average Rating: " + selectedBook.getAverageRating() + "\n\n";
-        bookDetails += "• Maturity Rating: " + selectedBook.getMaturityRating() + "\n";
+        //bookDetails += "• Average Rating: " + selectedBook.getAverageRating() + "\n\n";
+        //bookDetails += "• Maturity Rating: " + selectedBook.getMaturityRating() + "\n";
 
         //bookDetails += "Số lượng: " + selectedBook.getQuantity() + "\n";
         //bookDetails += "Hàng trong kho: " + selectedBook.getRemainingBooks() + "\n";
