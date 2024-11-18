@@ -33,7 +33,7 @@ public class admindashboardcontroller {
 
     @FXML
     protected void handlemanagestudent() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/manage/managestudent.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/trendingbook/trendingbook.fxml"));
 
         // Lấy Stage hiện tại và thay đổi Scene
         Stage stage = (Stage) pieChart.getScene().getWindow();
