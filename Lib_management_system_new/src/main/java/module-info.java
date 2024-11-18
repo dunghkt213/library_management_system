@@ -3,9 +3,11 @@ module com.example.libarary_management_system {
     requires javafx.fxml;
 
     requires com.dlsc.formsfx;
-    requires mysql.connector.java;
+    requires mysql.connector.j;
+    //requires mysql.connector.java;
     requires com.google.gson;
     requires java.sql;
+    requires com.github.benmanes.caffeine;
 
     exports API;
 
