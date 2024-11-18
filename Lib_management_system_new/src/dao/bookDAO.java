@@ -6,7 +6,7 @@ import model.book;
 import java.sql.*;
 import java.util.ArrayList;
 
-public class bookDAO implements dao.DAOInterface<book> {
+public class bookDAO implements DAOInterface<book> {
 
 
     public static DAOInterface<book> getInstance() {

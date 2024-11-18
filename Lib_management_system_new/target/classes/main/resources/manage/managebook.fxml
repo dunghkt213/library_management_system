@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.String?>
-<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
@@ -14,289 +13,456 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Line?>
-<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" styleClass="Anchor-background" stylesheets="@managebook.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="manage.managebookcontroller">
+<AnchorPane prefHeight="700.0" prefWidth="1200.0" styleClass="Anchor-background" stylesheets="@../signup/signup.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="admindashboard.admindashboardcontroller">
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="LIGHTCORAL" height="700.0" stroke="BLACK" strokeType="INSIDE" styleClass="left-rounded-corner" width="649.0" />
-      <Button mnemonicParsing="false" onAction="#handleadmin" prefHeight="26.0" prefWidth="54.0" styleClass="back-button" stylesheets="@managebook.css">
-         <graphic>
-            <ImageView fitHeight="22.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@back.png" />
-               </image>
+      <VBox layoutY="50.0" prefHeight="650.0" prefWidth="165.0" stylesheets="@../admindashboard/admindashboard.css">
+         <children>
+            <Button alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="219.0" styleClass="button-left" stylesheets="@../admindashboard/admindashboard.css" text="Home Page" textFill="WHITE">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../admindashboard/home.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
+               <padding>
+                  <Insets left="10.0" top="10.0" />
+               </padding>
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
-            </ImageView>
-         </graphic>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor></Button>
-      <HBox layoutX="25.0" layoutY="123.0" prefHeight="423.0" prefWidth="600.0">
-         <children>
-            <VBox prefHeight="582.0" prefWidth="300.0" stylesheets="@managebook.css">
-               <children>
-                  <Label text="Book Titile" textFill="WHITE">
-                     <VBox.margin>
-                        <Insets left="60.0" top="50.0" />
-                     </VBox.margin>
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="addBookTitle" prefHeight="40.0" prefWidth="450.0" promptText="Enter Book Title" style="-fx-background-radius: 50;" stylesheets="@managebook.css">
-                     <VBox.margin>
-                        <Insets bottom="30.0" left="20.0" right="20.0" />
-                     </VBox.margin>
-                     <padding>
-                        <Insets left="50.0" />
-                     </padding>
-                     <styleClass>
-                        <String fx:value="text-field-title-with-icon" />
-                        <String fx:value="text-field-with-icon" />
-                     </styleClass>
-                  </TextField>
-                  <Label prefHeight="18.0" prefWidth="82.0" text="Book ID" textFill="WHITE">
-                     <VBox.margin>
-                        <Insets left="60.0" />
-                     </VBox.margin>
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="addBookID" prefHeight="40.0" prefWidth="450.0" promptText="Enter Book ID" style="-fx-background-radius: 50;" stylesheets="@managebook.css">
-                     <VBox.margin>
-                        <Insets bottom="30.0" left="20.0" right="20.0" />
-                     </VBox.margin>
-                     <padding>
-                        <Insets left="50.0" />
-                     </padding>
-                     <styleClass>
-                        <String fx:value="text-field-id-with-icon" />
-                        <String fx:value="text-field-with-icon" />
-                     </styleClass>
-                  </TextField>
-                  <Label text="Author" textFill="WHITE">
-                     <VBox.margin>
-                        <Insets left="60.0" />
-                     </VBox.margin>
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="addBookAuthor" prefHeight="40.0" prefWidth="450.0" promptText="Enter Author" style="-fx-background-radius: 50;" stylesheets="@managebook.css">
-                     <VBox.margin>
-                        <Insets bottom="30.0" left="20.0" right="20.0" />
-                     </VBox.margin>
-                     <padding>
-                        <Insets left="50.0" />
-                     </padding>
-                     <styleClass>
-                        <String fx:value="text-field-author-with-icon" />
-                        <String fx:value="text-field-with-icon" />
-                     </styleClass>
-                  </TextField>
-                  <Label text="Publisher" textFill="WHITE">
-                     <VBox.margin>
-                        <Insets left="60.0" />
-                     </VBox.margin>
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="addBookPublisher" prefHeight="40.0" prefWidth="450.0" promptText="Enter Publisher" style="-fx-background-radius: 50;" stylesheets="@managebook.css">
-                     <VBox.margin>
-                        <Insets left="20.0" right="20.0" />
-                     </VBox.margin>
-                     <padding>
-                        <Insets left="50.0" />
-                     </padding>
-                     <styleClass>
-                        <String fx:value="text-field-pub-with-icon" />
-                        <String fx:value="text-field-with-icon" />
-                     </styleClass>
-                  </TextField>
-               </children>
-            </VBox>
-            <VBox prefHeight="338.0" prefWidth="300.0" stylesheets="@managebook.css">
-               <children>
-                  <Label text="Category  ID" textFill="WHITE">
-                     <VBox.margin>
-                        <Insets left="60.0" top="50.0" />
-                     </VBox.margin>
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="textField" prefHeight="40.0" prefWidth="450.0" promptText="Enter Category ID" style="-fx-background-radius: 50;" stylesheets="@managebook.css">
-                     <VBox.margin>
-                        <Insets bottom="30.0" left="20.0" right="20.0" />
-                     </VBox.margin>
-                     <padding>
-                        <Insets left="50.0" />
-                     </padding>
-                     <styleClass>
-                        <String fx:value="text-field-cateid-with-icon" />
-                        <String fx:value="text-field-with-icon" />
-                     </styleClass>
-                  </TextField>
-                  <Label text="Category Name" textFill="WHITE">
-                     <VBox.margin>
-                        <Insets left="60.0" />
-                     </VBox.margin>
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="addBookCategoryName" prefHeight="40.0" prefWidth="450.0" promptText="Enter Category Name" style="-fx-background-radius: 50;" stylesheets="@managebook.css">
-                     <VBox.margin>
-                        <Insets bottom="30.0" left="20.0" right="20.0" />
-                     </VBox.margin>
-                     <padding>
-                        <Insets left="50.0" />
-                     </padding>
-                     <styleClass>
-                        <String fx:value="text-field-catename-with-icon" />
-                        <String fx:value="text-field-with-icon" />
-                     </styleClass>
-                  </TextField>
-                  <Label text="Language" textFill="WHITE">
-                     <VBox.margin>
-                        <Insets left="60.0" />
-                     </VBox.margin>
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="addBookLanguage" prefHeight="40.0" prefWidth="450.0" promptText="Enter Language" style="-fx-background-radius: 50;" stylesheets="@managebook.css">
-                     <VBox.margin>
-                        <Insets bottom="30.0" left="20.0" right="20.0" />
-                     </VBox.margin>
-                     <padding>
-                        <Insets left="50.0" />
-                     </padding>
-                     <styleClass>
-                        <String fx:value="text-field-language-with-icon" />
-                        <String fx:value="text-field-with-icon" />
-                     </styleClass>
-                  </TextField>
-                  <Label text="Quantity" textFill="WHITE">
-                     <VBox.margin>
-                        <Insets left="60.0" />
-                     </VBox.margin>
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="addBookQuantity" prefHeight="40.0" prefWidth="450.0" promptText="Enter Quantity" style="-fx-background-radius: 50;" stylesheets="@managebook.css">
-                     <VBox.margin>
-                        <Insets left="20.0" right="20.0" />
-                     </VBox.margin>
-                     <padding>
-                        <Insets left="50.0" />
-                     </padding>
-                     <styleClass>
-                        <String fx:value="text-field-qua-with-icon" />
-                        <String fx:value="text-field-with-icon" />
-                     </styleClass>
-                  </TextField>
-               </children>
-            </VBox>
+            </Button>
+            <Button alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" styleClass="button-left" stylesheets="@../admindashboard/admindashboard.css" text="LMS Dashboard" textFill="WHITE">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../admindashboard/menu.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets left="10.0" top="10.0" />
+               </padding>
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handlemanagebook" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: #ffa07a;" styleClass="button-left" stylesheets="@../admindashboard/admindashboard.css" text="Manage Books" textFill="WHITE">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../admindashboard/book.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets left="10.0" top="10.0" />
+               </padding>
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handlemanagestudent" prefHeight="50.0" prefWidth="250.0" styleClass="button-left" stylesheets="@../admindashboard/admindashboard.css" text="Manage Students" textFill="WHITE">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../admindashboard/student.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets left="10.0" top="10.0" />
+               </padding>
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handleissuebook" prefHeight="50.0" prefWidth="221.0" styleClass="button-left" stylesheets="@../admindashboard/admindashboard.css" text="Issue Book" textFill="WHITE">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../admindashboard/issuebook.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets left="10.0" top="10.0" />
+               </padding>
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handleviewbook" prefHeight="50.0" prefWidth="250.0" styleClass="button-left" stylesheets="@../admindashboard/admindashboard.css" text="View Book" textFill="WHITE">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../admindashboard/viewbook.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets left="10.0" top="10.0" />
+               </padding>
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handleviewissuedbook" prefHeight="50.0" prefWidth="250.0" styleClass="button-left" stylesheets="@../admindashboard/admindashboard.css" text="Issued Book" textFill="WHITE">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../admindashboard/warning.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+               <padding>
+                  <Insets left="10.0" top="10.0" />
+               </padding>
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handlelogout" prefHeight="50.0" prefWidth="250.0" styleClass="button-left" stylesheets="@../admindashboard/admindashboard.css" text="Log Out" textFill="WHITE">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../admindashboard/logout.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <VBox.margin>
+                  <Insets top="80.0" />
+               </VBox.margin>
+               <padding>
+                  <Insets left="10.0" top="10.0" />
+               </padding>
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
          </children>
-      </HBox>
-      <Button layoutX="97.0" layoutY="548.0" mnemonicParsing="false" onAction="#handleAddBook" prefHeight="40.0" prefWidth="156.0" style="-fx-background-radius: 50;" text="ADD">
-         <stylesheets>
-            <URL value="@managebook.css" />
-            <URL value="@../signup/signup.css" />
-         </stylesheets>
          <styleClass>
-            <String fx:value="button-border" />
-            <String fx:value="button-login" />
+            <String fx:value="left-background" />
+            <String fx:value="left-rounded-corner" />
          </styleClass>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Button>
-      <Button layoutX="264.0" layoutY="548.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="156.0" style="-fx-background-radius: 50;" text="UPDATE">
-         <stylesheets>
-            <URL value="@managebook.css" />
-            <URL value="@../signup/signup.css" />
-         </stylesheets>
-         <styleClass>
-            <String fx:value="button-border" />
-            <String fx:value="button-login" />
-         </styleClass>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Button>
-      <Button layoutX="432.0" layoutY="548.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="156.0" style="-fx-background-radius: 50;" text="DELETE">
-         <stylesheets>
-            <URL value="@managebook.css" />
-            <URL value="@../signup/signup.css" />
-         </stylesheets>
-         <styleClass>
-            <String fx:value="button-border" />
-            <String fx:value="button-login" />
-         </styleClass>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Button>
-      <AnchorPane layoutX="669.0" layoutY="174.0" prefHeight="351.0" prefWidth="530.0" style="-fx-background-radius: 20;" styleClass="mid-background" stylesheets="@../viewissuedbook/viewissuedbook.css">
+      </VBox>
+      <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="1200.0" styleClass="menu-background" stylesheets="@../admindashboard/admindashboard.css">
          <children>
-            <TableView layoutX="7.0" layoutY="8.0" prefHeight="335.0" prefWidth="516.0" style="-fx-background-radius: 10;" stylesheets="@../admindashboard/admindashboard.css">
-               <columns>
-                  <TableColumn prefWidth="130.0" text="Book ID" />
-                  <TableColumn prefWidth="137.60000610351562" text="Book Title" />
-                  <TableColumn prefWidth="128.79998779296875" text="Author" />
-                  <TableColumn prefWidth="132.79998779296875" text="Quantity" />
-               </columns>
-            </TableView>
+            <ImageView fitHeight="22.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../admindashboard/dashboard.png" />
+               </image>
+               <HBox.margin>
+                  <Insets left="20.0" />
+               </HBox.margin>
+            </ImageView>
+            <Label alignment="CENTER" prefHeight="22.0" prefWidth="214.0" text="LIBRARY MANAGEMENT SYSTEM" textFill="CORAL">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="47.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../admindashboard/user.png" />
+               </image>
+               <HBox.margin>
+                  <Insets left="700.0" />
+               </HBox.margin>
+            </ImageView>
+            <Label prefHeight="38.0" prefWidth="139.0" text="Welcome Admin" textFill="CORAL">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="20.0" />
+               </HBox.margin>
+            </Label>
+         </children>
+         <padding>
+            <Insets bottom="20.0" />
+         </padding>
+      </HBox>
+      <AnchorPane layoutX="184.0" layoutY="155.0" prefHeight="530.0" prefWidth="426.0" style="-fx-background-radius: 20;" styleClass="mid-background" stylesheets="@../viewissuedbook/viewissuedbook.css">
+         <children>
+            <HBox layoutY="7.0" prefHeight="423.0" prefWidth="425.0">
+               <children>
+                  <VBox prefHeight="423.0" prefWidth="234.0" stylesheets="@managebook.css">
+                     <children>
+                        <Label text="Book Titile">
+                           <VBox.margin>
+                              <Insets left="60.0" top="50.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <TextField prefHeight="40.0" prefWidth="450.0" promptText="Enter Book Title" style="-fx-background-radius: 50;" stylesheets="@managebook.css">
+                           <VBox.margin>
+                              <Insets bottom="30.0" left="20.0" right="20.0" />
+                           </VBox.margin>
+                           <padding>
+                              <Insets left="50.0" />
+                           </padding>
+                           <styleClass>
+                              <String fx:value="text-field-title-with-icon" />
+                              <String fx:value="text-field-with-icon" />
+                           </styleClass>
+                        </TextField>
+                        <Label prefHeight="18.0" prefWidth="82.0" text="Book ID">
+                           <VBox.margin>
+                              <Insets left="60.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <TextField prefHeight="40.0" prefWidth="450.0" promptText="Enter Book ID" style="-fx-background-radius: 50;" stylesheets="@managebook.css">
+                           <VBox.margin>
+                              <Insets bottom="30.0" left="20.0" right="20.0" />
+                           </VBox.margin>
+                           <padding>
+                              <Insets left="50.0" />
+                           </padding>
+                           <styleClass>
+                              <String fx:value="text-field-id-with-icon" />
+                              <String fx:value="text-field-with-icon" />
+                           </styleClass>
+                        </TextField>
+                        <Label text="Author">
+                           <VBox.margin>
+                              <Insets left="60.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <TextField prefHeight="40.0" prefWidth="450.0" promptText="Enter Author" style="-fx-background-radius: 50;" stylesheets="@managebook.css">
+                           <VBox.margin>
+                              <Insets bottom="30.0" left="20.0" right="20.0" />
+                           </VBox.margin>
+                           <padding>
+                              <Insets left="50.0" />
+                           </padding>
+                           <styleClass>
+                              <String fx:value="text-field-author-with-icon" />
+                              <String fx:value="text-field-with-icon" />
+                           </styleClass>
+                        </TextField>
+                        <Label text="Publisher">
+                           <VBox.margin>
+                              <Insets left="60.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <TextField prefHeight="40.0" prefWidth="450.0" promptText="Enter Publisher" style="-fx-background-radius: 50;" stylesheets="@managebook.css">
+                           <VBox.margin>
+                              <Insets left="20.0" right="20.0" />
+                           </VBox.margin>
+                           <padding>
+                              <Insets left="50.0" />
+                           </padding>
+                           <styleClass>
+                              <String fx:value="text-field-pub-with-icon" />
+                              <String fx:value="text-field-with-icon" />
+                           </styleClass>
+                        </TextField>
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="423.0" prefWidth="246.0" stylesheets="@managebook.css">
+                     <children>
+                        <Label text="Category  ID">
+                           <VBox.margin>
+                              <Insets left="60.0" top="50.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="textField" prefHeight="40.0" prefWidth="450.0" promptText="Enter Category ID" style="-fx-background-radius: 50;" stylesheets="@managebook.css">
+                           <VBox.margin>
+                              <Insets bottom="30.0" left="20.0" right="20.0" />
+                           </VBox.margin>
+                           <padding>
+                              <Insets left="50.0" />
+                           </padding>
+                           <styleClass>
+                              <String fx:value="text-field-cateid-with-icon" />
+                              <String fx:value="text-field-with-icon" />
+                           </styleClass>
+                        </TextField>
+                        <Label text="Category Name">
+                           <VBox.margin>
+                              <Insets left="60.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <TextField prefHeight="40.0" prefWidth="450.0" promptText="Enter Category Name" style="-fx-background-radius: 50;" stylesheets="@managebook.css">
+                           <VBox.margin>
+                              <Insets bottom="30.0" left="20.0" right="20.0" />
+                           </VBox.margin>
+                           <padding>
+                              <Insets left="50.0" />
+                           </padding>
+                           <styleClass>
+                              <String fx:value="text-field-catename-with-icon" />
+                              <String fx:value="text-field-with-icon" />
+                           </styleClass>
+                        </TextField>
+                        <Label text="Language">
+                           <VBox.margin>
+                              <Insets left="60.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <TextField prefHeight="40.0" prefWidth="450.0" promptText="Enter Language" style="-fx-background-radius: 50;" stylesheets="@managebook.css">
+                           <VBox.margin>
+                              <Insets bottom="30.0" left="20.0" right="20.0" />
+                           </VBox.margin>
+                           <padding>
+                              <Insets left="50.0" />
+                           </padding>
+                           <styleClass>
+                              <String fx:value="text-field-language-with-icon" />
+                              <String fx:value="text-field-with-icon" />
+                           </styleClass>
+                        </TextField>
+                        <Label text="Quantity">
+                           <VBox.margin>
+                              <Insets left="60.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <TextField prefHeight="40.0" prefWidth="450.0" promptText="Enter Quantity" style="-fx-background-radius: 50;" stylesheets="@managebook.css">
+                           <VBox.margin>
+                              <Insets left="20.0" right="20.0" />
+                           </VBox.margin>
+                           <padding>
+                              <Insets left="50.0" />
+                           </padding>
+                           <styleClass>
+                              <String fx:value="text-field-qua-with-icon" />
+                              <String fx:value="text-field-with-icon" />
+                           </styleClass>
+                        </TextField>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <Button layoutX="80.0" layoutY="468.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="80.0" style="-fx-background-radius: 50;" stylesheets="@../issuebook/issuebook.css" text="ADD" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="button-background" />
+                  <String fx:value="button-border" />
+               </styleClass>
+            </Button>
+            <Button layoutX="173.0" layoutY="468.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="80.0" style="-fx-background-radius: 50;" stylesheets="@../issuebook/issuebook.css" text="UPDATE" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="button-background" />
+                  <String fx:value="button-border" />
+               </styleClass>
+            </Button>
+            <Button layoutX="266.0" layoutY="468.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="80.0" style="-fx-background-radius: 50;" stylesheets="@../issuebook/issuebook.css" text="DELETE" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="button-background" />
+                  <String fx:value="button-border" />
+               </styleClass>
+            </Button>
          </children>
       </AnchorPane>
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="1050.0" layoutY="548.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@read.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="122.0" fitWidth="122.0" layoutX="588.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@book2.png" />
-         </image>
-      </ImageView>
-      <Label layoutX="556.0" layoutY="109.0" prefHeight="27.0" prefWidth="92.0" text="MANAGE " textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="18.0" />
-         </font>
-      </Label>
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutY="548.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@read.png" />
-         </image>
-      </ImageView>
-      <Line endX="138.199951171875" layoutX="618.0" layoutY="136.0" startX="-100.0" />
-      <Label layoutX="655.0" layoutY="108.0" prefHeight="27.0" prefWidth="92.0" text="BOOKS" textFill="LIGHTCORAL">
-         <font>
-            <Font name="System Bold" size="18.0" />
-         </font>
-      </Label>
-      <Label layoutX="876.0" layoutY="137.0" prefHeight="27.0" prefWidth="156.0" text="BOOK OVERVIEW" textFill="LIGHTCORAL">
-         <font>
-            <Font name="System Bold" size="18.0" />
-         </font>
-      </Label>
+      <VBox alignment="CENTER" layoutX="549.0" layoutY="7.0" style="-fx-border-radius: 100%;" stylesheets="@../viewissuedbook/viewissuedbook.css">
+         <children>
+            <ImageView fitHeight="130.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@grade.png" />
+               </image>
+            </ImageView>
+            <Label prefHeight="27.0" prefWidth="146.0" text="MANAGE BOOKS" textFill="LIGHTCORAL">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+      <TableView layoutX="647.0" layoutY="155.0" prefHeight="530.0" prefWidth="516.0" style="-fx-background-radius: 20;" stylesheets="@../admindashboard/admindashboard.css">
+         <columns>
+            <TableColumn prefWidth="51.199951171875" text="ID" />
+            <TableColumn prefWidth="188.79998779296875" text="Book Title" />
+            <TableColumn prefWidth="116.79998779296875" text="Author" />
+            <TableColumn prefWidth="77.5999755859375" text="Quantity" />
+            <TableColumn prefWidth="81.60003662109375" text="Availability" />
+         </columns>
+      </TableView>
    </children>
 </AnchorPane>
