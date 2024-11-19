@@ -1,0 +1,29 @@
+.text-field-search-with-icon {
+    -fx-background-image: url("search.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: contain;
+    -fx-background-insets: 0 0 0 0;
+}
+
+.text-field-with-icon:hover {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.35), 12, 0.3, 0, 4);
+    -fx-background-color: linear-gradient(from 0% 50% to 100% 50%, #F0F0F0, #D9D9D9);
+}
+
+.text-field-with-icon:pressed {
+    -fx-background-color: linear-gradient(from 0% 50% to 100% 50%, #F0F0F0, #D9D9D9);
+}
+
+.left-rounded-corner {
+    -fx-background-radius: 30 30 0 0;
+}
+
+.text-area {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+    -fx-border-color: transparent;
+    -fx-padding: 0;
+    -fx-control-inner-background: #E1E4E5;
+}
+
