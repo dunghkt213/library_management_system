@@ -97,3 +97,9 @@
 .Anchor-background {
     -fx-background-color: white;
 }
+
+.border {
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color: white;
+    -fx-border-style: solid;
+}
