@@ -187,10 +187,11 @@ public class trendingbookcontroller implements Initializable {
             }
         }
         ls.add(Book);
+
         Book = new book();
         Book.setBookTitle("C#");
         Book.setBookAuthor("Rob Miles");
-        Book.setImageUrl("/trendingbook/C#.jpg");
+        Book.setImageUrl("/trendingbook/C.jpg");
         ls.add(Book);
         return ls;
 
@@ -212,7 +213,7 @@ public class trendingbookcontroller implements Initializable {
         ls.add(Book);
 
         Book = new book();
-        Book.setBookTitle("The\nWARREN BUFFET WAY");
+        Book.setBookTitle("The WARREN \n BUFFET  WAY");
         Book.setBookAuthor("ROBERT G.HAGSTROM");
         Book.setImageUrl("/trendingbook/theWarrenBuffetWay.jpg");
         ls.add(Book);
@@ -244,7 +245,6 @@ public class trendingbookcontroller implements Initializable {
             }
         }
         ls.add(Book);
-
         Book = new book();
         Book.setBookTitle("Nhà Giả Kim");
         Book.setBookAuthor("Paulo");
@@ -254,7 +254,7 @@ public class trendingbookcontroller implements Initializable {
         Book = new book();
         Book.setBookTitle("C#");
         Book.setBookAuthor("Rob Miles");
-        Book.setImageUrl("/trendingbook/C#.jpg");
+        Book.setImageUrl("/trendingbook/C.jpg");
         ls.add(Book);
 
         Book = new book();
