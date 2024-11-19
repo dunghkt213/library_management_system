@@ -206,15 +206,5 @@
          </padding>
       </HBox>
       <VBox layoutX="600.0" layoutY="14.0" prefHeight="127.0" prefWidth="139.0" />
-      <ImageView fitHeight="75.0" fitWidth="74.0" layoutX="877.0" layoutY="89.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../lmsdashboard/paper-clip.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="866.0" layoutY="550.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../viewissuedbook/painting.png" />
-         </image>
-      </ImageView>
    </children>
 </AnchorPane>
