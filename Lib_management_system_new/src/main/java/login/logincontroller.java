@@ -54,7 +54,7 @@ public class logincontroller {
             else{
                 checkinStudent.print();
                 if(checkinStudent.getPassword().equals(password)) {
-                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/admindashboard/admindashboard.fxml"));
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/trendingbook/trendingbook.fxml"));
                     Stage stage = (Stage) studentIDField.getScene().getWindow();
                     Scene scene = new Scene(fxmlLoader.load());
                     stage.setScene(scene);

@@ -15,11 +15,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="700.0" prefWidth="1200.0" styleClass="Anchor-background" stylesheets="@../signup/signup.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="admindashboard.admindashboardcontroller">
+<AnchorPane prefHeight="700.0" prefWidth="1200.0" styleClass="Anchor-background" stylesheets="@../signup/signup.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewissuedbook.viewissuedbookcontroller">
    <children>
       <VBox layoutY="50.0" prefHeight="650.0" prefWidth="165.0" stylesheets="@../admindashboard/admindashboard.css">
          <children>
-            <Button alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="219.0" styleClass="button-left" stylesheets="@../admindashboard/admindashboard.css" text="Home Page" textFill="WHITE">
+            <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handletrendingbook" prefHeight="50.0" prefWidth="219.0" styleClass="button-left" stylesheets="@../admindashboard/admindashboard.css" text="Home Page" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -145,7 +145,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handleviewissuedbook" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: #ffa07a;" styleClass="button-left" stylesheets="@../admindashboard/admindashboard.css" text="Issued Book" textFill="WHITE">
+            <Button alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: #ffa07a;" styleClass="button-left" stylesheets="@../admindashboard/admindashboard.css" text="Manage Students" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -153,9 +153,6 @@
                      </image>
                   </ImageView>
                </graphic>
-               <VBox.margin>
-                  <Insets bottom="20.0" />
-               </VBox.margin>
                <padding>
                   <Insets left="10.0" top="10.0" />
                </padding>
@@ -231,7 +228,7 @@
       </HBox>
       <AnchorPane layoutX="191.0" layoutY="182.0" prefHeight="510.0" prefWidth="634.0" style="-fx-background-radius: 20;" styleClass="mid-background" stylesheets="@viewissuedbook.css">
          <children>
-            <TableView layoutX="22.0" layoutY="14.0" prefHeight="482.0" prefWidth="590.0" style="-fx-background-radius: 30;" stylesheets="@../admindashboard/admindashboard.css">
+            <TableView fx:id="tableView" layoutX="22.0" layoutY="14.0" prefHeight="482.0" prefWidth="590.0" style="-fx-background-radius: 30;" stylesheets="@../admindashboard/admindashboard.css">
                <columns>
                   <TableColumn prefWidth="55.19999694824219" text="Book ID" />
                   <TableColumn prefWidth="114.4000244140625" text="Book Title" />

@@ -1,11 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="330.0" prefWidth="180.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="330.0" prefWidth="180.0" style="-fx-background-radius: 10;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="trendingbook.BookController">
    <children>
-      <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="bookImage" fitHeight="240.0" fitWidth="160.0" pickOnBounds="true" preserveRatio="true">
+         <VBox.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </VBox.margin>
+         <image>
+            <Image url="@C%23.jpg" />
+         </image></ImageView>
+      <Label fx:id="bookName" prefHeight="40.0" prefWidth="180.0" text="C# Programming">
+         <font>
+            <Font name="Berlin Sans FB Bold" size="18.0" />
+         </font>
+         <VBox.margin>
+            <Insets left="10.0" />
+         </VBox.margin>
+      </Label>
+      <Label fx:id="authorName" prefHeight="28.0" prefWidth="170.0" text="RobMiles">
+         <font>
+            <Font name="Berlin Sans FB" size="14.0" />
+         </font>
+         <VBox.margin>
+            <Insets left="10.0" top="-7.0" />
+         </VBox.margin>
+      </Label>
+      <ImageView fitHeight="26.0" fitWidth="168.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@fivestars.png" />
+         </image>
+         <VBox.margin>
+            <Insets left="5.0" />
+         </VBox.margin>
+      </ImageView>
    </children>
+   <styleClass>
+      <String fx:value="shadow" />
+      <String fx:value="white-background" />
+   </styleClass>
 </VBox>

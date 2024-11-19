@@ -22,6 +22,17 @@ public class admindashboardcontroller {
     }
 
     @FXML
+    protected void handletrendingbook() throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/trendingbook/trendingbook.fxml"));
+
+        // Lấy Stage hiện tại và thay đổi Scene
+        Stage stage = (Stage) tableView.getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
     protected void handlemanagestudent() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/manage/managestudent.fxml"));
 
@@ -45,7 +56,7 @@ public class admindashboardcontroller {
 
     @FXML
     protected void handlereturn() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/returnbook/returnbook.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/trendingbook/trendingbook.fxml"));
         Stage stage = (Stage) tableView.getScene().getWindow();
         Scene scene = new Scene(fxmlLoader.load());
         stage.setScene(scene);

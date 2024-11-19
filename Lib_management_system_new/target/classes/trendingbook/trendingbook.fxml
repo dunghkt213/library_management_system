@@ -9,10 +9,11 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-
 
 <AnchorPane prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="trendingbook.trendingbookcontroller">
    <children>
@@ -60,7 +61,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" styleClass="button-left" stylesheets="@../admindashboard/admindashboard.css" text="Manage Books" textFill="WHITE">
+            <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handlemanagebook" prefHeight="50.0" prefWidth="250.0" styleClass="button-left" stylesheets="@../admindashboard/admindashboard.css" text="Manage Books" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -81,7 +82,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" styleClass="button-left" stylesheets="@../admindashboard/admindashboard.css" text="Manage Student" textFill="WHITE">
+            <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handlemanagestudent" prefHeight="50.0" prefWidth="250.0" styleClass="button-left" stylesheets="@../admindashboard/admindashboard.css" text="Manage Student" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -102,7 +103,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="221.0" styleClass="button-left" stylesheets="@../admindashboard/admindashboard.css" text="Issue Book" textFill="WHITE">
+            <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handleissuebook" prefHeight="50.0" prefWidth="221.0" styleClass="button-left" stylesheets="@../admindashboard/admindashboard.css" text="Issue Book" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -123,28 +124,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" styleClass="button-left" stylesheets="@../admindashboard/admindashboard.css" text="Return Book" textFill="WHITE">
-               <graphic>
-                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../admindashboard/return.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-               <padding>
-                  <Insets left="30.0" top="10.0" />
-               </padding>
-               <font>
-                  <Font name="System Bold" size="13.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-            <Button alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" styleClass="button-left" stylesheets="@../admindashboard/admindashboard.css" text="View Book" textFill="WHITE">
+            <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handleviewbook" prefHeight="50.0" prefWidth="250.0" styleClass="button-left" stylesheets="@../admindashboard/admindashboard.css" text="View Book" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -165,7 +145,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" styleClass="button-left" stylesheets="@../admindashboard/admindashboard.css" text="View Issued Book" textFill="WHITE">
+            <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handleviewissuedbook" prefHeight="50.0" prefWidth="250.0" styleClass="button-left" stylesheets="@../admindashboard/admindashboard.css" text="View Issued Book" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -186,7 +166,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" styleClass="button-left" stylesheets="@../admindashboard/admindashboard.css" text="Log Out" textFill="WHITE">
+            <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handlelogout" prefHeight="50.0" prefWidth="250.0" styleClass="button-left" stylesheets="@../admindashboard/admindashboard.css" text="Log Out" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -249,12 +229,12 @@
             <Insets bottom="20.0" />
          </padding>
       </HBox>
-      <ScrollPane layoutX="225.0" layoutY="107.0" prefHeight="200.0" prefWidth="923.0" style="-fx-background-color: transparent;" stylesheets="@../post/style.css">
+      <ScrollPane layoutX="223.0" layoutY="97.0" prefHeight="200.0" prefWidth="923.0" style="-fx-background-color: transparent;" stylesheets="@../post/style.css">
          <content>
             <HBox fx:id="cardLayout" alignment="CENTER" prefHeight="184.0" prefWidth="1100.0" spacing="20.0" />
          </content>
       </ScrollPane>
-      <HBox layoutX="259.0" layoutY="50.0" prefHeight="38.0" prefWidth="112.0">
+      <HBox layoutX="259.0" layoutY="44.0" prefHeight="38.0" prefWidth="112.0">
          <children>
             <Label alignment="BOTTOM_LEFT" contentDisplay="BOTTOM" prefHeight="45.0" prefWidth="57.0" text="HOT">
                <font>
@@ -268,5 +248,19 @@
             </ImageView>
          </children>
       </HBox>
+      <Label alignment="BOTTOM_LEFT" contentDisplay="BOTTOM" layoutX="259.0" layoutY="297.0" prefHeight="14.0" prefWidth="287.0" text="Recommended for you">
+         <font>
+            <Font name="Berlin Sans FB" size="23.0" />
+         </font>
+      </Label>
+      <ScrollPane layoutX="223.0" layoutY="323.0" prefHeight="369.0" prefWidth="923.0" style="-fx-background-color: transparent;" stylesheets="@style.css">
+         <content>
+            <GridPane fx:id="bookContainer" prefHeight="5.0" prefWidth="1.0">
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+            </GridPane>
+         </content>
+      </ScrollPane>
    </children>
 </AnchorPane>

@@ -15,11 +15,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="700.0" prefWidth="1200.0" styleClass="Anchor-background" stylesheets="@../signup/signup.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="admindashboard.admindashboardcontroller">
+<AnchorPane prefHeight="700.0" prefWidth="1200.0" styleClass="Anchor-background" stylesheets="@../signup/signup.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="manage.managestudentcontroller">
    <children>
       <VBox layoutY="50.0" prefHeight="650.0" prefWidth="165.0" stylesheets="@../admindashboard/admindashboard.css">
          <children>
-            <Button alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="219.0" styleClass="button-left" stylesheets="@../admindashboard/admindashboard.css" text="Home Page" textFill="WHITE">
+            <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handletrendingbook" prefHeight="50.0" prefWidth="219.0" styleClass="button-left" stylesheets="@../admindashboard/admindashboard.css" text="Home Page" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -82,7 +82,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handlemanagestudent" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: #ffa07a;" styleClass="button-left" stylesheets="@../admindashboard/admindashboard.css" text="Manage Students" textFill="WHITE">
+            <Button alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: #ffa07a;" styleClass="button-left" stylesheets="@../admindashboard/admindashboard.css" text="Manage Students" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -279,7 +279,7 @@
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                        <TextField prefHeight="40.0" prefWidth="450.0" promptText="Enter ID" style="-fx-background-radius: 50;" stylesheets="@managebook.css">
+                        <TextField fx:id="studentID" prefHeight="40.0" prefWidth="450.0" promptText="Enter ID" style="-fx-background-radius: 50;" stylesheets="@managebook.css">
                            <VBox.margin>
                               <Insets bottom="30.0" left="20.0" right="20.0" />
                            </VBox.margin>
@@ -299,7 +299,7 @@
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                        <TextField prefHeight="40.0" prefWidth="450.0" promptText="Enter Name" style="-fx-background-radius: 50;" stylesheets="@managebook.css">
+                        <TextField fx:id="studentName" prefHeight="40.0" prefWidth="450.0" promptText="Enter Name" style="-fx-background-radius: 50;" stylesheets="@managebook.css">
                            <VBox.margin>
                               <Insets bottom="30.0" left="20.0" right="20.0" />
                            </VBox.margin>
@@ -319,7 +319,7 @@
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                        <TextField prefHeight="40.0" prefWidth="450.0" promptText="Enter Phone Number" style="-fx-background-radius: 50;" stylesheets="@managebook.css">
+                        <TextField fx:id="studentNumber" prefHeight="40.0" prefWidth="450.0" promptText="Enter Phone Number" style="-fx-background-radius: 50;" stylesheets="@managebook.css">
                            <VBox.margin>
                               <Insets bottom="30.0" left="20.0" right="20.0" />
                            </VBox.margin>
@@ -343,7 +343,7 @@
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="textField" prefHeight="40.0" prefWidth="450.0" promptText="Enter Birthday" style="-fx-background-radius: 50;" stylesheets="@managebook.css">
+                        <TextField fx:id="studentBirth" prefHeight="40.0" prefWidth="450.0" promptText="Enter Birthday" style="-fx-background-radius: 50;" stylesheets="@managebook.css">
                            <VBox.margin>
                               <Insets bottom="30.0" left="20.0" right="20.0" />
                            </VBox.margin>
@@ -363,7 +363,7 @@
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                        <TextField prefHeight="40.0" prefWidth="450.0" promptText="Enter Major" style="-fx-background-radius: 50;" stylesheets="@managebook.css">
+                        <TextField fx:id="studentMajor" prefHeight="40.0" prefWidth="450.0" promptText="Enter Major" style="-fx-background-radius: 50;" stylesheets="@managebook.css">
                            <VBox.margin>
                               <Insets bottom="30.0" left="20.0" right="20.0" />
                            </VBox.margin>
@@ -383,7 +383,7 @@
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                        <TextField prefHeight="40.0" prefWidth="450.0" promptText="Enter Email" style="-fx-background-radius: 50;" stylesheets="@managebook.css">
+                        <TextField fx:id="studentMail" prefHeight="40.0" prefWidth="450.0" promptText="Enter Email" style="-fx-background-radius: 50;" stylesheets="@managebook.css">
                            <VBox.margin>
                               <Insets left="20.0" right="20.0" />
                            </VBox.margin>

@@ -18,7 +18,7 @@
    <children>
       <VBox layoutY="50.0" prefHeight="650.0" prefWidth="165.0" stylesheets="@admindashboard.css">
          <children>
-            <Button alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="219.0" styleClass="button-left" stylesheets="@admindashboard.css" text="Home Page" textFill="WHITE">
+            <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handletrendingbook" prefHeight="50.0" prefWidth="219.0" styleClass="button-left" stylesheets="@admindashboard.css" text="Home Page" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
