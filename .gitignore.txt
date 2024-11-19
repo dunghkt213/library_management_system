@@ -1,4 +1,2 @@
-# Ignore build files
-/library_management_system/Lib_management_system_new/src/database
-*.class
-
+# Ignore a specific directory (database folder in src)
+library_management_system/Lib_management_system_new/src/database/
