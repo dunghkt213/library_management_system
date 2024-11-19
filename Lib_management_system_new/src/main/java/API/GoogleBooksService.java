@@ -28,6 +28,11 @@ public class GoogleBooksService {
             query = query.trim();
             int startIndex = pageNumber * pageSize;
 
+            // Ensure that we do not request more than 12 results in total
+            if (startIndex >= 12) {
+                return new ArrayList<>();
+            }
+
             String url = "https://www.googleapis.com/books/v1/volumes?q=" + encodeValue(query)
                     +  "&startIndex=" + startIndex + "&maxResults=" + pageSize
                     + "&key=" + API_KEY;

@@ -19,7 +19,7 @@ public class BookController {
     public BookController() {
         this.bookDao = new bookDAO();
         this.booksCache = new GoogleBooksCache();
-        this.executorService = Executors.newFixedThreadPool(4); // Tạo ExecutorService với 4 luồng
+        this.executorService = Executors.newFixedThreadPool(10); // Tạo ExecutorService với 4 luồng
     }
 
     // Tìm kiếm trên API với Bộ Nhớ Đệm và Xử Lý Không Đồng Bộ
