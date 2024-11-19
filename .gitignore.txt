@@ -1,0 +1,4 @@
+# Ignore build files
+/library_management_system/Lib_management_system_new/src/database
+*.class
+
