@@ -40,4 +40,7 @@ module com.example.libarary_management_system {
 
     opens trendingbook to javafx.fxml;
     exports trendingbook to javafx.fxml;
+
+    opens viewofbook to javafx.fxml;
+    exports viewofbook to javafx.fxml;
 }

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.String?>
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
@@ -17,7 +18,7 @@
 
 <AnchorPane prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="trendingbook.trendingbookcontroller">
    <children>
-      <VBox layoutY="50.0" prefHeight="650.0" prefWidth="214.0" stylesheets="@../admindashboard/admindashboard.css">
+      <VBox layoutY="50.0" prefHeight="650.0" prefWidth="165.0">
          <children>
             <Button alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="219.0" styleClass="button-left" stylesheets="@../admindashboard/admindashboard.css" text="Home Page" textFill="WHITE">
                <graphic>
@@ -31,7 +32,7 @@
                   <Insets top="30.0" />
                </VBox.margin>
                <padding>
-                  <Insets left="30.0" top="10.0" />
+                  <Insets left="10.0" top="10.0" />
                </padding>
                <font>
                   <Font name="System Bold" size="13.0" />
@@ -52,7 +53,7 @@
                   <Insets />
                </VBox.margin>
                <padding>
-                  <Insets left="30.0" top="10.0" />
+                  <Insets left="10.0" top="10.0" />
                </padding>
                <font>
                   <Font name="System Bold" size="13.0" />
@@ -73,7 +74,7 @@
                   <Insets />
                </VBox.margin>
                <padding>
-                  <Insets left="30.0" top="10.0" />
+                  <Insets left="10.0" top="10.0" />
                </padding>
                <font>
                   <Font name="System Bold" size="13.0" />
@@ -94,7 +95,7 @@
                   <Insets />
                </VBox.margin>
                <padding>
-                  <Insets left="30.0" top="10.0" />
+                  <Insets left="10.0" top="10.0" />
                </padding>
                <font>
                   <Font name="System Bold" size="13.0" />
@@ -115,7 +116,7 @@
                   <Insets />
                </VBox.margin>
                <padding>
-                  <Insets left="30.0" top="10.0" />
+                  <Insets left="10.0" top="10.0" />
                </padding>
                <font>
                   <Font name="System Bold" size="13.0" />
@@ -136,7 +137,7 @@
                   <Insets />
                </VBox.margin>
                <padding>
-                  <Insets left="30.0" top="10.0" />
+                  <Insets left="10.0" top="10.0" />
                </padding>
                <font>
                   <Font name="System Bold" size="13.0" />
@@ -145,7 +146,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handleviewissuedbook" prefHeight="50.0" prefWidth="250.0" styleClass="button-left" stylesheets="@../admindashboard/admindashboard.css" text="View Issued Book" textFill="WHITE">
+            <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handleviewissuedbook" prefHeight="50.0" prefWidth="185.0" styleClass="button-left" stylesheets="@../admindashboard/admindashboard.css" text="View Issued Book" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -157,7 +158,7 @@
                   <Insets bottom="20.0" />
                </VBox.margin>
                <padding>
-                  <Insets left="30.0" top="10.0" />
+                  <Insets left="10.0" top="10.0" />
                </padding>
                <font>
                   <Font name="System Bold" size="13.0" />
@@ -188,8 +189,13 @@
                </cursor>
             </Button>
          </children>
+         <stylesheets>
+            <URL value="@../admindashboard/admindashboard.css" />
+            <URL value="@style.css" />
+            <URL value="@../viewofbook/style.css" />
+         </stylesheets>
          <styleClass>
-            <String fx:value="left-background" />
+            <String fx:value="backgroundcolor" />
             <String fx:value="left-rounded-corner" />
          </styleClass>
       </VBox>
@@ -203,10 +209,14 @@
                   <Insets left="20.0" />
                </HBox.margin>
             </ImageView>
-            <Label alignment="CENTER" prefHeight="22.0" prefWidth="214.0" text="LIBRARY MANAGEMENT SYSTEM" textFill="CORAL">
+            <Label alignment="CENTER" prefHeight="22.0" prefWidth="214.0" text="LIBRARY MANAGEMENT SYSTEM" textFill="#a36361">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
+               <stylesheets>
+                  <URL value="@style.css" />
+                  <URL value="@../viewofbook/style.css" />
+               </stylesheets>
             </Label>
             <ImageView fitHeight="47.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -216,7 +226,7 @@
                   <Insets left="700.0" />
                </HBox.margin>
             </ImageView>
-            <Label prefHeight="38.0" prefWidth="139.0" text="Welcome Admin" textFill="CORAL">
+            <Label prefHeight="38.0" prefWidth="139.0" text="Welcome Admin" textFill="#a36361">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
@@ -229,12 +239,12 @@
             <Insets bottom="20.0" />
          </padding>
       </HBox>
-      <ScrollPane layoutX="223.0" layoutY="97.0" prefHeight="200.0" prefWidth="923.0" style="-fx-background-color: transparent;" stylesheets="@../post/style.css">
+      <ScrollPane layoutX="181.0" layoutY="97.0" prefHeight="199.0" prefWidth="965.0" style="-fx-background-color: transparent;" stylesheets="@../post/style.css">
          <content>
-            <HBox fx:id="cardLayout" alignment="CENTER" prefHeight="184.0" prefWidth="1100.0" spacing="20.0" />
+            <HBox fx:id="cardLayout" alignment="CENTER" prefHeight="184.0" prefWidth="1141.0" spacing="20.0" />
          </content>
       </ScrollPane>
-      <HBox layoutX="259.0" layoutY="44.0" prefHeight="38.0" prefWidth="112.0">
+      <HBox layoutX="230.0" layoutY="43.0" prefHeight="38.0" prefWidth="112.0">
          <children>
             <Label alignment="BOTTOM_LEFT" contentDisplay="BOTTOM" prefHeight="45.0" prefWidth="57.0" text="HOT">
                <font>
@@ -248,12 +258,12 @@
             </ImageView>
          </children>
       </HBox>
-      <Label alignment="BOTTOM_LEFT" contentDisplay="BOTTOM" layoutX="259.0" layoutY="297.0" prefHeight="14.0" prefWidth="287.0" text="Recommended for you">
+      <Label alignment="BOTTOM_LEFT" contentDisplay="BOTTOM" layoutX="230.0" layoutY="296.0" prefHeight="14.0" prefWidth="287.0" text="Recommended for you">
          <font>
             <Font name="Berlin Sans FB" size="23.0" />
          </font>
       </Label>
-      <ScrollPane layoutX="223.0" layoutY="323.0" prefHeight="369.0" prefWidth="923.0" style="-fx-background-color: transparent;" stylesheets="@style.css">
+      <ScrollPane layoutX="181.0" layoutY="323.0" prefHeight="369.0" prefWidth="965.0" style="-fx-background-color: transparent;" stylesheets="@style.css">
          <content>
             <GridPane fx:id="bookContainer" prefHeight="5.0" prefWidth="1.0">
               <rowConstraints>

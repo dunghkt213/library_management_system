@@ -12,6 +12,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import model.book;
+import viewofbook.viewofbookcontroller;
 
 import javax.smartcardio.Card;
 import java.io.IOException;
@@ -145,6 +146,25 @@ public class trendingbookcontroller implements Initializable {
                 }
                 bookContainer.add(bookBox,column++,row);
                 GridPane.setMargin(bookBox, new Insets(10));
+                bookBox.setOnMouseClicked(event -> {
+                    try {
+
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/viewofbook/viewofbook.fxml"));
+                        Parent root = loader.load();
+
+                        viewofbookcontroller controller = loader.getController();
+
+
+                        controller.setBookDetails(Book);
+
+                        Stage stage = (Stage) bookBox.getScene().getWindow();
+                        Scene scene = new Scene(root);
+                        stage.setScene(scene);
+                        stage.show();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                });
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
