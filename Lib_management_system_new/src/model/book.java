@@ -1,5 +1,7 @@
 package model;
 
+import java.util.ArrayList;
+
 public class book {
     private String bookID;
     private String bookTitle;
@@ -18,7 +20,7 @@ public class book {
     private float averageRating;
     private String maturityRating;
     private String previewLink;
-
+    private int countOfBorrow = 0;
     public String getCategoryName() {
         return categoryName;
     }
@@ -32,7 +34,7 @@ public class book {
 
     public book(String bookID, int categoryID, String availability, int remainingBooks
             , String language, String edition, String bookAuthor, String bookTitle
-            , String bookPublisher, int quantity, String categoryName) {
+            , String bookPublisher, int quantity, String categoryName, String description,String imageUrl,int countOfBorrow) {
         this.bookID = bookID;
         this.categoryID = categoryID;
         this.availability = availability;
@@ -44,6 +46,9 @@ public class book {
         this.bookPublisher = bookPublisher;
         this.quantity = quantity;
         this.categoryName = categoryName;
+        this.description = description;
+        this.imageUrl = imageUrl;
+        this.countOfBorrow = countOfBorrow;
     }
 
     public book(String bookID, String bookTitle, String bookAuthor, String bookPublisher
@@ -56,6 +61,21 @@ public class book {
         this.quantity = quantity;
     }
 
+    public void printinfo(){
+        System.out.println("Book ID: " + bookID);
+        System.out.println("Book Title: " + bookTitle);
+        System.out.println("Book Author: " + bookAuthor);
+        System.out.println("Book Publisher: " + bookPublisher);
+        System.out.println("Edition: " + edition);
+        System.out.println("Language: " + language);
+        System.out.println("Quantity: " + quantity);
+        System.out.println("Remaining Books: " + remainingBooks);
+        System.out.println("Availability: " + availability);
+        System.out.println("Category ID: " + categoryID);
+        System.out.println("Category Name: " + categoryName);
+        System.out.println("Image URL: " + imageUrl);
+        System.out.println("Description: " + description);
+    }
     public String getAvailability() {
         return availability;
     }
@@ -179,5 +199,13 @@ public class book {
 
     public void setPreviewLink(String previewLink) {
         this.previewLink = previewLink;
+    }
+
+    public int getCountOfBorrow() {
+        return countOfBorrow;
+    }
+
+    public void setCountOfBorrow(int countOfBorrow) {
+        this.countOfBorrow = countOfBorrow;
     }
 }

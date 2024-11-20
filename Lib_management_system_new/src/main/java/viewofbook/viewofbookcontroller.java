@@ -35,21 +35,15 @@ public class viewofbookcontroller {
     @FXML
     private Label descriptionLabel;
 
-    @FXML
-    private Label pageCountLabel;
 
     @FXML
     private Label averageRatingLabel;
 
-    // Phương thức để nhận dữ liệu từ đối tượng book
     public void setBookDetails(book Book) {
-        // Thiết lập ảnh bìa sách
         if (Book.getImageUrl() != null && !Book.getImageUrl().isEmpty()) {
             if (Book.getImageUrl().startsWith("http") || Book.getImageUrl().startsWith("https")) {
-                // Nếu là URL (HTTP/HTTPS)
                 bookImageView.setImage(new Image(Book.getImageUrl()));
             } else {
-                // Nếu là đường dẫn cục bộ
                 Image image = new Image(getClass().getResourceAsStream(Book.getImageUrl()));
                 bookImageView.setImage(image);
             }
@@ -64,7 +58,6 @@ public class viewofbookcontroller {
         categoryLabel.setText("Thể loại: " + Book.getCategoryName());
         languageLabel.setText("Ngôn ngữ: " + Book.getLanguage());
         descriptionLabel.setText(Book.getDescription());
-        pageCountLabel.setText("Số trang: " + Book.getPageCount());
     }
     @FXML
     protected void handletrendingbook() throws IOException {

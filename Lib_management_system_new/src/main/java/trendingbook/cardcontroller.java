@@ -14,6 +14,7 @@ import model.book;
 import viewofbook.viewofbookcontroller;
 
 import java.io.IOException;
+import java.net.URL;
 
 public class cardcontroller {
 
@@ -34,21 +35,19 @@ public class cardcontroller {
         authorName.setText(Book.getBookAuthor());
 
         // Thiết lập hình ảnh sách
-        String imageUrl = Book.getImageUrl();
-        if (imageUrl != null && !imageUrl.isEmpty()) {
-            try {
-                Image image = new Image(getClass().getResourceAsStream(imageUrl));
-                if (image.isError()) {
-                    System.out.println("Lỗi khi tải hình ảnh: " + imageUrl);
-                } else {
-                    bookImage.setImage(image);
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-                System.out.println("Không thể tải hình ảnh từ đường dẫn: " + imageUrl);
-            }
+        if (Book.getImageUrl().startsWith("http")) {
+            Image image = new Image(Book.getImageUrl());
+            bookImage.setImage(image);
         } else {
-            bookImage.setImage(new Image(getClass().getResourceAsStream("/viewofbook/noImage.png")));
+            // Đường dẫn cục bộ trong tài nguyên
+            URL imageUrl = getClass().getResource(Book.getImageUrl());
+            if (imageUrl != null) {
+                Image image = new Image(imageUrl.toString());
+                bookImage.setImage(image);
+            } else {
+                // Hình ảnh mặc định nếu không tìm thấy
+                bookImage.setImage(new Image("default_image.jpg"));
+            }
         }
 
         // Thiết lập màu nền ngẫu nhiên cho card
