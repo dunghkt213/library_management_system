@@ -13,6 +13,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 import model.book;
 
@@ -31,7 +33,7 @@ public class viewbookcontroller {
     private ListView<book> resultsListView;
 
     @FXML
-    private TextArea bookDetailsTextArea;
+    private TextFlow bookDetailsTextFlow;
 
     @FXML
     private Button searchButton;
@@ -41,6 +43,9 @@ public class viewbookcontroller {
 
     @FXML
     private Button prevButton;
+
+    @FXML
+    private ChoiceBox<String> searchOptionChoiceBox;
 
     private int currentPage = 0;
     private final int pageSize = 6;
@@ -57,7 +62,7 @@ public class viewbookcontroller {
                 loadBooksFromCache();
             } else if ((currentPage + 1) * pageSize < 12) {
                 currentPage++;
-                searchBooks(searchField.getText(), currentPage, pageSize);
+                searchBooks(searchOptionChoiceBox.getValue(), searchField.getText(), currentPage, pageSize);
             } else {
                 showAlert("Giới hạn", "Đã đạt đến giới hạn của 12 cuốn sách.");
             }
@@ -70,6 +75,8 @@ public class viewbookcontroller {
             }
         });
 
+        searchOptionChoiceBox.setValue("Title");
+
         resultsListView.setCellFactory(param -> createBookListCell());
         resultsListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> showBookDetails(newValue));
     }
@@ -79,12 +86,12 @@ public class viewbookcontroller {
         currentPage = 0;
         totalBooksFetched = 0; // Reset the count when a new search is initiated
         allFetchedBooks.clear();  // Clear the previously fetched books
-        searchBooks(searchField.getText(), currentPage, pageSize);
+        searchBooks(searchOptionChoiceBox.getValue(), searchField.getText(), currentPage, pageSize);
     }
 
-    private void searchBooks(String keyword, int pageNumber, int pageSize) {
+    private void searchBooks(String searchOption, String keyword, int pageNumber, int pageSize) {
         // Gọi phương thức không đồng bộ từ BookController
-        CompletableFuture<ArrayList<book>> futureBooks = bookController.searchBooksOnlineAsync(keyword, pageNumber, pageSize);
+        CompletableFuture<ArrayList<book>> futureBooks = bookController.searchBooksOnlineAsync(searchOption, keyword, pageNumber, pageSize);
         futureBooks.thenAccept(books -> {
             ObservableList<book> observableBooks = FXCollections.observableArrayList(books);
 
@@ -115,14 +122,23 @@ public class viewbookcontroller {
         if (selectedBook == null) {
             return;
         }
+        bookDetailsTextFlow.getChildren().clear();
 
-        String bookDetails = "• Title: " + selectedBook.getBookTitle() + "\n\n";
+        String bookDetails = "• ISBN: " + selectedBook.getBookID() + "\n\n";
+        bookDetails += "• Title: " + selectedBook.getBookTitle() + "\n\n";
         bookDetails += "• Authors: " + selectedBook.getBookAuthor() + "\n\n";
         bookDetails += "• Publisher: " + selectedBook.getBookPublisher() + "\n\n";
         bookDetails += "• Edition: " + selectedBook.getEdition() + "\n\n";
         bookDetails += "• Language: " + selectedBook.getLanguage() + "\n\n";
         bookDetails += "• Category Name: " + selectedBook.getCategoryName() + "\n\n";
         bookDetails += "• Description: " + selectedBook.getDescription() + "\n\n";
+
+        String previewLinkText = "• Preview URL: ";
+        Hyperlink previewLink = new Hyperlink(selectedBook.getPreviewLink());
+        previewLink.setOnAction(event -> openLinkInBrowser(selectedBook.getPreviewLink()));
+
+        bookDetailsTextFlow.getChildren().addAll(new Text(bookDetails), new Text(previewLinkText), previewLink);
+
         bookDetails += "• Page Count: " + selectedBook.getPageCount() + "\n\n";
         //bookDetails += "• Average Rating: " + selectedBook.getAverageRating() + "\n\n";
         //bookDetails += "• Maturity Rating: " + selectedBook.getMaturityRating() + "\n";
@@ -131,8 +147,6 @@ public class viewbookcontroller {
         //bookDetails += "Hàng trong kho: " + selectedBook.getRemainingBooks() + "\n";
         //bookDetails += "Trạng thái: " + selectedBook.getAvailability() + "\n";
         //bookDetails += "Mã thể loại: " + selectedBook.getCategoryID() + "\n";
-
-        bookDetailsTextArea.setText(bookDetails);
     }
 
     private ListCell<book> createBookListCell() {
@@ -169,6 +183,16 @@ public class viewbookcontroller {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+
+    private void openLinkInBrowser(String url) {
+        if (java.awt.Desktop.isDesktopSupported()) {
+            try {
+                java.awt.Desktop.getDesktop().browse(new java.net.URI(url));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @FXML

@@ -17,6 +17,7 @@ public class book {
     private int pageCount;
     private float averageRating;
     private String maturityRating;
+    private String previewLink;
 
     public String getCategoryName() {
         return categoryName;
@@ -170,5 +171,13 @@ public class book {
 
     public void setMaturityRating(String maturityRating) {
         this.maturityRating = maturityRating;
+    }
+
+    public String getPreviewLink() {
+        return previewLink;
+    }
+
+    public void setPreviewLink(String previewLink) {
+        this.previewLink = previewLink;
     }
 }

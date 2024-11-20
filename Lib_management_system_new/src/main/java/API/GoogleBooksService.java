@@ -23,22 +23,32 @@ public class GoogleBooksService {
         return URLEncoder.encode(value, StandardCharsets.UTF_8);
     }
 
-    public static ArrayList<book> searchBooks(String query, int pageNumber, int pageSize) {
+    public static ArrayList<book> searchBooks(String searchOption, String query, int pageNumber, int pageSize) {
         try {
             query = query.trim();
-            int startIndex = pageNumber * pageSize;
-
-            // Ensure that we do not request more than 12 results in total
-            if (startIndex >= 12) {
-                return new ArrayList<>();
+            String encodedQuery = encodeValue(query);
+            String url;
+            if ("ISBN".equals(searchOption)) {
+                url = "https://www.googleapis.com/books/v1/volumes?q=isbn:" + encodedQuery + "&key=" + API_KEY;
+            } else {
+                int startIndex = pageNumber * pageSize;
+                if (startIndex >= 12) {
+                    return new ArrayList<>();
+                }
+                url = "https://www.googleapis.com/books/v1/volumes?q=" + encodedQuery
+                        +  "&startIndex=" + startIndex + "&maxResults=" + pageSize
+                        + "&key=" + API_KEY;
             }
 
-            String url = "https://www.googleapis.com/books/v1/volumes?q=" + encodeValue(query)
-                    +  "&startIndex=" + startIndex + "&maxResults=" + pageSize
-                    + "&key=" + API_KEY;
             URL apiUrl = URI.create(url).toURL();
             HttpURLConnection connection = (HttpURLConnection) apiUrl.openConnection();
             connection.setRequestMethod("GET");
+
+            int responseCode = connection.getResponseCode();
+            if (responseCode != 200) {
+                System.err.println("HTTP GET request not successful. Response Code: " + responseCode);
+                return new ArrayList<>();
+            }
 
             BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
             StringBuilder response = new StringBuilder();
@@ -51,9 +61,13 @@ public class GoogleBooksService {
             reader.close();
             connection.disconnect();
 
+            System.out.println("API Response: " + response.toString());
+
             return processBookSearchResponse(response.toString());
+
         } catch (IOException e) {
             e.printStackTrace();
+            System.err.println("IOException while searching books: " + e.getMessage());
         }
 
         return new ArrayList<>();
@@ -78,6 +92,23 @@ public class GoogleBooksService {
                 // Lấy thêm các thông tin mới
                 String description = book.has("description") ? book.get("description").getAsString() : "No description available.";
                 int pageCount = book.has("pageCount") ? book.get("pageCount").getAsInt() : 0;
+
+                String isbn = "ISBN Not Available ";
+                if (book.has("industryIdentifiers")) {
+                    JsonArray identifiers = book.getAsJsonArray("industryIdentifiers");
+                    for (JsonElement identifier : identifiers) {
+                        JsonObject id = identifier.getAsJsonObject();
+                        if (id.has("type") && id.get("type").getAsString().equals("ISBN_13")) {
+                            isbn = id.get("identifier").getAsString();
+                            break;
+                        } else if (id.has("type") && id.get("type").getAsString().equals("ISBN_10")) {
+                            isbn = id.get("identifier").getAsString();
+                        }
+                    }
+                }
+
+                String previewLink = book.has("previewLink") ? book.get("previewLink").getAsString() : "No preview available.";
+
                 //float averageRating = book.has("averageRating") ? book.get("averageRating").getAsFloat() : 0.0f;
                 //String maturityRating = book.has("maturityRating") ? book.get("maturityRating").getAsString() : "UNKNOWN";
 
@@ -96,6 +127,8 @@ public class GoogleBooksService {
                 // Set các thông tin mới vào đối tượng book
                 newBook.setDescription(description);
                 newBook.setPageCount(pageCount);
+                newBook.setBookID(isbn);
+                newBook.setPreviewLink(previewLink);
                 //newBook.setAverageRating(averageRating);
                 //newBook.setMaturityRating(maturityRating);
 

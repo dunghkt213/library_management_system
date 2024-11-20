@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.function.Supplier;
 
 public class BookController {
     private final bookDAO bookDao;
@@ -19,31 +18,31 @@ public class BookController {
     public BookController() {
         this.bookDao = new bookDAO();
         this.booksCache = new GoogleBooksCache();
-        this.executorService = Executors.newFixedThreadPool(10); // Tạo ExecutorService với 4 luồng
+        this.executorService = Executors.newFixedThreadPool(10); // Tạo ExecutorService với 10 luồng
     }
 
     // Tìm kiếm trên API với Bộ Nhớ Đệm và Xử Lý Không Đồng Bộ
-    public CompletableFuture<ArrayList<book>> searchBooksOnlineAsync(String keyword, int pageNumber, int pageSize) {
-        return CompletableFuture.supplyAsync(() -> searchBooksOnline(keyword, pageNumber, pageSize), executorService);
+    public CompletableFuture<ArrayList<book>> searchBooksOnlineAsync(String searchOption, String keyword, int pageNumber, int pageSize) {
+        return CompletableFuture.supplyAsync(() -> searchBooksOnline(searchOption, keyword, pageNumber, pageSize), executorService);
     }
 
-    //Tìm kiếm trên API
-    public ArrayList<book> searchBooksOnline(String keyword, int pageNumber, int pageSize) {
+    // Tìm kiếm trên API
+    public ArrayList<book> searchBooksOnline(String searchOption, String keyword, int pageNumber, int pageSize) {
         if (keyword == null || keyword.trim().isEmpty()) {
             throw new IllegalArgumentException("Từ khóa tìm kiếm không hợp lệ!");
         }
 
         // Kiểm tra trong bộ nhớ đệm
-        ArrayList<book> cachedBooks = booksCache.getBooks(keyword, pageNumber, pageSize);
+        ArrayList<book> cachedBooks = booksCache.getBooks(searchOption + ":" + keyword, pageNumber, pageSize);
         if (cachedBooks != null) {
             return cachedBooks;
         }
 
         // Nếu không có trong đệm, truy vấn API
-        ArrayList<book> books = GoogleBooksService.searchBooks(keyword, pageNumber, pageSize);
+        ArrayList<book> books = GoogleBooksService.searchBooks(searchOption, keyword, pageNumber, pageSize);
 
         // Lưu kết quả vào bộ nhớ đệm
-        booksCache.putBooks(keyword, pageNumber, pageSize, books);
+        booksCache.putBooks(searchOption + ":" + keyword, pageNumber, pageSize, books);
 
         return books;
     }
@@ -68,7 +67,9 @@ public class BookController {
         ArrayList<book> result = new ArrayList<>();
 
         if (isOnline) {
-            result = searchBooksOnline(searchCriteria.getBookTitle(), pageNumber, pageSize);
+            String searchOption = searchCriteria.getBookID() == null ? "Title" : "ISBN";
+            String keyword = searchCriteria.getBookID() == null ? searchCriteria.getBookTitle() : searchCriteria.getBookID();
+            result = searchBooksOnline(searchOption, keyword, pageNumber, pageSize);
         } else {
             result = searchBooksInDatabase(searchCriteria);
         }
