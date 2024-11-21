@@ -229,11 +229,11 @@
             <Insets bottom="20.0" />
          </padding>
       </HBox>
-      <AnchorPane layoutX="184.0" layoutY="155.0" prefHeight="530.0" prefWidth="426.0" style="-fx-background-radius: 20;" styleClass="mid-background" stylesheets="@../viewissuedbook/viewissuedbook.css">
+      <AnchorPane layoutX="182.0" layoutY="155.0" prefHeight="530.0" prefWidth="376.0" style="-fx-background-radius: 20;" styleClass="mid-background" stylesheets="@../viewissuedbook/viewissuedbook.css">
          <children>
-            <HBox layoutY="7.0" prefHeight="423.0" prefWidth="425.0">
+            <HBox layoutY="-1.0" prefHeight="431.0" prefWidth="374.0">
                <children>
-                  <VBox prefHeight="423.0" prefWidth="234.0" stylesheets="@managebook.css">
+                  <VBox prefHeight="450.0" prefWidth="177.0" stylesheets="@managebook.css">
                      <children>
                         <Label text="Book Titile">
                            <VBox.margin>
@@ -317,7 +317,7 @@
                         </TextField>
                      </children>
                   </VBox>
-                  <VBox prefHeight="423.0" prefWidth="246.0" stylesheets="@managebook.css">
+                  <VBox prefHeight="426.0" prefWidth="201.0" stylesheets="@managebook.css">
                      <children>
                         <Label text="Category  ID">
                            <VBox.margin>
@@ -403,7 +403,7 @@
                   </VBox>
                </children>
             </HBox>
-            <Button layoutX="80.0" layoutY="468.0" mnemonicParsing="false" onAction="#handleAddBook" prefHeight="40.0" prefWidth="80.0" style="-fx-background-radius: 50;" stylesheets="@../issuebook/issuebook.css" text="ADD" textFill="WHITE">
+            <Button layoutX="45.0" layoutY="430.0" mnemonicParsing="false" onAction="#handleAddBook" prefHeight="40.0" prefWidth="80.0" style="-fx-background-radius: 50;" stylesheets="@../issuebook/issuebook.css" text="ADD" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -415,7 +415,7 @@
                   <String fx:value="button-border" />
                </styleClass>
             </Button>
-            <Button layoutX="173.0" layoutY="468.0" mnemonicParsing="false" onAction="#handleUpdateBook" prefHeight="40.0" prefWidth="80.0" style="-fx-background-radius: 50;" stylesheets="@../issuebook/issuebook.css" text="UPDATE" textFill="WHITE">
+            <Button layoutX="147.0" layoutY="430.0" mnemonicParsing="false" onAction="#handleUpdateBook" prefHeight="40.0" prefWidth="80.0" style="-fx-background-radius: 50;" stylesheets="@../issuebook/issuebook.css" text="UPDATE" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -427,7 +427,7 @@
                   <String fx:value="button-border" />
                </styleClass>
             </Button>
-            <Button layoutX="266.0" layoutY="468.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="80.0" style="-fx-background-radius: 50;" stylesheets="@../issuebook/issuebook.css" text="DELETE" textFill="WHITE">
+            <Button layoutX="245.0" layoutY="430.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="80.0" style="-fx-background-radius: 50;" stylesheets="@../issuebook/issuebook.css" text="DELETE" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -455,13 +455,14 @@
             </Label>
          </children>
       </VBox>
-      <TableView layoutX="647.0" layoutY="155.0" prefHeight="530.0" prefWidth="516.0" style="-fx-background-radius: 20;" stylesheets="@../admindashboard/admindashboard.css">
+      <TableView fx:id="bookTableView" layoutX="575.0" layoutY="155.0" prefHeight="530.0" prefWidth="612.0" style="-fx-background-radius: 20;" stylesheets="@../admindashboard/admindashboard.css">
          <columns>
-            <TableColumn prefWidth="51.199951171875" text="ID" />
-            <TableColumn prefWidth="188.79998779296875" text="Book Title" />
-            <TableColumn prefWidth="116.79998779296875" text="Author" />
-            <TableColumn prefWidth="77.5999755859375" text="Quantity" />
-            <TableColumn prefWidth="81.60003662109375" text="Availability" />
+            <TableColumn fx:id="colBookID" prefWidth="51.199951171875" text="ID" />
+            <TableColumn fx:id="colBookTitle" prefWidth="153.5999755859375" text="Book Title" />
+            <TableColumn fx:id="colBookAuthor" prefWidth="117.5999755859375" text="Author" />
+            <TableColumn fx:id="colBookQuantity" prefWidth="87.20001220703125" text="Quantity" />
+            <TableColumn fx:id="colBookAvailability" prefWidth="92.800048828125" text="Availability" />
+            <TableColumn fx:id="colBookCountOfBorrow" prefWidth="108.0" text="CountOfBorrow" />
          </columns>
       </TableView>
    </children>
