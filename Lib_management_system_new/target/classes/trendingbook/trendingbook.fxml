@@ -197,6 +197,7 @@
          <styleClass>
             <String fx:value="backgroundcolor" />
             <String fx:value="left-rounded-corner" />
+            <String fx:value="textgradient" />
          </styleClass>
       </VBox>
       <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="1200.0" styleClass="menu-background" stylesheets="@../admindashboard/admindashboard.css">
