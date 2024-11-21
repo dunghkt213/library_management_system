@@ -10,7 +10,7 @@ import java.io.IOException;
 public class ChatBotApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(ChatBotApplication.class.getResource("chatbot.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(ChatBotApplication.class.getResource("chatBot.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1200, 700);
         stage.setTitle("Hello!");
         stage.setScene(scene);

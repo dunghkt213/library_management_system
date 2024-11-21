@@ -36,7 +36,7 @@ public class ChatBotController {
 
             try {
                 String botResponse = sendQuestionToAPI(userQuestion, context);
-                chatArea.appendText("Bot: " + botResponse + "\n");
+                chatArea.appendText("Answer: " + botResponse + "\n");
             } catch (Exception e) {
                 chatArea.appendText("Bot: Error connecting to the server.\n");
                 e.printStackTrace();

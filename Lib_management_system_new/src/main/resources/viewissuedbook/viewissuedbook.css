@@ -13,3 +13,12 @@
 .an-background {
     -fx-background-color: #F66B6B;
 }
+
+.text-area {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+    -fx-border-color: transparent;
+    -fx-padding: 0;
+    -fx-control-inner-background: #E1E4E5;
+}
