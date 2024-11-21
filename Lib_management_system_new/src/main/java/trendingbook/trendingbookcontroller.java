@@ -122,7 +122,9 @@ public class trendingbookcontroller implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        recentlyAddedd = TrendingBooks.getTopTrendingBooks(bookDAO.getInstance().getAll(), 5);
+        ArrayList<book> listbook = bookDAO.getInstance().getAll();
+        recentlyAddedd = TrendingBooks.getTopTrendingBooks(listbook,Math.min(listbook.size(),5));
+
         Recommend = new ArrayList<>(books());
 
         loadBooksAsync(recentlyAddedd, cardLayout, true);
@@ -203,10 +205,10 @@ public class trendingbookcontroller implements Initializable {
     private List<book> books(){
         List<book> ls = new ArrayList<book>();
         book Book = new book();
-        Book.setBookID("9780307887917");
+        /*Book.setBookID("9780307887917");
         book Book2 = bookDAO.getInstance().getById(Book);
         Book2.printinfo();
-        ls.add(Book2);
+        ls.add(Book2);*/
 
         Book = new book();
         Book.setBookTitle("TOOLS OF TITANS");

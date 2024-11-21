@@ -11,7 +11,6 @@ public class TrendingBooks {
 
              allBooks.sort(Comparator.comparingInt(book::getCountOfBorrow).reversed());
 
-
              List<book> topTrending = new ArrayList<>();
              for (int i = 0; i < topN && i < allBooks.size(); i++) {
                  topTrending.add(allBooks.get(i));
