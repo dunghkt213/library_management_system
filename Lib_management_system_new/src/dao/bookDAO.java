@@ -15,8 +15,8 @@ public class bookDAO implements DAOInterface<book> {
     @Override
     public int insert(book book) {
         int result = 0;
-        String sql = "INSERT INTO Books (bookID, bookTitle, bookAuthor, bookPublisher, edition, language, quantity, remainingBooks, categoryName) "
-                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Books (bookID, bookTitle, bookAuthor, bookPublisher, edition, language, quantity, remainingBooks, categoryName,description,imgUrl,countofborrow) "
+                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = JDBCUtil.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
@@ -30,7 +30,9 @@ public class bookDAO implements DAOInterface<book> {
             pstmt.setInt(7, book.getQuantity());
             pstmt.setInt(8, book.getRemainingBooks());
             pstmt.setString(9, book.getCategoryName());
-
+            pstmt.setString(10, book.getDescription());;
+            pstmt.setString(11, book.getImageUrl());;
+            pstmt.setInt(12,book.getCountOfBorrow());
             // Thực thi câu lệnh INSERT
             result = pstmt.executeUpdate();
 
@@ -47,7 +49,8 @@ public class bookDAO implements DAOInterface<book> {
     @Override
     public int update(book book) {
         int result = 0;
-        String sql = "UPDATE books SET bookTitle = ?, bookAuthor = ?, bookPublisher = ?, edition = ?, " + "`language` = ?, quantity = ?, remainingBooks = ?, availability = ?, " + "categoryName = ? WHERE bookID = ?";
+        String sql = "UPDATE books SET bookTitle = ?, bookAuthor = ?, bookPublisher = ?, edition = ?, " + "`language` = ?, quantity = ?, remainingBooks = ?, availability = ?, "
+                + "categoryName = ?, description = ?,imgUrl = ?,countofborrow = ?  WHERE bookID = ?";
 
         try (PreparedStatement updateStatement = JDBCUtil.getConnection().prepareStatement(sql)) {
             updateStatement.setString(1, book.getBookTitle());
@@ -60,7 +63,9 @@ public class bookDAO implements DAOInterface<book> {
             updateStatement.setString(8, book.getAvailability());
             updateStatement.setString(9, book.getCategoryName());
             updateStatement.setString(10, book.getBookID());
-
+            updateStatement.setString(11, book.getDescription());
+            updateStatement.setString(12, book.getImageUrl());
+            updateStatement.setInt(13, book.getCountOfBorrow());
             result = updateStatement.executeUpdate();
             System.out.println("so dong thay doi: " + result);
         } catch (SQLException e) {
@@ -113,9 +118,11 @@ public class bookDAO implements DAOInterface<book> {
                 String availability = rs.getString("availability");
                 int categoryID = rs.getInt("categoryID");
                 String categoryName = rs.getString("categoryName");
-
-                book bookObj = new book(bookID, categoryID, availability, remainingBooks, language, edition, bookAuthor, bookTitle, bookPublisher, quantity, categoryName);
-
+                String description = rs.getString("description");
+                String imageURL = rs.getString("imgURL");
+                int countOfBorrow = rs.getInt("countOfBorrow");
+                book bookObj = new book(bookID, categoryID, availability, remainingBooks, language, edition, bookAuthor
+                        , bookTitle, bookPublisher, quantity, categoryName,description,imageURL,countOfBorrow);
                 bookList.add(bookObj);
             }
 
@@ -137,6 +144,7 @@ public class bookDAO implements DAOInterface<book> {
             pstmt.setString(1, book.getBookID());
             try (ResultSet rs = pstmt.executeQuery()) {
                 if (rs.next()) {
+                    String bookID = rs.getString("bookID");
                     String bookTitle = rs.getString("bookTitle");
                     String bookAuthor = rs.getString("bookAuthor");
                     String bookPublisher = rs.getString("bookPublisher");
@@ -147,8 +155,11 @@ public class bookDAO implements DAOInterface<book> {
                     String availability = rs.getString("availability");
                     int categoryID = rs.getInt("categoryID");
                     String categoryName = rs.getString("categoryName");
-
-                    bookObj = new book(book.getBookID(), categoryID, availability, remainingBooks, language, edition, bookAuthor, bookTitle, bookPublisher, quantity, categoryName);
+                    String description = rs.getString("description");
+                    String imageURL = rs.getString("imgUrl");
+                    int countofborrow = rs.getInt("countofborrow");
+                    bookObj = new book(bookID, categoryID, availability, remainingBooks, language, edition, bookAuthor, bookTitle
+                            , bookPublisher, quantity, categoryName,description,imageURL,countofborrow);
                 }
             }
 
@@ -202,8 +213,10 @@ public class bookDAO implements DAOInterface<book> {
                     String availability = rs.getString("availability");
                     int categoryID = rs.getInt("categoryID");
                     String categoryName = rs.getString("categoryName");
-
-                    book bookObj = new book(bookID, categoryID, availability, remainingBooks, language, edition, bookAuthor, bookTitle, bookPublisher, quantity, categoryName);
+                    String description = rs.getString("description");
+                    String imageURL = rs.getString("imgUrl");
+                    int countofborrow = rs.getInt("countofborrow");
+                    book bookObj = new book(bookID, categoryID, availability, remainingBooks, language, edition, bookAuthor, bookTitle, bookPublisher, quantity, categoryName,description,imageURL,countofborrow);
                     bookList.add(bookObj);
                 }
             }

@@ -1,6 +1,7 @@
 package viewbook;
 
 import API.GoogleBooksService;
+import dao.bookDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -47,6 +48,8 @@ public class viewbookcontroller {
     @FXML
     private ChoiceBox<String> searchOptionChoiceBox;
 
+    @FXML
+    private Button downloadButton;
     private int currentPage = 0;
     private final int pageSize = 6;
     private int totalBooksFetched = 0; // Track the total number of books fetched so far
@@ -74,7 +77,7 @@ public class viewbookcontroller {
                 loadBooksFromCache();
             }
         });
-
+        downloadButton.setOnAction(this::handleDownloadAction);
         searchOptionChoiceBox.setValue("Title");
 
         resultsListView.setCellFactory(param -> createBookListCell());
@@ -135,6 +138,7 @@ public class viewbookcontroller {
 
         String previewLinkText = "• Preview URL: ";
         Hyperlink previewLink = new Hyperlink(selectedBook.getPreviewLink());
+
         previewLink.setOnAction(event -> openLinkInBrowser(selectedBook.getPreviewLink()));
 
         bookDetailsTextFlow.getChildren().addAll(new Text(bookDetails), new Text(previewLinkText), previewLink);
@@ -192,6 +196,30 @@ public class viewbookcontroller {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        }
+    }
+    @FXML
+    private void handleDownloadAction(ActionEvent event) {
+        book selectedBook = resultsListView.getSelectionModel().getSelectedItem();
+
+        if (selectedBook == null) {
+            showAlert("Lỗi", "Bạn phải chọn một cuốn sách trước khi tải xuống.");
+            return;
+        }
+
+        // Kiểm tra nếu imageUrl hoặc description trống
+        if (selectedBook.getImageUrl() == null || selectedBook.getImageUrl().isEmpty() ||
+                selectedBook.getDescription() == null || selectedBook.getDescription().isEmpty()) {
+            showAlert("Lỗi", "Dữ liệu của sách không đầy đủ (URL hoặc mô tả bị thiếu).");
+            return;
+        }
+
+        int result = bookDAO.getInstance().insert(selectedBook);
+
+        if (result > 0) {
+            showAlert("Thành công", "Sách đã được lưu vào cơ sở dữ liệu.");
+        } else {
+            showAlert("Lỗi", "Không thể lưu sách vào cơ sở dữ liệu.");
         }
     }
 
