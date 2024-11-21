@@ -1,7 +1,6 @@
 package viewbook;
 
 import API.GoogleBooksService;
-import dao.bookDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -12,106 +11,84 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 import model.book;
+import dao.bookDAO;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class viewbookcontroller {
-
     @FXML
     private TextField searchField;
-
     @FXML
     private ListView<book> resultsListView;
-
     @FXML
     private TextFlow bookDetailsTextFlow;
-
     @FXML
-    private Button searchButton;
-
-    @FXML
-    private Button nextButton;
-
-    @FXML
-    private Button prevButton;
-
+    private Button searchButton, nextButton, prevButton, downloadButton;
     @FXML
     private ChoiceBox<String> searchOptionChoiceBox;
 
-    @FXML
-    private Button downloadButton;
     private int currentPage = 0;
     private final int pageSize = 6;
-    private int totalBooksFetched = 0; // Track the total number of books fetched so far
+    private final int maxBooksLimit = 12; // Giới hạn số sách tối đa
     private final BookController bookController = new BookController();
-    private ArrayList<book> allFetchedBooks = new ArrayList<>();  // To store all fetched books for the session
+    private ArrayList<book> allFetchedBooks = new ArrayList<>();
 
     @FXML
     private void initialize() {
         searchButton.setOnAction(this::handleSearchAction);
-        nextButton.setOnAction(event -> {
-            if ((currentPage + 1) * pageSize < 12 && (currentPage + 1) * pageSize < allFetchedBooks.size()) {
-                currentPage++;
-                loadBooksFromCache();
-            } else if ((currentPage + 1) * pageSize < 12) {
-                currentPage++;
-                searchBooks(searchOptionChoiceBox.getValue(), searchField.getText(), currentPage, pageSize);
-            } else {
-                showAlert("Giới hạn", "Đã đạt đến giới hạn của 12 cuốn sách.");
-            }
-        });
-
-        prevButton.setOnAction(event -> {
-            if (currentPage > 0) {
-                currentPage--;
-                loadBooksFromCache();
-            }
-        });
+        nextButton.setOnAction(this::handleNextAction);
+        prevButton.setOnAction(this::handlePrevAction);
         downloadButton.setOnAction(this::handleDownloadAction);
-        searchOptionChoiceBox.setValue("Title");
-
         resultsListView.setCellFactory(param -> createBookListCell());
         resultsListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> showBookDetails(newValue));
+        searchOptionChoiceBox.setValue("Title");
     }
 
     @FXML
     private void handleSearchAction(ActionEvent event) {
         currentPage = 0;
-        totalBooksFetched = 0; // Reset the count when a new search is initiated
-        allFetchedBooks.clear();  // Clear the previously fetched books
+        allFetchedBooks.clear();
         searchBooks(searchOptionChoiceBox.getValue(), searchField.getText(), currentPage, pageSize);
     }
 
     private void searchBooks(String searchOption, String keyword, int pageNumber, int pageSize) {
-        // Gọi phương thức không đồng bộ từ BookController
-        CompletableFuture<ArrayList<book>> futureBooks = bookController.searchBooksOnlineAsync(searchOption, keyword, pageNumber, pageSize);
-        futureBooks.thenAccept(books -> {
-            ObservableList<book> observableBooks = FXCollections.observableArrayList(books);
+        if (keyword.trim().isEmpty()) {
+            showAlert(AlertType.ERROR, "Lỗi", "Vui lòng nhập từ khóa tìm kiếm.");
+            return;
+        }
 
-            // Update UI ở JavaFX Application Thread
-            javafx.application.Platform.runLater(() -> {
-                allFetchedBooks.addAll(books); // Add to cache
-                totalBooksFetched += observableBooks.size(); // Increment the count by the number of books fetched
+        long startTime = System.currentTimeMillis();
+        CompletableFuture<ArrayList<book>> futureBooks = bookController.searchBooksOnlineOrCache(searchOption, keyword, pageNumber, pageSize);
+        futureBooks.thenAccept(books -> javafx.application.Platform.runLater(() -> {
+            if (books == null || books.isEmpty()) {
+                showAlert(AlertType.ERROR, "Không có kết quả", "Không tìm thấy sách với từ khóa đã nhập.");
+            } else {
+                allFetchedBooks.addAll(books);
                 loadBooksFromCache();
-
-                if (observableBooks.isEmpty()) {
-                    showAlert("Không có kết quả", "Không tìm thấy sách với từ khóa đã nhập.");
-                }
-            });
-        }).exceptionally(ex -> {
-            javafx.application.Platform.runLater(() -> showAlert("Lỗi", "Đã xảy ra lỗi khi tìm kiếm."));
+                // Pre-fetching next page
+                prefetchNextPages(searchOption, keyword, pageNumber, pageSize);
+            }
+            System.out.println("Time taken: " + (System.currentTimeMillis() - startTime) + " ms");
+        })).exceptionally(ex -> {
+            javafx.application.Platform.runLater(() -> showAlert(AlertType.ERROR, "Lỗi", "Đã xảy ra lỗi khi tìm kiếm."));
             return null;
         });
+    }
+
+    private void prefetchNextPages(String searchOption, String keyword, int pageNumber, int pageSize) {
+        if (allFetchedBooks.size() < maxBooksLimit) {
+            bookController.searchBooksOnlineOrCache(searchOption, keyword, pageNumber + 1, pageSize);
+        }
     }
 
     private void loadBooksFromCache() {
@@ -127,14 +104,9 @@ public class viewbookcontroller {
         }
         bookDetailsTextFlow.getChildren().clear();
 
-        String bookDetails = "• ISBN: " + selectedBook.getBookID() + "\n\n";
-        bookDetails += "• Title: " + selectedBook.getBookTitle() + "\n\n";
-        bookDetails += "• Authors: " + selectedBook.getBookAuthor() + "\n\n";
-        bookDetails += "• Publisher: " + selectedBook.getBookPublisher() + "\n\n";
-        bookDetails += "• Edition: " + selectedBook.getEdition() + "\n\n";
-        bookDetails += "• Language: " + selectedBook.getLanguage() + "\n\n";
-        bookDetails += "• Category Name: " + selectedBook.getCategoryName() + "\n\n";
-        bookDetails += "• Description: " + selectedBook.getDescription() + "\n\n";
+        String bookDetails = String.format("• ISBN: %s\n\n• Title: %s\n\n• Authors: %s\n\n• Publisher: %s\n\n• Edition: %s\n\n• Language: %s\n\n• Category Name: %s\n\n• Description: %s\n\n• Page Count: %d\n\n",
+                selectedBook.getBookID(), selectedBook.getBookTitle(), selectedBook.getBookAuthor(), selectedBook.getBookPublisher(), selectedBook.getEdition(), selectedBook.getLanguage(),
+                selectedBook.getCategoryName(), selectedBook.getDescription(), selectedBook.getPageCount());
 
         String previewLinkText = "• Preview URL: ";
         Hyperlink previewLink = new Hyperlink(selectedBook.getPreviewLink());
@@ -142,15 +114,6 @@ public class viewbookcontroller {
         previewLink.setOnAction(event -> openLinkInBrowser(selectedBook.getPreviewLink()));
 
         bookDetailsTextFlow.getChildren().addAll(new Text(bookDetails), new Text(previewLinkText), previewLink);
-
-        bookDetails += "• Page Count: " + selectedBook.getPageCount() + "\n\n";
-        //bookDetails += "• Average Rating: " + selectedBook.getAverageRating() + "\n\n";
-        //bookDetails += "• Maturity Rating: " + selectedBook.getMaturityRating() + "\n";
-
-        //bookDetails += "Số lượng: " + selectedBook.getQuantity() + "\n";
-        //bookDetails += "Hàng trong kho: " + selectedBook.getRemainingBooks() + "\n";
-        //bookDetails += "Trạng thái: " + selectedBook.getAvailability() + "\n";
-        //bookDetails += "Mã thể loại: " + selectedBook.getCategoryID() + "\n";
     }
 
     private ListCell<book> createBookListCell() {
@@ -166,12 +129,9 @@ public class viewbookcontroller {
                     ImageView imageView = new ImageView();
                     imageView.setFitHeight(80);
                     imageView.setFitWidth(80);
-
-                    // Kiểm tra nếu có URL ảnh
                     if (item.getImageUrl() != null && !item.getImageUrl().isEmpty()) {
                         imageView.setImage(new Image(item.getImageUrl()));
                     }
-
                     Label bookTitle = new Label(item.getBookTitle());
                     Label bookAuthor = new Label(item.getBookAuthor());
                     hbox.getChildren().addAll(imageView, bookTitle, bookAuthor);
@@ -181,12 +141,25 @@ public class viewbookcontroller {
         };
     }
 
-    private void showAlert(String title, String message) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
+    @FXML
+    private void handleNextAction(ActionEvent event) {
+        if ((currentPage + 1) * pageSize < maxBooksLimit && (currentPage + 1) * pageSize < allFetchedBooks.size()) {
+            currentPage++;
+            loadBooksFromCache();
+        } else if ((currentPage + 1) * pageSize < maxBooksLimit) {
+            currentPage++;
+            searchBooks(searchOptionChoiceBox.getValue(), searchField.getText(), currentPage, pageSize);
+        } else {
+            showAlert(AlertType.SUCCESS, "Giới hạn", "Đã đạt đến giới hạn của 12 cuốn sách.");
+        }
+    }
+
+    @FXML
+    private void handlePrevAction(ActionEvent event) {
+        if (currentPage > 0) {
+            currentPage--;
+            loadBooksFromCache();
+        }
     }
 
     private void openLinkInBrowser(String url) {
@@ -198,38 +171,57 @@ public class viewbookcontroller {
             }
         }
     }
+
     @FXML
     private void handleDownloadAction(ActionEvent event) {
         book selectedBook = resultsListView.getSelectionModel().getSelectedItem();
-
         if (selectedBook == null) {
-            showAlert("Lỗi", "Bạn phải chọn một cuốn sách trước khi tải xuống.");
+            showAlert(AlertType.ERROR, "Lỗi", "Bạn phải chọn một cuốn sách trước khi tải xuống.");
             return;
         }
 
-        // Kiểm tra nếu imageUrl hoặc description trống
-        if (selectedBook.getImageUrl() == null || selectedBook.getImageUrl().isEmpty() ||
-                selectedBook.getDescription() == null || selectedBook.getDescription().isEmpty()) {
-            showAlert("Lỗi", "Dữ liệu của sách không đầy đủ (URL hoặc mô tả bị thiếu).");
+        if (selectedBook.getImageUrl() == null || selectedBook.getImageUrl().isEmpty() || selectedBook.getDescription() == null || selectedBook.getDescription().isEmpty()) {
+            showAlert(AlertType.ERROR, "Lỗi", "Dữ liệu của sách không đầy đủ (URL hoặc mô tả bị thiếu).");
             return;
+        }
+
+        if ("ISBN Not Available".equals(selectedBook.getBookID())) {
+            selectedBook.setBookID(GoogleBooksService.generateUniqueBookID(selectedBook));
         }
 
         int result = bookDAO.getInstance().insert(selectedBook);
 
         if (result > 0) {
-            showAlert("Thành công", "Sách đã được lưu vào cơ sở dữ liệu.");
+            showAlert(AlertType.SUCCESS, "Thành công", "Sách đã được lưu vào cơ sở dữ liệu.");
         } else {
-            showAlert("Lỗi", "Không thể lưu sách vào cơ sở dữ liệu.");
+            showAlert(AlertType.ERROR, "Lỗi", "Không thể lưu sách vào cơ sở dữ liệu.");
         }
     }
 
     @FXML
-    protected void handleadmin() throws IOException {
+    private void handleAdmin(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/admindashboard/admindashboard.fxml")));
-
         Stage stage = (Stage) searchField.getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+    }
+
+    public enum AlertType {
+        SUCCESS,
+        ERROR
+    }
+
+    private void showAlert(AlertType type, String title, String message) {
+        Alert alert;
+        if (type == AlertType.SUCCESS) {
+            alert = new Alert(Alert.AlertType.INFORMATION);
+        } else {
+            alert = new Alert(Alert.AlertType.ERROR);
+        }
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }
