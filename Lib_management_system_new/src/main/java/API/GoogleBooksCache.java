@@ -12,7 +12,7 @@ public class GoogleBooksCache {
 
     public GoogleBooksCache() {
         this.bookCache = Caffeine.newBuilder()
-                .expireAfterWrite(10, TimeUnit.MINUTES)
+                .expireAfterWrite(60, TimeUnit.MINUTES) // Giảm số lần gọi API bằng cách tăng thời gian cache
                 .maximumSize(100)
                 .build();
     }
