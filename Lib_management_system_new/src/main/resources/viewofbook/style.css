@@ -9,6 +9,8 @@
             #A36361
     );
 }
+
+
 .textgradient {
     -fx-background-color: linear-gradient(
             from 0% 100% to 0% 0%,
@@ -24,7 +26,7 @@
     -fx-text-fill: linear-gradient;
 }
 .rounded-square {
-    -fx-background-radius: 20;
+    -fx-background-radius: 30;
 }
 .white-background {
     -fx-background-color: white;
@@ -39,5 +41,5 @@
     -fx-pref-height: 0;
 }
 .lightgrey-background {
-    -fx-background-color: #d3d3d3;
+    -fx-background-color: #808080;
 }

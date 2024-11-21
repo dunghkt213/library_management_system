@@ -15,15 +15,13 @@ public class loanDAO implements DAOInterface<loan> {
     @Override
     public int insert(loan loan) {
         int result = 0;
-        String sql = "INSERT INTO loans(loansID, bookID, studentID, loanDate, returnDate, dueDate, status) VALUES(?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO loans( bookID, studentID, loanDate, dueDate, status) VALUES(?, ?, ?, ?, ?)";
         try (Connection conn = JDBCUtil.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setString(1, loan.getLoansID());
-            pstmt.setString(2, loan.getBookID());
-            pstmt.setString(3, loan.getStudentID());
-            pstmt.setString(4, loan.getLoanDate());
-            pstmt.setString(5, loan.getReturnDate());
-            pstmt.setString(6, loan.getDueDate());
-            pstmt.setString(7, loan.getStatus());
+            pstmt.setString(1, loan.getBookID());
+            pstmt.setString(2, loan.getStudentID());
+            pstmt.setString(3, loan.getLoanDate());
+            pstmt.setString(4, loan.getDueDate());
+            pstmt.setString(5, loan.getStatus());
             result = pstmt.executeUpdate();
             System.out.println("Câu lệnh đã được thực thi thành công. Có " + result + " dòng đã bị thay đổi.");
         } catch (SQLException e) {
@@ -35,15 +33,14 @@ public class loanDAO implements DAOInterface<loan> {
     @Override
     public int update(loan loan) {
         int result = 0;
-        String sql = "UPDATE loans SET bookID = ?, studentID = ?, loanDate = ?, returnDate = ?, dueDate = ?, status = ? WHERE loansID = ?";
+        String sql = "UPDATE loans SET bookID = ?, studentID = ?, returnDate = ?, dueDate = ?, status = ? WHERE loansID = ?";
         try (Connection conn = JDBCUtil.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, loan.getBookID());
             pstmt.setString(2, loan.getStudentID());
-            pstmt.setString(3, loan.getLoanDate());
-            pstmt.setString(4, loan.getReturnDate());
-            pstmt.setString(5, loan.getDueDate());
-            pstmt.setString(6, loan.getStatus());
-            pstmt.setString(7, loan.getLoansID());
+            pstmt.setString(3, loan.getReturnDate());
+            pstmt.setString(4, loan.getDueDate());
+            pstmt.setString(5, loan.getStatus());
+            pstmt.setString(6, loan.getLoansID());
             result = pstmt.executeUpdate();
             System.out.println("Câu lệnh đã được thực thi thành công. Có " + result + " dòng đã bị thay đổi.");
         } catch (SQLException e) {
@@ -119,26 +116,26 @@ public class loanDAO implements DAOInterface<loan> {
         ArrayList<loan> loanList = new ArrayList<>();
         StringBuilder sql = new StringBuilder("SELECT * FROM loans WHERE 1=1");
 
-        if (searchCriteria.getLoansID() != null) {
+        if (searchCriteria.getLoansID() != null&& !searchCriteria.getLoansID().isEmpty()) {
             sql.append(" AND loansID = ?");
         }
         if (searchCriteria.getBookID() != null && !searchCriteria.getBookID().isEmpty()) {
             sql.append(" AND bookID = ?");
         }
-        if (searchCriteria.getStudentID() != null) {
+        if (searchCriteria.getStudentID() != null && !searchCriteria.getStudentID().isEmpty()) {
             sql.append(" AND studentID = ?");
         }
         // Add more conditions as needed...
 
         try (Connection conn = JDBCUtil.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql.toString())) {
             int index = 1;
-            if (searchCriteria.getLoansID() != null) {
+            if (searchCriteria.getLoansID() != null&& !searchCriteria.getLoansID().isEmpty()) {
                 pstmt.setString(index++, searchCriteria.getLoansID());
             }
             if (searchCriteria.getBookID() != null && !searchCriteria.getBookID().isEmpty()) {
                 pstmt.setString(index++, searchCriteria.getBookID());
             }
-            if (searchCriteria.getStudentID() != null) {
+            if (searchCriteria.getStudentID() != null && !searchCriteria.getStudentID().isEmpty()) {
                 pstmt.setString(index++, searchCriteria.getStudentID());
             }
             try (ResultSet rs = pstmt.executeQuery()) {

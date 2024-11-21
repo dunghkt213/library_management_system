@@ -46,3 +46,14 @@
 .white-background{
     -fx-background-color: #fff;
 }
+.backgroundcolor {
+    -fx-background-color: linear-gradient(
+            from 0% 100% to 0% 0%,
+            #9EABA2,
+            #BDD1C5,
+            #EECC8C,
+            #E8B298,
+            #D3A29D,
+            #A36361
+    );
+}

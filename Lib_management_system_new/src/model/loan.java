@@ -12,7 +12,7 @@ public class loan {
 
     public loan() {}
 
-    public loan(String status, String dueDate, String loanDate, String returnDate,String studentID, String bookID) {
+    public loan(String status, String dueDate, String loanDate,String studentID, String bookID) {
         this.status = status;
         this.dueDate = dueDate;
         this.loanDate = loanDate;
@@ -25,6 +25,11 @@ public class loan {
         this.loansID = loansID;
     }
 
+    public loan(String studentID, String bookID){
+        this.studentID = studentID;
+        this.bookID = bookID;
+    }
+
     public loan(String status, String dueDate, String loanDate, String returnDate, String studentID, String bookID, String loansID) {
         this.status = status;
         this.dueDate = dueDate;
@@ -33,6 +38,12 @@ public class loan {
         this.studentID = studentID;
         this.bookID = bookID;
         this.loansID = loansID;
+    }
+
+    public loan(String loanid, String id, String bookid) {
+        this.loansID = loanid;
+        this.bookID = bookid;
+        this.studentID = id;
     }
 
     public String getLoansID() {

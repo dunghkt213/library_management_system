@@ -190,14 +190,12 @@
             </Button>
          </children>
          <stylesheets>
-            <URL value="@../admindashboard/admindashboard.css" />
             <URL value="@style.css" />
             <URL value="@../viewofbook/style.css" />
          </stylesheets>
          <styleClass>
             <String fx:value="backgroundcolor" />
             <String fx:value="left-rounded-corner" />
-            <String fx:value="textgradient" />
          </styleClass>
       </VBox>
       <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="1200.0" styleClass="menu-background" stylesheets="@../admindashboard/admindashboard.css">
@@ -264,7 +262,7 @@
             <Font name="Berlin Sans FB" size="23.0" />
          </font>
       </Label>
-      <ScrollPane layoutX="181.0" layoutY="323.0" prefHeight="369.0" prefWidth="965.0" style="-fx-background-color: transparent;" stylesheets="@style.css">
+      <ScrollPane layoutX="165.0" layoutY="331.0" prefHeight="369.0" prefWidth="965.0" style="-fx-background-color: transparent;" stylesheets="@style.css">
          <content>
             <GridPane fx:id="bookContainer" prefHeight="5.0" prefWidth="1.0">
               <rowConstraints>

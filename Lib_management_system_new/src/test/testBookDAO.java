@@ -24,7 +24,10 @@ public class testBookDAO {
             s.print();
         }*/
 
-
+        loan loan = new loan("2");
+        loan loan2 = loanDAO.getInstance().getById(loan);
+        loan2.setStatus("Returned");
+        loanDAO.getInstance().update(loan2);
     }
 
 }

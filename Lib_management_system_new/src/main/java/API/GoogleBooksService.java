@@ -89,7 +89,6 @@ public class GoogleBooksService {
                 String language = book.has("language") ? book.get("language").getAsString() : "Unknown Language";
                 String categoryName = book.has("categories") ? book.getAsJsonArray("categories").get(0).getAsString() : "Unknown Category";
 
-                // Lấy thêm các thông tin mới
                 String description = book.has("description") ? book.get("description").getAsString() : "No description available.";
                 int pageCount = book.has("pageCount") ? book.get("pageCount").getAsInt() : 0;
 
