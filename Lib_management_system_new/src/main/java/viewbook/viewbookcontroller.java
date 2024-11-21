@@ -189,7 +189,11 @@ public class viewbookcontroller {
             selectedBook.setBookID(GoogleBooksService.generateUniqueBookID(selectedBook));
         }
 
+        selectedBook.setQuantity(20);
+
         int result = bookDAO.getInstance().insert(selectedBook);
+
+
 
         if (result > 0) {
             showAlert(AlertType.SUCCESS, "Thành công", "Sách đã được lưu vào cơ sở dữ liệu.");
