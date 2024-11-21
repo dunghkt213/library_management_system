@@ -1,6 +1,7 @@
 module com.example.libarary_management_system {
     requires javafx.controls;
     requires javafx.fxml;
+    requires javafx.graphics;
 
     requires com.dlsc.formsfx;
     requires mysql.connector.j;
@@ -10,6 +11,9 @@ module com.example.libarary_management_system {
     requires com.github.benmanes.caffeine;
     requires java.desktop;
     requires java.smartcardio;
+    requires java.net.http;
+    requires org.json;
+
     exports API;
 
     opens signup to javafx.fxml;
@@ -24,10 +28,8 @@ module com.example.libarary_management_system {
     opens manage to javafx.fxml;
     exports manage to javafx.fxml;
 
-    opens model to javafx.base; // Mở gói 'model' cho JavaFX sử dụng reflection
-    exports model;
-    exports issuebook;
     opens issuebook to javafx.fxml;
+    exports issuebook to javafx.fxml;
 
     opens returnbook to javafx.fxml;
     exports returnbook to javafx.fxml;
@@ -46,4 +48,6 @@ module com.example.libarary_management_system {
     opens viewofbook to javafx.fxml;
     exports viewofbook to javafx.fxml;
 
+    opens chatbot to javafx.fxml;
+    exports chatbot to javafx.graphics;
 }
