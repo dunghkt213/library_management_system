@@ -1,6 +1,7 @@
 package manage;
 
 import dao.bookDAO;
+import dao.loanDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -14,9 +15,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.book;
+import model.loan;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
@@ -59,7 +62,7 @@ public class managebookcontroller {
     @FXML
     private TableColumn<book, Integer> colBookCountOfBorrow;
 
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize() {
         colBookID.setCellValueFactory(new PropertyValueFactory<>("bookID"));
         colBookTitle.setCellValueFactory(new PropertyValueFactory<>("bookTitle"));
         colBookAuthor.setCellValueFactory(new PropertyValueFactory<>("bookAuthor"));
@@ -71,8 +74,9 @@ public class managebookcontroller {
     }
 
     private void loadBookData() {
-        ObservableList<book> bookList = FXCollections.observableArrayList(bookDAO.getInstance().getAll());
-        bookTableView.setItems(bookList);
+        ArrayList<book> books = bookDAO.getInstance().getAll();
+        ObservableList<book> observableBooks = FXCollections.observableArrayList(books);
+        bookTableView.setItems(observableBooks);
     }
 
     @FXML
@@ -108,9 +112,7 @@ public class managebookcontroller {
         int result = bookDAO.getInstance().insert(newBook);
 
         // Refresh TableView after adding a new book
-        if (result > 0) {
             loadBookData();
-        }
     }
 
     @FXML

@@ -74,6 +74,7 @@ public class issuebookcontroller {
         DueDate.setOnEditCommit(e -> e.getTableView().getItems().get(e.getTablePosition().getRow()).setDueDate(e.getNewValue()));
         status.setOnEditCommit(e -> e.getTableView().getItems().get(e.getTablePosition().getRow()).setStatus(e.getNewValue()));
         viewTable.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        handleFind();
     }
 
     @FXML
