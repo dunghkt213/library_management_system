@@ -56,6 +56,10 @@ public class managestudentcontroller {
     @FXML
     private TableColumn<student, String> colStudentNumber;
 
+    @FXML
+    private TableColumn<student, String> colstudentpassword;
+    @FXML
+    private TextField addPassword;
     private ObservableList<student> observableStudents;
     private ObservableList<student> observableSearchStudentResults;
     static final Logger LOGGER = Logger.getLogger(managestudentcontroller.class.getName());
@@ -72,6 +76,7 @@ public class managestudentcontroller {
         colStudentBirthday.setCellValueFactory(new PropertyValueFactory<>("birthday"));
         colStudentEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
         colStudentNumber.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
+        colstudentpassword.setCellValueFactory(new PropertyValueFactory<>("password"));
     }
 
     private void setupEditableColumns() {
@@ -81,7 +86,7 @@ public class managestudentcontroller {
         colStudentBirthday.setCellFactory(TextFieldTableCell.forTableColumn());
         colStudentEmail.setCellFactory(TextFieldTableCell.forTableColumn());
         colStudentNumber.setCellFactory(TextFieldTableCell.forTableColumn());
-
+        colstudentpassword.setCellFactory(TextFieldTableCell.forTableColumn());
         colStudentName.setOnEditCommit(event -> {
             student selectedStudent = event.getRowValue();
             selectedStudent.setName(event.getNewValue());
@@ -101,6 +106,12 @@ public class managestudentcontroller {
             student selectedStudent = event.getRowValue();
             selectedStudent.setPhoneNumber(event.getNewValue());
         });
+
+        colstudentpassword.setOnEditCommit(event -> {
+            student selectedStudent = event.getRowValue();
+            selectedStudent.setPassword(event.getNewValue());
+        });
+
     }
 
     private void loadStudentData() {
@@ -129,6 +140,7 @@ public class managestudentcontroller {
                     }
                     showAlert("Student deleted successfully: " + selectedStudent.getStudentID());
                 }
+                loadStudentData();
             } catch (Exception e) {
                 LOGGER.log(Level.SEVERE, "Error deleting student", e);
                 showAlert("Exception occurred while deleting the student: " + selectedStudent.getStudentID());
@@ -143,16 +155,18 @@ public class managestudentcontroller {
         String id = addstudentID.getText();
         String name = addstudentName.getText();
         String phoneNumber = addstudentNumber.getText();
-
+        String password= addPassword.getText();
         student searchCriteria = new student();
         searchCriteria.setStudentID(id);
         searchCriteria.setName(name);
         searchCriteria.setPhoneNumber(phoneNumber);
+        searchCriteria.setPassword(password);
 
         ArrayList<student> studentList = studentDAO.getInstance().getByCondition(searchCriteria);
 
         observableSearchStudentResults = FXCollections.observableArrayList(studentList);
         studentTableView.setItems(observableSearchStudentResults);
+        loadStudentData();
         //clearInputFields();
     }
 
@@ -171,7 +185,7 @@ public class managestudentcontroller {
                 String email = addstudentMail.getText();
                 String phoneNumber = addstudentNumber.getText();
                 String major = addstudentMajor.getText();
-                String password = "1211";
+                String password = colstudentpassword.getText();
 
                 student newStudent = new student(id, name, email, phoneNumber, birthday, major, password);
                 int result = studentDAO.getInstance().insert(newStudent);
@@ -183,7 +197,7 @@ public class managestudentcontroller {
                     showAlert("Student added successfully: " + newStudent.getStudentID());
                     clearInputFields();
                 }
-
+                loadStudentData();
             } catch (NumberFormatException e) {
                 showAlert("Invalid input for quantity. Please enter a number.");
             } catch (Exception e) {
@@ -213,6 +227,7 @@ public class managestudentcontroller {
         addstudentMajor.clear();
         addstudentName.clear();
         addstudentMail.clear();
+        loadStudentData();
     }
 
     @FXML
@@ -220,6 +235,7 @@ public class managestudentcontroller {
         try {
             for (student updatedStudent : observableStudents) {
                 studentDAO.getInstance().update(updatedStudent);
+                loadStudentData();
             }
             showAlert("All changes have been updated successfully.");
         } catch (Exception e) {

@@ -125,7 +125,6 @@ public class trendingbookcontroller implements Initializable {
         ArrayList<book> listbook = bookDAO.getInstance().getAll();
         recentlyAddedd = TrendingBooks.getTopTrendingBooks(listbook,Math.min(listbook.size(),5));
         Recommend = new ArrayList<>(books());
-
         loadBooksAsync(recentlyAddedd, cardLayout, true);
         loadBooksAsync(Recommend, bookContainer, false);
     }

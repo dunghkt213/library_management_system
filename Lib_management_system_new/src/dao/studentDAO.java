@@ -103,7 +103,8 @@ public class studentDAO implements dao.DAOInterface<student> {
                 String Email = rs.getString("studentEmailAddress");
                 String birthDate = rs.getString("birthdayDate");
                 String major = rs.getString("major");
-                student studentObj = new student(studentID, StudentName, Phone, Email, birthDate, major);
+                String password = rs.getString("password");
+                student studentObj = new student(studentID, StudentName, birthDate, Email, Phone, major,password);
 
                 studentsList.add(studentObj);
             }
@@ -182,7 +183,8 @@ public class studentDAO implements dao.DAOInterface<student> {
                     String Email = rs.getString("studentEmailAddress");
                     String birthDate = rs.getString("birthdayDate");
                     String major = rs.getString("major");
-                    student studentObj = new student(studentID, StudentName, Phone, Email, birthDate, major);
+                    String password = rs.getString("password");
+                    student studentObj = new student(studentID, StudentName, birthDate, Email, Phone, major,password);
                     studentList.add(studentObj);
                 }
             }
