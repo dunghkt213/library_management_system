@@ -18,16 +18,13 @@ public class testBookDAO {
             System.out.println(b.getBookID());
         }*/
 
-        //student newstudent = new student("230214933","dung","23021493@vnu.en.vn","0984021814","2005-01-31","tec","1211");
+        //student newStudent = new student("2302", "nvb", "2005/10/01", "vanbien", "0989618925", "CS",);
 /*        ArrayList<student> student = studentDAO.getInstance().getByCondition(newstudent);
         for(student s : student){
             s.print();
         }*/
-        ArrayList<book> books = bookDAO.getInstance().getAll();
-        for(book b : books) {
-            System.out.println(b.getBookID());
-        }
-
+        student newStudent = new student("2302", "nvb", "vanbien", "0989618925", "2005/10/05", "CS", "051005");
+        studentDAO.getInstance().insert(newStudent);
     }
 
 }

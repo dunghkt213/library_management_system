@@ -231,7 +231,7 @@
       </HBox>
       <AnchorPane layoutX="184.0" layoutY="155.0" prefHeight="530.0" prefWidth="426.0" style="-fx-background-radius: 20;" styleClass="mid-background" stylesheets="@../viewissuedbook/viewissuedbook.css">
          <children>
-            <Button layoutX="80.0" layoutY="370.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="80.0" style="-fx-background-radius: 50;" stylesheets="@../issuebook/issuebook.css" text="ADD" textFill="WHITE">
+            <Button fx:id="handleAddStudent" layoutX="80.0" layoutY="370.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="80.0" style="-fx-background-radius: 50;" stylesheets="@../issuebook/issuebook.css" text="ADD" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -243,7 +243,7 @@
                   <String fx:value="button-border" />
                </styleClass>
             </Button>
-            <Button layoutX="173.0" layoutY="370.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="80.0" style="-fx-background-radius: 50;" stylesheets="@../issuebook/issuebook.css" text="UPDATE" textFill="WHITE">
+            <Button fx:id="handleUpdateStudent" layoutX="173.0" layoutY="370.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="80.0" style="-fx-background-radius: 50;" stylesheets="@../issuebook/issuebook.css" text="UPDATE" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -255,7 +255,7 @@
                   <String fx:value="button-border" />
                </styleClass>
             </Button>
-            <Button layoutX="266.0" layoutY="370.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="80.0" style="-fx-background-radius: 50;" stylesheets="@../issuebook/issuebook.css" text="DELETE" textFill="WHITE">
+            <Button fx:id="handleDeleteStudent" layoutX="266.0" layoutY="370.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="80.0" style="-fx-background-radius: 50;" stylesheets="@../issuebook/issuebook.css" text="DELETE" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -279,7 +279,7 @@
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="studentID" prefHeight="40.0" prefWidth="450.0" promptText="Enter ID" style="-fx-background-radius: 50;" stylesheets="@managebook.css">
+                        <TextField fx:id="addstudentID" prefHeight="40.0" prefWidth="450.0" promptText="Enter ID" style="-fx-background-radius: 50;" stylesheets="@managebook.css">
                            <VBox.margin>
                               <Insets bottom="30.0" left="20.0" right="20.0" />
                            </VBox.margin>
@@ -299,7 +299,7 @@
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="studentName" prefHeight="40.0" prefWidth="450.0" promptText="Enter Name" style="-fx-background-radius: 50;" stylesheets="@managebook.css">
+                        <TextField fx:id="addstudentName" prefHeight="40.0" prefWidth="450.0" promptText="Enter Name" style="-fx-background-radius: 50;" stylesheets="@managebook.css">
                            <VBox.margin>
                               <Insets bottom="30.0" left="20.0" right="20.0" />
                            </VBox.margin>
@@ -319,7 +319,7 @@
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="studentNumber" prefHeight="40.0" prefWidth="450.0" promptText="Enter Phone Number" style="-fx-background-radius: 50;" stylesheets="@managebook.css">
+                        <TextField fx:id="addstudentNumber" prefHeight="40.0" prefWidth="450.0" promptText="Enter Phone Number" style="-fx-background-radius: 50;" stylesheets="@managebook.css">
                            <VBox.margin>
                               <Insets bottom="30.0" left="20.0" right="20.0" />
                            </VBox.margin>
@@ -343,7 +343,7 @@
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="studentBirth" prefHeight="40.0" prefWidth="450.0" promptText="Enter Birthday" style="-fx-background-radius: 50;" stylesheets="@managebook.css">
+                        <TextField fx:id="addstudentBirth" prefHeight="40.0" prefWidth="450.0" promptText="Enter Birthday" style="-fx-background-radius: 50;" stylesheets="@managebook.css">
                            <VBox.margin>
                               <Insets bottom="30.0" left="20.0" right="20.0" />
                            </VBox.margin>
@@ -363,7 +363,7 @@
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="studentMajor" prefHeight="40.0" prefWidth="450.0" promptText="Enter Major" style="-fx-background-radius: 50;" stylesheets="@managebook.css">
+                        <TextField fx:id="addstudentMajor" prefHeight="40.0" prefWidth="450.0" promptText="Enter Major" style="-fx-background-radius: 50;" stylesheets="@managebook.css">
                            <VBox.margin>
                               <Insets bottom="30.0" left="20.0" right="20.0" />
                            </VBox.margin>
@@ -383,7 +383,7 @@
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="studentMail" prefHeight="40.0" prefWidth="450.0" promptText="Enter Email" style="-fx-background-radius: 50;" stylesheets="@managebook.css">
+                        <TextField fx:id="addstudentMail" prefHeight="40.0" prefWidth="450.0" promptText="Enter Email" style="-fx-background-radius: 50;" stylesheets="@managebook.css">
                            <VBox.margin>
                               <Insets left="20.0" right="20.0" />
                            </VBox.margin>
@@ -399,6 +399,30 @@
                   </VBox>
                </children>
             </HBox>
+            <Button fx:id="handleFindStudent" layoutX="178.0" layoutY="435.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="80.0" style="-fx-background-radius: 50;" stylesheets="@../issuebook/issuebook.css" text="FIND" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="button-background" />
+                  <String fx:value="button-border" />
+               </styleClass>
+            </Button>
+            <Button fx:id="handleClearFindStudent" layoutX="307.0" layoutY="441.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="90.0" style="-fx-background-radius: 50;" stylesheets="@../issuebook/issuebook.css" text="CLEAR FIND" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="button-background" />
+                  <String fx:value="button-border" />
+               </styleClass>
+            </Button>
          </children>
       </AnchorPane>
       <VBox alignment="CENTER" layoutX="549.0" layoutY="7.0" prefHeight="147.0" prefWidth="183.0" style="-fx-border-radius: 100%;" stylesheets="@../viewissuedbook/viewissuedbook.css">
@@ -415,13 +439,13 @@
             </Label>
          </children>
       </VBox>
-      <TableView layoutX="647.0" layoutY="155.0" prefHeight="530.0" prefWidth="516.0" style="-fx-background-radius: 20;" stylesheets="@../admindashboard/admindashboard.css">
+      <TableView fx:id="studentTableView" layoutX="647.0" layoutY="155.0" prefHeight="530.0" prefWidth="516.0" style="-fx-background-radius: 20;" stylesheets="@../admindashboard/admindashboard.css">
          <columns>
-            <TableColumn prefWidth="51.199951171875" text="ID" />
-            <TableColumn prefWidth="188.79998779296875" text="Student Name" />
-            <TableColumn prefWidth="116.79998779296875" text="Birthday" />
-            <TableColumn prefWidth="77.5999755859375" text="Email" />
-            <TableColumn prefWidth="81.60003662109375" text="Contact" />
+            <TableColumn fx:id="colStudentID" prefWidth="51.199951171875" text="ID" />
+            <TableColumn fx:id="colStudentName" prefWidth="188.79998779296875" text="Student Name" />
+            <TableColumn fx:id="colStudentBirthday" prefWidth="116.79998779296875" text="Birthday" />
+            <TableColumn fx:id="colStudentEmail" prefWidth="77.5999755859375" text="Email" />
+            <TableColumn fx:id="colStudentNumber" prefWidth="81.60003662109375" text="Contact" />
          </columns>
       </TableView>
       <ImageView fitHeight="75.0" fitWidth="74.0" layoutX="1146.0" layoutY="154.0" pickOnBounds="true" preserveRatio="true">

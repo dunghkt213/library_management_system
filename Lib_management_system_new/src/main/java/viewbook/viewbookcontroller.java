@@ -193,8 +193,6 @@ public class viewbookcontroller {
 
         int result = bookDAO.getInstance().insert(selectedBook);
 
-
-
         if (result > 0) {
             showAlert(AlertType.SUCCESS, "Thành công", "Sách đã được lưu vào cơ sở dữ liệu.");
         } else {

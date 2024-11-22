@@ -24,10 +24,10 @@ public class student extends person {
         this.password = password;
     }
 
-    public student(String studentID,String name, String password,String email,String phoneNumber,String major) {
-        super(name,email,phoneNumber);
+    // ctr
+    public student(String studentID, String name, String birthday , String email, String phoneNumber, String major) {
+        super(name, birthday, phoneNumber, email);
         this.studentID = studentID;
-        this.password = password;
         this.major = major;
     }
 
