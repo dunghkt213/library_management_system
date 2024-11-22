@@ -22,6 +22,9 @@ module com.example.libarary_management_system {
     opens login to javafx.fxml;
     exports login;
 
+    opens model to javafx.base;
+    exports model;
+
     opens admindashboard to javafx.fxml;
     exports admindashboard;
 

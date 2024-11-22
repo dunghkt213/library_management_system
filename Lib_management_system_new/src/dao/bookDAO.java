@@ -49,8 +49,9 @@ public class bookDAO implements DAOInterface<book> {
     @Override
     public int update(book book) {
         int result = 0;
-        String sql = "UPDATE books SET bookTitle = ?, bookAuthor = ?, bookPublisher = ?, edition = ?, " + "`language` = ?, quantity = ?, remainingBooks = ?, availability = ?, "
-                + "categoryName = ?, description = ?,imgUrl = ?,countofborrow = ?  WHERE bookID = ?";
+        String sql = "UPDATE books SET bookTitle = ?, bookAuthor = ?, bookPublisher = ?, edition = ?, " +
+                "language = ?, quantity = ?, remainingBooks = ?, availability = ?, " +
+                "categoryName = ?, description = ?, imgUrl = ?, countofborrow = ? WHERE bookID = ?";
 
         try (PreparedStatement updateStatement = JDBCUtil.getConnection().prepareStatement(sql)) {
             updateStatement.setString(1, book.getBookTitle());
@@ -62,12 +63,13 @@ public class bookDAO implements DAOInterface<book> {
             updateStatement.setInt(7, book.getRemainingBooks());
             updateStatement.setString(8, book.getAvailability());
             updateStatement.setString(9, book.getCategoryName());
-            updateStatement.setString(10, book.getBookID());
-            updateStatement.setString(11, book.getDescription());
-            updateStatement.setString(12, book.getImageUrl());
-            updateStatement.setInt(13, book.getCountOfBorrow());
+            updateStatement.setString(10, book.getDescription());
+            updateStatement.setString(11, book.getImageUrl());
+            updateStatement.setInt(12, book.getCountOfBorrow());
+            updateStatement.setString(13, book.getBookID());
+
             result = updateStatement.executeUpdate();
-            System.out.println("so dong thay doi: " + result);
+            System.out.println("Số dòng thay đổi: " + result);
         } catch (SQLException e) {
             e.printStackTrace();
         }

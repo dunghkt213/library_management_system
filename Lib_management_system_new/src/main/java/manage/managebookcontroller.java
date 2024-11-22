@@ -1,31 +1,26 @@
 package manage;
 
 import dao.bookDAO;
-import dao.loanDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.chart.PieChart;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Stage;
+import javafx.util.converter.IntegerStringConverter;
 import model.book;
-import model.loan;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.Objects;
-import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class managebookcontroller {
-    @FXML
-    private TextField textField;
+
     @FXML
     private TextField addBookTitle;
     @FXML
@@ -46,110 +41,198 @@ public class managebookcontroller {
 
     @FXML
     private TableColumn<book, String> colBookID;
-
     @FXML
     private TableColumn<book, String> colBookTitle;
-
     @FXML
     private TableColumn<book, String> colBookAuthor;
-
     @FXML
     private TableColumn<book, Integer> colBookQuantity;
-
     @FXML
     private TableColumn<book, String> colBookAvailability;
-
     @FXML
     private TableColumn<book, Integer> colBookCountOfBorrow;
 
+    private ObservableList<book> observableBooks;
+    private ObservableList<book> observableSearchResults;
+    private static final Logger LOGGER = Logger.getLogger(managebookcontroller.class.getName());
+
     public void initialize() {
+        setupTableColumns();
+        setupEditableColumns();
+        loadBookData();
+    }
+
+    private void setupTableColumns() {
         colBookID.setCellValueFactory(new PropertyValueFactory<>("bookID"));
         colBookTitle.setCellValueFactory(new PropertyValueFactory<>("bookTitle"));
         colBookAuthor.setCellValueFactory(new PropertyValueFactory<>("bookAuthor"));
         colBookQuantity.setCellValueFactory(new PropertyValueFactory<>("quantity"));
         colBookAvailability.setCellValueFactory(new PropertyValueFactory<>("availability"));
         colBookCountOfBorrow.setCellValueFactory(new PropertyValueFactory<>("countOfBorrow"));
+    }
 
-        loadBookData();
+    private void setupEditableColumns() {
+        bookTableView.setEditable(true);
+        colBookTitle.setCellFactory(TextFieldTableCell.forTableColumn());
+        colBookAuthor.setCellFactory(TextFieldTableCell.forTableColumn());
+        colBookQuantity.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+
+        colBookTitle.setOnEditCommit(event -> {
+            book selectedBook = event.getRowValue();
+            selectedBook.setBookTitle(event.getNewValue());
+        });
+
+        colBookAuthor.setOnEditCommit(event -> {
+            book selectedBook = event.getRowValue();
+            selectedBook.setBookAuthor(event.getNewValue());
+        });
+
+        colBookQuantity.setOnEditCommit(event -> {
+            book selectedBook = event.getRowValue();
+            selectedBook.setQuantity(event.getNewValue());
+        });
     }
 
     private void loadBookData() {
-        ArrayList<book> books = bookDAO.getInstance().getAll();
-        ObservableList<book> observableBooks = FXCollections.observableArrayList(books);
+        try {
+            ArrayList<book> books = bookDAO.getInstance().getAll();
+            observableBooks = FXCollections.observableArrayList(books);
+            bookTableView.setItems(observableBooks);
+        } catch (Exception e) {
+            LOGGER.log(Level.SEVERE, "Error loading book data", e);
+            showAlert("Error loading book data. Please try again.");
+        }
+    }
+
+    @FXML
+    protected void handleDeleteBook() {
+        book selectedBook = bookTableView.getSelectionModel().getSelectedItem();
+        if (selectedBook != null) {
+            try {
+                int result = bookDAO.getInstance().delete(selectedBook);
+                if (result == 0) {
+                    showAlert("Error occurred while deleting the book: " + selectedBook.getBookID());
+                } else {
+                    // Xóa sách khỏi observableBooks và observableSearchResults
+                    observableBooks.removeIf(book -> book.getBookID().equals(selectedBook.getBookID()));
+                    if (observableSearchResults != null) {
+                        observableSearchResults.removeIf(book -> book.getBookID().equals(selectedBook.getBookID()));
+                    }
+                    showAlert("Book deleted successfully: " + selectedBook.getBookID());
+                }
+            } catch (Exception e) {
+                LOGGER.log(Level.SEVERE, "Error deleting book", e);
+                showAlert("Exception occurred while deleting the book: " + selectedBook.getBookID());
+            }
+        } else {
+            showAlert("Please select a book to delete.");
+        }
+    }
+
+    @FXML
+    protected void handleFindBook() {
+        String id = addBookID.getText();
+        String title = addBookTitle.getText();
+        String author = addBookAuthor.getText();
+
+        book searchCriteria = new book();
+        searchCriteria.setBookID(id);
+        searchCriteria.setBookTitle(title);
+        searchCriteria.setBookAuthor(author);
+
+        ArrayList<book> bookList = bookDAO.getInstance().getByCondition(searchCriteria);
+
+        observableSearchResults = FXCollections.observableArrayList(bookList);
+        bookTableView.setItems(observableSearchResults);
+        //clearInputFields();
+    }
+
+    @FXML
+    protected void handleClearFindBook() {
         bookTableView.setItems(observableBooks);
     }
 
     @FXML
-    protected void handleadmin() throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/admindashboard/admindashboard.fxml")));
+    protected void handleAddBook() {
+        if (validateInputFields()) {
+            try {
+                String id = addBookID.getText();
+                String title = addBookTitle.getText();
+                String author = addBookAuthor.getText();
+                String publisher = addBookPublisher.getText();
+                String category = addBookCategoryName.getText();
+                String language = addBookLanguage.getText();
+                int quantity = Integer.parseInt(addBookQuantity.getText());
 
-        // Lấy Stage hiện tại và thay đổi Scene
-        Stage stage = (Stage) textField.getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+                book newBook = new book(id, 0, "Available", 0, language, "", author, title, publisher, quantity, category, "", "", 0);
+                int result = bookDAO.getInstance().insert(newBook);
+
+                if (result == 0) {
+                    showAlert("Error occurred while adding the book.");
+                } else {
+                    observableBooks.add(newBook);
+                    showAlert("Book added successfully: " + newBook.getBookID());
+                    clearInputFields();
+                }
+
+            } catch (NumberFormatException e) {
+                showAlert("Invalid input for quantity. Please enter a number.");
+            } catch (Exception e) {
+                LOGGER.log(Level.SEVERE, "Error adding book", e);
+                showAlert("Error occurred while adding the book.");
+            }
+        }
     }
 
-    @FXML
-    protected void handleAddBook() {
-        String title = addBookTitle.getText();
-        String id = addBookID.getText();
-        String author = addBookAuthor.getText();
-        String publisher = addBookPublisher.getText();
-        String category = addBookCategoryName.getText();
-        String language = addBookLanguage.getText();
-        String quantity = addBookQuantity.getText();
-        int quantityInt = 0;
-
-        try {
-            quantityInt = Integer.parseInt(quantity);
-        } catch (NumberFormatException e) {
-            System.out.println("Quantity is not a valid integer: " + quantity);
-            return; // Exit if quantity is not valid
+    private boolean validateInputFields() {
+        if (addBookID.getText().isEmpty() ||
+                addBookTitle.getText().isEmpty() ||
+                addBookAuthor.getText().isEmpty() ||
+                addBookPublisher.getText().isEmpty() ||
+                addBookCategoryName.getText().isEmpty() ||
+                addBookLanguage.getText().isEmpty() ||
+                addBookQuantity.getText().isEmpty()) {
+            showAlert("All fields must be filled out.");
+            return false;
         }
+        return true;
+    }
 
-        book newBook = new book(id,title, author, publisher, category, language, quantityInt);
-        int result = bookDAO.getInstance().insert(newBook);
-
-        // Refresh TableView after adding a new book
-            loadBookData();
+    private void clearInputFields() {
+        addBookID.clear();
+        addBookTitle.clear();
+        addBookAuthor.clear();
+        addBookPublisher.clear();
+        addBookCategoryName.clear();
+        addBookLanguage.clear();
+        addBookQuantity.clear();
     }
 
     @FXML
     protected void handleUpdateBook() {
-        String title = addBookTitle.getText();
-        String id = addBookID.getText();
-        String author = addBookAuthor.getText();
-        String publisher = addBookPublisher.getText();
-        String category = addBookCategoryName.getText();
-        String language = addBookLanguage.getText();
-        String quantity = addBookQuantity.getText();
-        int quantityInt = 0;
         try {
-            quantityInt = Integer.parseInt(quantity);
-            System.out.println("Quantity as integer: " + quantityInt);
-        } catch (NumberFormatException e) {
-            System.out.println("Quantity is not a valid integer: " + quantity);
+            for (book updatedBook : observableBooks) {
+                bookDAO.getInstance().update(updatedBook);
+            }
+            showAlert("All changes have been updated successfully.");
+        } catch (Exception e) {
+            LOGGER.log(Level.SEVERE, "Error updating books", e);
+            showAlert("Error occurred while updating books.");
         }
-
-        System.out.println("Username: " + title);
-        System.out.println("Password: " + author);
-        System.out.println("Email: " + publisher);
-        System.out.println("Contact: " + category);
-        System.out.println("studentID: " + language);
-        System.out.println("studentID: " + quantity);
-
-        book newBook = new book(id, title, author, publisher, category, language, quantityInt);
-        bookDAO.getInstance().update(newBook);
-
-        loadBookData();
     }
 
+    private void showAlert(String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    // Navigation methods (unchanged)
     @FXML
     protected void handletrendingbook() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/trendingbook/trendingbook.fxml"));
-
-        // Lấy Stage hiện tại và thay đổi Scene
         Stage stage = (Stage) addBookTitle.getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setScene(scene);
@@ -176,7 +259,6 @@ public class managebookcontroller {
         stage.show();
     }
 
-
     @FXML
     protected void handlereturn() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/trendingbook/trendingbook.fxml"));
@@ -186,7 +268,6 @@ public class managebookcontroller {
         stage.setTitle("Dashboard");
         stage.show();
     }
-
 
     @FXML
     protected void handleissuebook() throws IOException {
@@ -207,7 +288,6 @@ public class managebookcontroller {
         stage.setTitle("Dashboard");
         stage.show();
     }
-
 
     @FXML
     protected void handleviewissuedbook() throws IOException {
