@@ -1,0 +1,5 @@
+git lfs install
+pip install flask
+pip install transformers
+git clone https://huggingface.co/deepset/roberta-base-squad2
+
