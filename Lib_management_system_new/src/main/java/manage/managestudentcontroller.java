@@ -140,7 +140,6 @@ public class managestudentcontroller {
                     }
                     showAlert("Student deleted successfully: " + selectedStudent.getStudentID());
                 }
-                loadStudentData();
             } catch (Exception e) {
                 LOGGER.log(Level.SEVERE, "Error deleting student", e);
                 showAlert("Exception occurred while deleting the student: " + selectedStudent.getStudentID());
@@ -166,7 +165,6 @@ public class managestudentcontroller {
 
         observableSearchStudentResults = FXCollections.observableArrayList(studentList);
         studentTableView.setItems(observableSearchStudentResults);
-        loadStudentData();
         //clearInputFields();
     }
 
@@ -185,7 +183,7 @@ public class managestudentcontroller {
                 String email = addstudentMail.getText();
                 String phoneNumber = addstudentNumber.getText();
                 String major = addstudentMajor.getText();
-                String password = colstudentpassword.getText();
+                String password = addPassword.getText();
 
                 student newStudent = new student(id, name, email, phoneNumber, birthday, major, password);
                 int result = studentDAO.getInstance().insert(newStudent);
@@ -197,7 +195,6 @@ public class managestudentcontroller {
                     showAlert("Student added successfully: " + newStudent.getStudentID());
                     clearInputFields();
                 }
-                loadStudentData();
             } catch (NumberFormatException e) {
                 showAlert("Invalid input for quantity. Please enter a number.");
             } catch (Exception e) {
@@ -213,7 +210,8 @@ public class managestudentcontroller {
                 addstudentMail.getText().isEmpty() ||
                 addstudentMajor.getText().isEmpty() ||
                 addstudentNumber.getText().isEmpty() ||
-                addstudentName.getText().isEmpty()) {
+                addstudentName.getText().isEmpty() ||
+                addPassword.getText().isEmpty()) {
             showAlert("All fields must be filled out.");
             return false;
         }
@@ -227,7 +225,7 @@ public class managestudentcontroller {
         addstudentMajor.clear();
         addstudentName.clear();
         addstudentMail.clear();
-        loadStudentData();
+        addPassword.clear();
     }
 
     @FXML
@@ -235,7 +233,6 @@ public class managestudentcontroller {
         try {
             for (student updatedStudent : observableStudents) {
                 studentDAO.getInstance().update(updatedStudent);
-                loadStudentData();
             }
             showAlert("All changes have been updated successfully.");
         } catch (Exception e) {

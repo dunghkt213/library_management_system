@@ -104,7 +104,7 @@ public class studentDAO implements dao.DAOInterface<student> {
                 String birthDate = rs.getString("birthdayDate");
                 String major = rs.getString("major");
                 String password = rs.getString("password");
-                student studentObj = new student(studentID, StudentName, birthDate, Email, Phone, major,password);
+                student studentObj = new student(studentID, StudentName, Email, Phone, birthDate, major, password);
 
                 studentsList.add(studentObj);
             }
