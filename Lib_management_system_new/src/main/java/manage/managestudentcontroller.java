@@ -140,6 +140,7 @@ public class managestudentcontroller {
                     }
                     showAlert("Student deleted successfully: " + selectedStudent.getStudentID());
                 }
+                loadStudentData();
             } catch (Exception e) {
                 LOGGER.log(Level.SEVERE, "Error deleting student", e);
                 showAlert("Exception occurred while deleting the student: " + selectedStudent.getStudentID());

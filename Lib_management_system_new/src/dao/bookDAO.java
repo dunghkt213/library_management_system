@@ -229,4 +229,9 @@ public class bookDAO implements DAOInterface<book> {
 
         return bookList;
     }
+
+    @Override
+    public String getStatusbyId(book book) {
+        return "";
+    }
 }

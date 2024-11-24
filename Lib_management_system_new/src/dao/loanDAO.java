@@ -157,4 +157,9 @@ public class loanDAO implements DAOInterface<loan> {
         }
         return loanList;
     }
+
+    @Override
+    public String getStatusbyId(loan loan) {
+        return "";
+    }
 }

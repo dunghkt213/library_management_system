@@ -7,7 +7,7 @@ import model.student;
 import java.sql.*;
 import java.util.ArrayList;
 
-public class studentDAO implements dao.DAOInterface<student> {
+public class studentDAO implements DAOInterface<student> {
 
     public static DAOInterface<student> getInstance() {
         return new studentDAO();
@@ -142,6 +142,25 @@ public class studentDAO implements dao.DAOInterface<student> {
         }
 
         return studentObj;
+    }
+    @Override
+    public String getStatusbyId(student student) {
+        String status = "";
+
+        String sql = "SELECT * FROM students WHERE studentID = ?";
+
+        try (Connection conn = JDBCUtil.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, student.getStudentID());
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    status = rs.getString("role");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return status;
     }
 
     @Override
