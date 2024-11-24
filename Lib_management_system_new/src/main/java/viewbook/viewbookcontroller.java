@@ -1,6 +1,7 @@
 package viewbook;
 
 import API.GoogleBooksService;
+import dao.studentDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -17,6 +18,7 @@ import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 import model.book;
 import dao.bookDAO;
+import model.student;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -202,7 +204,17 @@ public class viewbookcontroller {
 
     @FXML
     private void handleAdmin(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/admindashboard/admindashboard.fxml")));
+        student currentStudent = student.getInstance();
+        String status = studentDAO.getInstance().getStatusbyId(currentStudent);
+
+        String fxmlPath = null;
+        if ("admin".equals(status)) {
+            fxmlPath = "/trendingbook/trendingbook.fxml";
+        } else if ("student".equals(status)) {
+            fxmlPath = "/trendingbook/studenttrendingbook.fxml";
+        }
+
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxmlPath)));
         Stage stage = (Stage) searchField.getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setScene(scene);

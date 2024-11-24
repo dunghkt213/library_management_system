@@ -82,7 +82,25 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handlemangerbook" prefHeight="50.0" prefWidth="250.0" styleClass="button-left" stylesheets="@../admindashboard/admindashboard.css" text="Student Info" textFill="WHITE">
+            <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handleviewbook" prefHeight="50.0" prefWidth="250.0" styleClass="button-left" stylesheets="@../admindashboard/admindashboard.css" text="View Book" textFill="WHITE">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../admindashboard/viewbook.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="10.0" top="10.0" />
+               </padding>
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handlemanagestudent" prefHeight="50.0" prefWidth="250.0" styleClass="button-left" stylesheets="@../admindashboard/admindashboard.css" text="Student Info" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -103,7 +121,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handlemangerbook" prefHeight="50.0" prefWidth="221.0" style="-fx-background-color: #ffa07a;" styleClass="button-left" stylesheets="@../admindashboard/admindashboard.css" text="Issue Book" textFill="WHITE">
+            <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handlemanagebook" prefHeight="50.0" prefWidth="221.0" style="-fx-background-color: #ffa07a;" styleClass="button-left" stylesheets="@../admindashboard/admindashboard.css" text="Issue Book" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -230,13 +248,13 @@
          <children>
             <TableView fx:id="viewTable" layoutX="20.0" layoutY="14.0" prefHeight="530.0" prefWidth="698.0" style="-fx-background-radius: 20;" stylesheets="@../admindashboard/admindashboard.css">
                <columns>
-                  <TableColumn prefWidth="61.60005187988281" text="ID" />
-                  <TableColumn prefWidth="153.5999755859375" text="Book Title" />
-                  <TableColumn prefWidth="119.19992065429688" text="Author" />
-                  <TableColumn prefWidth="64.800048828125" text="Quantity" />
-                  <TableColumn prefWidth="89.5999755859375" text="Category" />
-                  <TableColumn prefWidth="103.99993896484375" text="Issued Date" />
-                  <TableColumn prefWidth="108.0001220703125" text="Due Date" />
+                  <TableColumn fx:id="colID" prefWidth="61.60005187988281" text="ID" />
+                  <TableColumn fx:id="colBookTitle" prefWidth="153.5999755859375" text="Book Title" />
+                  <TableColumn fx:id="colAuthor" prefWidth="119.19992065429688" text="Author" />
+                  <TableColumn fx:id="colQuantity" prefWidth="64.800048828125" text="Quantity" />
+                  <TableColumn fx:id="colCategory" prefWidth="89.5999755859375" text="Category" />
+                  <TableColumn fx:id="colIssuedDate" prefWidth="103.99993896484375" text="Issued Date" />
+                  <TableColumn fx:id="colDueDate" prefWidth="108.0001220703125" text="Due Date" />
                </columns>
             </TableView>
          </children>

@@ -37,7 +37,7 @@ public class studenttrendingbookcontroller implements Initializable {
 
     @FXML
     protected void handletrendingbook() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/trendingbook/trendingbook.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/trendingbook/studenttrendingbook.fxml"));
 
         // Lấy Stage hiện tại và thay đổi Scene
         Stage stage = (Stage) cardLayout.getScene().getWindow();
@@ -47,7 +47,7 @@ public class studenttrendingbookcontroller implements Initializable {
     }
     @FXML
     protected void handlemanagestudent() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/manage/managestudent.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/manage/infoforstudent.fxml"));
 
         // Lấy Stage hiện tại và thay đổi Scene
         Stage stage = (Stage) cardLayout.getScene().getWindow();
@@ -58,7 +58,7 @@ public class studenttrendingbookcontroller implements Initializable {
 
     @FXML
     protected void handlemanagebook() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/manage/managebook.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/manage/bookforstudent.fxml"));
         Stage stage = (Stage) cardLayout.getScene().getWindow();
         Scene scene = new Scene(fxmlLoader.load());
         stage.setScene(scene);
@@ -69,7 +69,7 @@ public class studenttrendingbookcontroller implements Initializable {
 
     @FXML
     protected void handlereturn() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/trendingbook/trendingbook.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/trendingbook/studenttrendingbook.fxml"));
         Stage stage = (Stage) cardLayout.getScene().getWindow();
         Scene scene = new Scene(fxmlLoader.load());
         stage.setScene(scene);
@@ -80,7 +80,7 @@ public class studenttrendingbookcontroller implements Initializable {
 
     @FXML
     protected void handleissuebook() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/issuebook/issuebook.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/issuebook/issueforstudent.fxml"));
         Stage stage = (Stage) cardLayout.getScene().getWindow();
         Scene scene = new Scene(fxmlLoader.load());
         stage.setScene(scene);
@@ -101,7 +101,7 @@ public class studenttrendingbookcontroller implements Initializable {
 
     @FXML
     protected void handleviewissuedbook() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/viewissuedbook/viewissuedbook.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/viewissuedbook/issuedforstudent.fxml"));
         Stage stage = (Stage) cardLayout.getScene().getWindow();
         Scene scene = new Scene(fxmlLoader.load());
         stage.setScene(scene);
