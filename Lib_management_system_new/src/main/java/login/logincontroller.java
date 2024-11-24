@@ -12,6 +12,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
+import model.person;
 import model.student;
 
 
@@ -54,19 +55,32 @@ public class logincontroller {
             else{
                 checkinStudent.print();
                 if(checkinStudent.getPassword().equals(password)) {
-                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/trendingbook/trendingbook.fxml"));
-                    Stage stage = (Stage) studentIDField.getScene().getWindow();
-                    Scene scene = new Scene(fxmlLoader.load());
-                    stage.setScene(scene);
-                    stage.setTitle("Dashboard");
-                    stage.show();
-                } else errorMessage += "Password does not match";
+                    student.getInstance().setStudentID(id);
+                    student.getInstance().setPassword(password);
+                    String role = studentDAO.getInstance().getStatusbyId(student.getInstance());
+                    if(role == "admin"){
+                        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/trendingbook/trendingbook.fxml"));
+                        Stage stage = (Stage) studentIDField.getScene().getWindow();
+                        Scene scene = new Scene(fxmlLoader.load());
+                        stage.setScene(scene);
+                        stage.setTitle("Dashboard");
+                        stage.show();
+                    }
+                    else{
+                        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/trendingbook/studenttrendingbook.fxml"));
+                        Stage stage = (Stage) studentIDField.getScene().getWindow();
+                        Scene scene = new Scene(fxmlLoader.load());
+                        stage.setScene(scene);
+                        stage.setTitle("Dashboard");
+                        stage.show();
+                    }
+
+                } else errorMessage = "Password does not match";
             }
 
         }
         errorMessageLabel.setText(errorMessage);
 
     }
-
 
 }

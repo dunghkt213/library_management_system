@@ -5,6 +5,14 @@ public class student extends person {
     private String major;
     private int count = 0;
     private String password;
+    private static student instance;
+    private String status;
+    public static student getInstance() {
+        if (instance == null) {
+            instance = new student();
+        }
+        return instance;
+    }
     public student() {
         super();
     }
@@ -22,6 +30,7 @@ public class student extends person {
         this.phoneNumber = phoneNumber;
         this.major = major;
         this.password = password;
+        this.status = status;
     }
 
     // ctr
@@ -69,5 +78,13 @@ public class student extends person {
         System.out.println("Student Birthday Date: " + birthday);
         System.out.println("Student Major: " + major);
         System.out.println("Student Password: " + password);
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

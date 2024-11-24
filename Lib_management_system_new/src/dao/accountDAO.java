@@ -2,7 +2,7 @@ package dao;
 
 import database.JDBCUtil;
 import model.account;
-import model.book;
+import model.student;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -142,5 +142,10 @@ public class accountDAO implements DAOInterface<account> {
         }
 
         return accounts;
+    }
+
+    @Override
+    public String getStatusbyId(account account) {
+        return "";
     }
 }
