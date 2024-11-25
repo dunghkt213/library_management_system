@@ -34,6 +34,26 @@
                </font>
             </Label>
             <Label prefHeight="18.0" prefWidth="74.0" text="Username" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="-38.0" left="70.0" top="21.0" />
+               </VBox.margin>
+            </Label>
+            <TextField fx:id="usernameField" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="450.0" promptText="Enter Username..." style="-fx-background-radius: 50;" stylesheets="@signup.css">
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <styleClass>
+                  <String fx:value="text-field-user-with-icon" />
+                  <String fx:value="text-field-with-icon" />
+               </styleClass>
+               <VBox.margin>
+                  <Insets bottom="-45.0" left="20.0" right="40.0" top="40.0" />
+               </VBox.margin>
+            </TextField>
+            <Label prefHeight="18.0" prefWidth="74.0" text="StudentID" textFill="WHITE">
                <VBox.margin>
                   <Insets left="70.0" top="60.0" />
                </VBox.margin>
@@ -41,7 +61,7 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <TextField fx:id="usernameField" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="450.0" promptText="Enter Username..." style="-fx-background-radius: 50;" stylesheets="@signup.css">
+            <TextField fx:id="studentIDField" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="450.0" promptText="Enter StudentID..." style="-fx-background-radius: 50;" stylesheets="@signup.css">
                <VBox.margin>
                   <Insets bottom="20.0" left="20.0" right="40.0" />
                </VBox.margin>
@@ -61,7 +81,7 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <PasswordField maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="450.0" promptText="Enter Password..." style="-fx-background-radius: 50;" stylesheets="@signup.css">
+            <PasswordField fx:id="passwordField" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="450.0" promptText="Enter Password..." style="-fx-background-radius: 50;" stylesheets="@signup.css">
                <VBox.margin>
                   <Insets bottom="20.0" left="20.0" right="40.0" />
                </VBox.margin>
@@ -81,7 +101,7 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <TextField maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="450.0" promptText="Enter Email..." style="-fx-background-radius: 50;" stylesheets="@signup.css">
+            <TextField fx:id="emailField" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="450.0" promptText="Enter Email..." style="-fx-background-radius: 50;" stylesheets="@signup.css">
                <VBox.margin>
                   <Insets bottom="20.0" left="20.0" right="40.0" />
                </VBox.margin>
@@ -101,7 +121,7 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <TextField maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="450.0" promptText="Enter Phone Number..." style="-fx-background-radius: 50;" stylesheets="@signup.css">
+            <TextField fx:id="contactField" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="450.0" promptText="Enter Phone Number..." style="-fx-background-radius: 50;" stylesheets="@signup.css">
                <VBox.margin>
                   <Insets bottom="20.0" left="20.0" right="40.0" />
                </VBox.margin>
@@ -113,9 +133,9 @@
                   <String fx:value="text-field-with-icon" />
                </styleClass>
             </TextField>
-            <VBox alignment="BOTTOM_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="167.0" prefWidth="422.0">
+            <VBox alignment="BOTTOM_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="119.0" prefWidth="422.0">
                <children>
-                  <Button alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="220.0" style="-fx-background-radius: 50;" stylesheets="@signup.css" text="SIGN UP NOW" textFill="CORAL">
+                  <Button alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#handleSignUpButton" prefHeight="40.0" prefWidth="220.0" style="-fx-background-radius: 50;" stylesheets="@signup.css" text="SIGN UP NOW" textFill="CORAL">
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>

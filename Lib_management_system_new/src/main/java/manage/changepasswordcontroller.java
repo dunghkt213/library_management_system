@@ -1,11 +1,15 @@
 package manage;
 
+import dao.studentDAO;
+import database.ImageStorage;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import model.student;
 
 import java.io.IOException;
 
@@ -17,6 +21,25 @@ public class changepasswordcontroller {
     private TextField newPassword;
     @FXML
     private TextField confirmPassword;
+    @FXML
+    private ImageView avatar;
+    @FXML
+    private ImageView Studentimage;
+    @FXML
+    public void initialize(){
+        ImageStorage.loadStudentImage(student.getInstance().getStudentID(), Studentimage);
+        ImageStorage.loadStudentImage(student.getInstance().getStudentID(), avatar);
+    }
+    @FXML
+    protected void handleinfo() throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/manage/infoforstudent.fxml"));
+
+        // Lấy Stage hiện tại và thay đổi Scene
+        Stage stage = (Stage) currentPassword.getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
 
     @FXML
     protected void handletrendingbook() throws IOException {
@@ -38,7 +61,21 @@ public class changepasswordcontroller {
         stage.setScene(scene);
         stage.show();
     }
+    @FXML
+    protected void saveChange(){
 
+        if(newPassword.equals(confirmPassword)){
+            student newStudent = studentDAO.getInstance().getById(student.getInstance());
+            newStudent.setStudentID(student.getInstance().getStudentID());
+            newStudent.setName(confirmPassword.getText());
+            studentDAO.getInstance().update(newStudent);
+        }
+        else {
+            System.out.println("mat khau xac nhan khong khop");
+        }
+
+
+    }
     @FXML
     protected void handlemanagebook() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/manage/bookforstudent.fxml"));

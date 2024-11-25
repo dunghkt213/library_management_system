@@ -42,9 +42,10 @@ public class student extends person {
     }
 
     // ctr
-    public student(String studentID, String name, String birthday , String email, String phoneNumber, String major) {
-        super(name, birthday, phoneNumber, email);
+    public student(String studentID, String name, String password , String email, String phoneNumber, String major) {
+        super(name, "2005-11-01", phoneNumber, email);
         this.studentID = studentID;
+        this.password = password;
         this.major = major;
     }
 

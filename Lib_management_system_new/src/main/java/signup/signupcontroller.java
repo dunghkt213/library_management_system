@@ -52,7 +52,7 @@ public class signupcontroller {
         student student = new student(studentID, username, password, email, contact,"");
         studentDAO.getInstance().insert(student);
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/admindashboard/admindashboard.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/trendingbook/studenttrendingbook.fxml"));
             Stage stage = (Stage) usernameField.getScene().getWindow();
             Scene scene = new Scene(fxmlLoader.load());
             stage.setScene(scene);
