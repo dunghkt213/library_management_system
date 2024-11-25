@@ -20,6 +20,7 @@ public class BookController {
     @FXML
     private Label bookName;
 
+
     public void setData(book Book) {
         if (Book.getImageUrl().startsWith("http")) {
             Image image = new Image(Book.getImageUrl());

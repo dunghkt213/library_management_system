@@ -3,6 +3,7 @@ package viewbook;
 import API.GoogleBooksService;
 import dao.loanDAO;
 import dao.studentDAO;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -14,6 +15,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
@@ -21,6 +23,7 @@ import model.book;
 import dao.bookDAO;
 import model.loan;
 import model.student;
+import trendingbook.cardcontroller;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -41,6 +44,8 @@ public class viewbookcontroller {
     private Button searchButton, nextButton, prevButton, downloadButton;
     @FXML
     private ChoiceBox<String> searchOptionChoiceBox;
+    @FXML
+    private HBox detailBook;
 
     private int currentPage = 0;
     private final int pageSize = 6;
@@ -55,7 +60,13 @@ public class viewbookcontroller {
         prevButton.setOnAction(this::handlePrevAction);
         downloadButton.setOnAction(this::handleDownloadAction);
         resultsListView.setCellFactory(param -> createBookListCell());
-        resultsListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> showBookDetails(newValue));
+        resultsListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            try {
+                showBookDetails(newValue);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
         searchOptionChoiceBox.setValue("Title");
     }
 
@@ -103,22 +114,22 @@ public class viewbookcontroller {
         resultsListView.setItems(observableBooks);
     }
 
-    private void showBookDetails(book selectedBook) {
+    private void showBookDetails(book selectedBook) throws IOException {
         if (selectedBook == null) {
             return;
         }
-        bookDetailsTextFlow.getChildren().clear();
-
-        String bookDetails = String.format("• ISBN: %s\n\n• Title: %s\n\n• Authors: %s\n\n• Publisher: %s\n\n• Edition: %s\n\n• Language: %s\n\n• Category Name: %s\n\n• Description: %s\n\n• Page Count: %d\n\n",
-                selectedBook.getBookID(), selectedBook.getBookTitle(), selectedBook.getBookAuthor(), selectedBook.getBookPublisher(), selectedBook.getEdition(), selectedBook.getLanguage(),
-                selectedBook.getCategoryName(), selectedBook.getDescription(), selectedBook.getPageCount());
-
-        String previewLinkText = "• Preview URL: ";
-        Hyperlink previewLink = new Hyperlink(selectedBook.getPreviewLink());
-
-        previewLink.setOnAction(event -> openLinkInBrowser(selectedBook.getPreviewLink()));
-
-        bookDetailsTextFlow.getChildren().addAll(new Text(bookDetails), new Text(previewLinkText), previewLink);
+        Platform.runLater(() -> detailBook.getChildren().clear());
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("viewofbook.fxml"));
+        try{
+            HBox cardBox = fxmlLoader.load();
+            viewofbookcontroller viewofbookcontroller = fxmlLoader.getController();
+            viewofbookcontroller.setBookDetails(selectedBook);
+            Platform.runLater(() -> {
+                ((HBox) detailBook).getChildren().add(cardBox);
+            });
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private ListCell<book> createBookListCell() {

@@ -9,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -34,7 +35,8 @@ public class trendingbookcontroller implements Initializable {
 
     private List<book> recentlyAddedd;
     private List<book> Recommend;
-
+    @FXML
+    private Hyperlink prelink;
     @FXML
     protected void handletrendingbook() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/trendingbook/trendingbook.fxml"));

@@ -18,8 +18,8 @@ public class bookDAO implements DAOInterface<book> {
     @Override
     public int insert(book book) {
         int result = 0;
-        String sql = "INSERT INTO Books (bookID, bookTitle, bookAuthor, bookPublisher, edition, language, quantity, remainingBooks, categoryName,description,imgUrl,countofborrow) "
-                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Books (bookID, bookTitle, bookAuthor, bookPublisher, edition, language, quantity, remainingBooks, categoryName,description,imgUrl,countofborrow,preURL) "
+                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = JDBCUtil.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
@@ -36,6 +36,7 @@ public class bookDAO implements DAOInterface<book> {
             pstmt.setString(10, book.getDescription());;
             pstmt.setString(11, book.getImageUrl());;
             pstmt.setInt(12,book.getCountOfBorrow());
+            pstmt.setString(13,book.getPreviewLink());
             // Thực thi câu lệnh INSERT
             result = pstmt.executeUpdate();
 
@@ -126,8 +127,10 @@ public class bookDAO implements DAOInterface<book> {
                 String description = rs.getString("description");
                 String imageURL = rs.getString("imgURL");
                 int countOfBorrow = rs.getInt("countOfBorrow");
+                String prelink = rs.getString("preURL");
                 book bookObj = new book(bookID, categoryID, availability, remainingBooks, language, edition, bookAuthor
                         , bookTitle, bookPublisher, quantity, categoryName,description,imageURL,countOfBorrow);
+                bookObj.setPreviewLink(prelink);
                 bookList.add(bookObj);
             }
 

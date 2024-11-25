@@ -1,4 +1,4 @@
-package viewofbook;
+package viewbook;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -42,7 +42,6 @@ public class viewofbookcontroller {
 
     @FXML
     private Hyperlink prelink;
-
     @FXML
     private Label bookID;
 
