@@ -13,6 +13,14 @@ module com.example.libarary_management_system {
     requires java.smartcardio;
     requires java.net.http;
     requires org.json;
+    requires com.google.api.client.auth;
+    requires google.api.client;
+    requires com.google.api.client;
+    requires com.google.api.client.extensions.java6.auth;
+    requires com.google.api.client.extensions.jetty.auth;
+    requires google.api.services.gmail.v1.rev110;
+    requires com.google.api.client.json.jackson2;
+    requires mail;
 
     exports API;
 
