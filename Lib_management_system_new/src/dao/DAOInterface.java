@@ -19,5 +19,4 @@ public interface DAOInterface<T> {
     public ArrayList<T> getByCondition(T t);
 
     public String getStatusbyId(T t);
-
 }
