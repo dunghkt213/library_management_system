@@ -3,6 +3,7 @@ package login;
 import Notification.Notification;
 import dao.studentDAO;
 import javafx.fxml.FXML;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -17,6 +18,7 @@ import model.student;
 
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class logincontroller {
     @FXML
@@ -58,7 +60,8 @@ public class logincontroller {
                     student.getInstance().setStudentID(id);
                     student.getInstance().setPassword(password);
                     String role = studentDAO.getInstance().getStatusbyId(student.getInstance());
-                    if(role == "admin"){
+                    System.out.println(role);
+                    if(role.equals("admin")){
                         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/trendingbook/trendingbook.fxml"));
                         Stage stage = (Stage) studentIDField.getScene().getWindow();
                         Scene scene = new Scene(fxmlLoader.load());
@@ -66,7 +69,7 @@ public class logincontroller {
                         stage.setTitle("Dashboard");
                         stage.show();
                     }
-                    else{
+                    else if (role.equals("student")){
                         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/trendingbook/studenttrendingbook.fxml"));
                         Stage stage = (Stage) studentIDField.getScene().getWindow();
                         Scene scene = new Scene(fxmlLoader.load());

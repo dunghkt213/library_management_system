@@ -23,8 +23,7 @@ public class testBookDAO {
         for(student s : student){
             s.print();
         }*/
-        student newStudent = new student("2302", "nvb", "vanbien", "0989618925", "2005/10/05", "CS", "051005");
+        student newStudent = new student("24112024", "nvb", "vanbien", "0989618925", "2005/10/05", "CS", "051005", "admin");
         studentDAO.getInstance().insert(newStudent);
     }
-
 }

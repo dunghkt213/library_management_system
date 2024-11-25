@@ -12,7 +12,8 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="700.0" prefWidth="1200.0" styleClass="Anchor-background" stylesheets="@../signup/signup.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="admindashboard.admindashboardcontroller">
+<?import javafx.scene.control.TextField?>
+<AnchorPane prefHeight="700.0" prefWidth="1200.0" styleClass="Anchor-background" stylesheets="@../signup/signup.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="manage.managebookforstudentcontroller">
    <children>
       <VBox layoutY="50.0" prefHeight="650.0" prefWidth="165.0" stylesheets="@../admindashboard/admindashboard.css">
          <children>
@@ -69,6 +70,24 @@
                <VBox.margin>
                   <Insets />
                </VBox.margin>
+               <padding>
+                  <Insets left="10.0" top="10.0" />
+               </padding>
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handleviewbook" prefHeight="50.0" prefWidth="250.0" styleClass="button-left" stylesheets="@../admindashboard/admindashboard.css" text="View Book" textFill="WHITE">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../admindashboard/viewbook.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
                <padding>
                   <Insets left="10.0" top="10.0" />
                </padding>
@@ -206,5 +225,6 @@
          </padding>
       </HBox>
       <VBox layoutX="600.0" layoutY="14.0" prefHeight="127.0" prefWidth="139.0" />
+      <TextField fx:id="textField" layoutX="391.0" layoutY="231.0" />
    </children>
 </AnchorPane>

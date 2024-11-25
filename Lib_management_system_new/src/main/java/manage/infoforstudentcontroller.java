@@ -1,61 +1,33 @@
-package issuebook;
+package manage;
 
-import dao.loanDAO;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.SelectionMode;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Stage;
-import model.loan;
 
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
-import java.util.ArrayList;
-import java.util.Objects;
 
-public class issuebookforstudentcontroller {
+public class infoforstudentcontroller {
 
     @FXML
-    private TextField textField;
-
+    private TextField name;
     @FXML
-    private TableView<loan> viewTable;
-
+    private TextField username;
     @FXML
-    private TableColumn<loan, String> colID;
+    private TextField dateOfBirth;
     @FXML
-    private TableColumn<loan, String> colBookTitle;
+    private TextField phone;
     @FXML
-    private TableColumn<loan, String> colAuthor;
-    @FXML
-    private TableColumn<loan, Integer> colQuantity;
-    @FXML
-    private TableColumn<loan, String> colCategory;
-    @FXML
-    private TableColumn<loan, String> colIssuedDate;
-    @FXML
-    private TableColumn<loan, String> colDueDate;
-
-    public void initialize() {
-
-    }
+    private TextField email;
 
     @FXML
     protected void handletrendingbook() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/trendingbook/studenttrendingbook.fxml"));
 
         // Lấy Stage hiện tại và thay đổi Scene
-        Stage stage = (Stage) viewTable.getScene().getWindow();
+        Stage stage = (Stage) name.getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
@@ -65,7 +37,7 @@ public class issuebookforstudentcontroller {
         Parent root = FXMLLoader.load(getClass().getResource("/manage/infoforstudent.fxml"));
 
         // Lấy Stage hiện tại và thay đổi Scene
-        Stage stage = (Stage) viewTable.getScene().getWindow();
+        Stage stage = (Stage) name.getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
@@ -74,7 +46,7 @@ public class issuebookforstudentcontroller {
     @FXML
     protected void handlemanagebook() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/manage/bookforstudent.fxml"));
-        Stage stage = (Stage) viewTable.getScene().getWindow();
+        Stage stage = (Stage) name.getScene().getWindow();
         Scene scene = new Scene(fxmlLoader.load());
         stage.setScene(scene);
         stage.setTitle("Dashboard");
@@ -85,7 +57,7 @@ public class issuebookforstudentcontroller {
     @FXML
     protected void handlereturn() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/trendingbook/studenttrendingbook.fxml"));
-        Stage stage = (Stage) viewTable.getScene().getWindow();
+        Stage stage = (Stage) name.getScene().getWindow();
         Scene scene = new Scene(fxmlLoader.load());
         stage.setScene(scene);
         stage.setTitle("Dashboard");
@@ -96,7 +68,7 @@ public class issuebookforstudentcontroller {
     @FXML
     protected void handleissuebook() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/issuebook/issueforstudent.fxml"));
-        Stage stage = (Stage) viewTable.getScene().getWindow();
+        Stage stage = (Stage) name.getScene().getWindow();
         Scene scene = new Scene(fxmlLoader.load());
         stage.setScene(scene);
         stage.setTitle("Dashboard");
@@ -106,7 +78,7 @@ public class issuebookforstudentcontroller {
     @FXML
     protected void handleviewbook() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/viewbook/viewbook.fxml"));
-        Stage stage = (Stage) viewTable.getScene().getWindow();
+        Stage stage = (Stage) name.getScene().getWindow();
         Scene scene = new Scene(fxmlLoader.load());
         stage.setScene(scene);
         stage.setTitle("Dashboard");
@@ -117,7 +89,7 @@ public class issuebookforstudentcontroller {
     @FXML
     protected void handleviewissuedbook() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/viewissuedbook/issuedforstudent.fxml"));
-        Stage stage = (Stage) viewTable.getScene().getWindow();
+        Stage stage = (Stage) name.getScene().getWindow();
         Scene scene = new Scene(fxmlLoader.load());
         stage.setScene(scene);
         stage.setTitle("Dashboard");
@@ -127,11 +99,10 @@ public class issuebookforstudentcontroller {
     @FXML
     protected void handlelogout() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/login/login.fxml"));
-        Stage stage = (Stage) viewTable.getScene().getWindow();
+        Stage stage = (Stage) name.getScene().getWindow();
         Scene scene = new Scene(fxmlLoader.load());
         stage.setScene(scene);
         stage.setTitle("Dashboard");
         stage.show();
     }
-
 }

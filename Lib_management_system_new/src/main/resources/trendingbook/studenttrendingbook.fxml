@@ -83,6 +83,24 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
+            <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handleviewbook" prefHeight="50.0" prefWidth="250.0" styleClass="button-left" stylesheets="@../admindashboard/admindashboard.css" text="View Book" textFill="WHITE">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../admindashboard/viewbook.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="10.0" top="10.0" />
+               </padding>
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
             <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handlemanagestudent" prefHeight="50.0" prefWidth="250.0" styleClass="button-left" stylesheets="@../admindashboard/admindashboard.css" text="Student Info" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
@@ -218,7 +236,7 @@
                   <Insets left="700.0" />
                </HBox.margin>
             </ImageView>
-            <Label prefHeight="38.0" prefWidth="139.0" text="Welcome Admin" textFill="#a36361">
+            <Label prefHeight="38.0" prefWidth="139.0" text="Welcome Student" textFill="#a36361">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
