@@ -89,9 +89,9 @@ public class loanDAO implements DAOInterface<loan> {
     @Override
     public loan getById(loan loan) {
         loan loanObj = null;
-        String sql = "SELECT * FROM loans WHERE loansID = ?";
+        String sql = "SELECT * FROM loans WHERE bookID = ?";
         try (Connection conn = JDBCUtil.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setString(1, loan.getLoansID());
+            pstmt.setString(1, loan.getBookID());
             try (ResultSet rs = pstmt.executeQuery()) {
                 if (rs.next()) {
                     loanObj = new loan(

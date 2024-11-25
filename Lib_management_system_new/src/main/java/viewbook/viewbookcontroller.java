@@ -1,6 +1,7 @@
 package viewbook;
 
 import API.GoogleBooksService;
+import dao.loanDAO;
 import dao.studentDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -18,9 +19,11 @@ import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 import model.book;
 import dao.bookDAO;
+import model.loan;
 import model.student;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
@@ -176,29 +179,68 @@ public class viewbookcontroller {
 
     @FXML
     private void handleDownloadAction(ActionEvent event) {
-        book selectedBook = resultsListView.getSelectionModel().getSelectedItem();
-        if (selectedBook == null) {
-            showAlert(AlertType.ERROR, "Lỗi", "Bạn phải chọn một cuốn sách trước khi tải xuống.");
-            return;
-        }
+        student currentStudent = student.getInstance();
+        String status = studentDAO.getInstance().getStatusbyId(currentStudent);
+        if (status.equals("admin")) {
+            book selectedBook = resultsListView.getSelectionModel().getSelectedItem();
+            if (selectedBook == null) {
+                showAlert(AlertType.ERROR, "Lỗi", "Bạn phải chọn một cuốn sách trước khi tải xuống.");
+                return;
+            }
 
-        if (selectedBook.getImageUrl() == null || selectedBook.getImageUrl().isEmpty() || selectedBook.getDescription() == null || selectedBook.getDescription().isEmpty()) {
-            showAlert(AlertType.ERROR, "Lỗi", "Dữ liệu của sách không đầy đủ (URL hoặc mô tả bị thiếu).");
-            return;
-        }
+            if (selectedBook.getImageUrl() == null || selectedBook.getImageUrl().isEmpty() || selectedBook.getDescription() == null || selectedBook.getDescription().isEmpty()) {
+                showAlert(AlertType.ERROR, "Lỗi", "Dữ liệu của sách không đầy đủ (URL hoặc mô tả bị thiếu).");
+                return;
+            }
 
-        if ("ISBN Not Available".equals(selectedBook.getBookID())) {
-            selectedBook.setBookID(GoogleBooksService.generateUniqueBookID(selectedBook));
-        }
+            if ("ISBN Not Available".equals(selectedBook.getBookID())) {
+                selectedBook.setBookID(GoogleBooksService.generateUniqueBookID(selectedBook));
+            }
 
-        selectedBook.setQuantity(20);
+            selectedBook.setQuantity(20);
 
-        int result = bookDAO.getInstance().insert(selectedBook);
+            int result = bookDAO.getInstance().insert(selectedBook);
 
-        if (result > 0) {
-            showAlert(AlertType.SUCCESS, "Thành công", "Sách đã được lưu vào cơ sở dữ liệu.");
-        } else {
-            showAlert(AlertType.ERROR, "Lỗi", "Không thể lưu sách vào cơ sở dữ liệu.");
+            if (result > 0) {
+                showAlert(AlertType.SUCCESS, "Thành công", "Sách đã được lưu vào cơ sở dữ liệu.");
+            } else {
+                showAlert(AlertType.ERROR, "Lỗi", "Không thể lưu sách vào cơ sở dữ liệu.");
+            }
+        } else if (status.equals("student")) {
+            book selectedBook = resultsListView.getSelectionModel().getSelectedItem();
+            if (selectedBook == null) {
+                showAlert(AlertType.ERROR, "Lỗi", "Bạn phải chọn một cuốn sách trước khi mượn.");
+                return;
+            }
+            if ("ISBN Not Available".equals(selectedBook.getBookID())) {
+                selectedBook.setBookID(GoogleBooksService.generateUniqueBookID(selectedBook));
+            }
+            selectedBook.setQuantity(20);
+
+            int result2 = bookDAO.getInstance().insert(selectedBook);
+
+            if (result2 <= 0) {
+                showAlert(AlertType.ERROR, "Lỗi", "Sách đã có trong thư viện bạn hãy mượn chúng ở mục Books.");
+            }
+
+            LocalDate loanDate1 = LocalDate.now(); // Ngày hiện tại
+            LocalDate dueDate1 = loanDate1.plusDays(50); // Ngày trả là 50 ngày sau
+
+            loan newLoan = new loan("Active", dueDate1.toString(), loanDate1.toString(), currentStudent.getStudentID(), selectedBook.getBookID());
+
+            int result = 0;
+            loan objloan = loanDAO.getInstance().getById(newLoan);
+            if (objloan != null) {
+                result = -1;
+            } else {
+                result = loanDAO.getInstance().insert(newLoan);
+            }
+
+            if (result > 0) {
+                showAlert(AlertType.SUCCESS, "Thành công","Sách đã được mượn thành công.");
+            } else {
+                showAlert(AlertType.ERROR, "Lỗi", "Bạn không thể mượn cuốn sách này.");
+            }
         }
     }
 
