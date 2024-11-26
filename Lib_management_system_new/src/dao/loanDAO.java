@@ -33,14 +33,14 @@ public class loanDAO implements DAOInterface<loan> {
     @Override
     public int update(loan loan) {
         int result = 0;
-        String sql = "UPDATE loans SET bookID = ?, studentID = ?, returnDate = ?, dueDate = ?, status = ? WHERE loansID = ?";
+        String sql = "UPDATE loans SET bookID = ?, studentID = ?, returnDate = ?, dueDate = ?, status = ? WHERE bookID = ?";
         try (Connection conn = JDBCUtil.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, loan.getBookID());
             pstmt.setString(2, loan.getStudentID());
             pstmt.setString(3, loan.getReturnDate());
             pstmt.setString(4, loan.getDueDate());
             pstmt.setString(5, loan.getStatus());
-            pstmt.setString(6, loan.getLoansID());
+            pstmt.setString(6, loan.getBookID());
             result = pstmt.executeUpdate();
             System.out.println("Câu lệnh đã được thực thi thành công. Có " + result + " dòng đã bị thay đổi.");
         } catch (SQLException e) {
