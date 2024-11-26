@@ -5,7 +5,7 @@ public class Main {
         try {
             GMailer gMailer = new GMailer();
 
-            String recipientEmail = "vietanh122005@gmail.com";
+            String recipientEmail = "dung1990hk@gmail.com";
             String subject = "Test Email from GMailer";
             String bodyText = "This is a test email sent using Gmail API.";
 
