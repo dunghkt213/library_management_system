@@ -68,7 +68,7 @@ public class GMailer {
 
 
     public void sendEmail(String recipientEmail, String subject, String bodyText) throws MessagingException, IOException {
-        MimeMessage email = createEmail(recipientEmail, "23021477@vnu.edu.vn", subject, bodyText);
+        MimeMessage email = createEmail(recipientEmail, "23021473@vnu.edu.vn", subject, bodyText);
         Message message = createMessageWithEmail(email);
         service.users().messages().send("me", message).execute();
     }
