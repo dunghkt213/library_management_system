@@ -7,7 +7,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -248,13 +247,13 @@
          <children>
             <TableView fx:id="viewTable" layoutX="20.0" layoutY="14.0" prefHeight="530.0" prefWidth="698.0" style="-fx-background-radius: 20;" stylesheets="@../admindashboard/admindashboard.css">
                <columns>
-                  <TableColumn fx:id="colID" prefWidth="107.19998168945312" text="ID" />
-                  <TableColumn fx:id="colBookTitle" prefWidth="151.99996948242188" text="Book Title" />
-                  <TableColumn fx:id="colAuthor" prefWidth="87.99990844726562" text="Author" />
-                  <TableColumn fx:id="colQuantity" prefWidth="64.79998779296875" text="Quantity" />
-                  <TableColumn fx:id="colCategory" prefWidth="85.5999755859375" text="Category" />
-                  <TableColumn fx:id="colIssuedDate" prefWidth="103.99993896484375" text="Issued Date" />
-                  <TableColumn fx:id="colDueDate" prefWidth="108.0001220703125" text="Due Date" />
+                  <TableColumn fx:id="colID" prefWidth="99.199951171875" text="ID" />
+                  <TableColumn fx:id="colBookTitle" prefWidth="157.5999755859375" text="Book Title" />
+                  <TableColumn fx:id="colAuthor" prefWidth="105.59994506835938" text="Author" />
+                  <TableColumn fx:id="colCategory" prefWidth="100.79998779296875" text="Category" />
+                  <TableColumn fx:id="colIssuedDate" prefWidth="80.7999267578125" text="Issued Date" />
+                  <TableColumn fx:id="colDueDate" prefWidth="76.79998779296875" text="Due Date" />
+                  <TableColumn fx:id="colStatus" prefWidth="79.2000732421875" text="Status" />
                </columns>
             </TableView>
          </children>
@@ -264,20 +263,8 @@
             <Image url="@../lmsdashboard/online-education.png" />
          </image>
       </ImageView>
-      <VBox alignment="CENTER" layoutX="984.0" layoutY="253.0" prefHeight="127.0" prefWidth="188.0" style="-fx-background-radius: 20;" styleClass="mid-background" stylesheets="@../viewissuedbook/viewissuedbook.css">
+      <VBox alignment="CENTER" layoutX="1024.0" layoutY="289.0" prefHeight="85.0" prefWidth="108.0" style="-fx-background-radius: 20;" styleClass="mid-background" stylesheets="@../viewissuedbook/viewissuedbook.css">
          <children>
-            <TextField fx:id="textField" prefHeight="40.0" prefWidth="188.0" promptText="Enter Book ID" style="-fx-background-radius: 50;" stylesheets="@../manage/managebook.css">
-               <padding>
-                  <Insets left="50.0" />
-               </padding>
-               <styleClass>
-                  <String fx:value="text-field-title-with-icon" />
-                  <String fx:value="text-field-with-icon" />
-               </styleClass>
-               <VBox.margin>
-                  <Insets bottom="30.0" left="10.0" right="10.0" />
-               </VBox.margin>
-            </TextField>
             <Button mnemonicParsing="false" onAction="#handlereturnbook" prefHeight="40.0" prefWidth="80.0" style="-fx-background-radius: 50;" stylesheets="@issuebook.css" text="RETURN" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />

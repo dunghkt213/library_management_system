@@ -52,7 +52,6 @@ public class managebookforstudentcontroller {
 
     public void initialize() {
         setupTableColumns();
-        setupEditableColumns();
         loadBookData();
     }
 
@@ -60,23 +59,6 @@ public class managebookforstudentcontroller {
         colBookID.setCellValueFactory(new PropertyValueFactory<>("bookID"));
         colBookTitle.setCellValueFactory(new PropertyValueFactory<>("bookTitle"));
         colBookAuthor.setCellValueFactory(new PropertyValueFactory<>("bookAuthor"));
-    }
-
-    private void setupEditableColumns() {
-        bookTableView.setEditable(true);
-        colBookTitle.setCellFactory(TextFieldTableCell.forTableColumn());
-        colBookAuthor.setCellFactory(TextFieldTableCell.forTableColumn());
-        //colBookQuantity.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
-
-        colBookTitle.setOnEditCommit(event -> {
-            book selectedBook = event.getRowValue();
-            selectedBook.setBookTitle(event.getNewValue());
-        });
-
-        colBookAuthor.setOnEditCommit(event -> {
-            book selectedBook = event.getRowValue();
-            selectedBook.setBookAuthor(event.getNewValue());
-        });
     }
 
     private void loadBookData() {

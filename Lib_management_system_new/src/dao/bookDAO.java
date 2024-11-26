@@ -1,10 +1,7 @@
 package dao;
 
 import database.JDBCUtil;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import model.book;
-import model.bookloan;
 
 import java.sql.*;
 import java.util.ArrayList;
