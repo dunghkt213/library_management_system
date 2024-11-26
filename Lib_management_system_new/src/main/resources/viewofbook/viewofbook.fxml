@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" styleClass="lightgrey-background" stylesheets="@style.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewofbook.viewofbookcontroller">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" styleClass="textgradient" stylesheets="@style.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewofbook.viewofbookcontroller">
    <children>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
          <children>
@@ -55,14 +55,19 @@
                         <VBox alignment="TOP_CENTER" prefHeight="1006.0" prefWidth="816.0" spacing="20">
                            <children>
                               <!-- Hình ảnh sách -->
-                              <ImageView fx:id="bookImageView" fitHeight="388.0" fitWidth="364.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="bookImageView" fitHeight="388.0" fitWidth="324.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../trendingbook/ThePragmaticProgrammer.jpg" />
                                  </image>
                               </ImageView>
+                              <Button fx:id="borrowButton" mnemonicParsing="false" prefHeight="67.0" prefWidth="97.0" style="-fx-background-radius: 50;" stylesheets="@style.css" text="Borrow" textFill="WHITE">
+                                 <styleClass>
+                                    <String fx:value="button-background" />
+                                    <String fx:value="button-border" />
+                                 </styleClass></Button>
 
                               <!-- Chi tiết sách -->
-                              <VBox alignment="TOP_LEFT" prefHeight="700.0" prefWidth="766.0" spacing="10">
+                              <VBox alignment="TOP_LEFT" prefHeight="1430.0" prefWidth="766.0" spacing="10">
                                  <children>
                                     <Label fx:id="bookID" prefHeight="20.0" prefWidth="929.0" text="ISBN">
                                        <font>
@@ -83,7 +88,7 @@
                                        </graphic>
                                     </Hyperlink>
                                     <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Mô tả:" />
-                                    <Label fx:id="descriptionLabel" alignment="TOP_LEFT" prefHeight="1406.0" prefWidth="766.0" style="-fx-font-size: 14px;" text="Cuốn sách nổi tiếng này cung cấp các kỹ thuật và triết lý thực tế để cải thiện kỹ năng lập trình và phát triển phần mềm của bạn. Được viết bởi hai nhà phát triển phần mềm kỳ cựu, sách phù hợp cho mọi cấp độ từ mới bắt đầu đến chuyên gia." wrapText="true" />
+                                    <Label fx:id="descriptionLabel" alignment="TOP_LEFT" prefHeight="258.0" prefWidth="760.0" style="-fx-font-size: 14px;" text="Cuốn sách nổi tiếng này cung cấp các kỹ thuật và triết lý thực tế để cải thiện kỹ năng lập trình và phát triển phần mềm của bạn. Được viết bởi hai nhà phát triển phần mềm kỳ cựu, sách phù hợp cho mọi cấp độ từ mới bắt đầu đến chuyên gia." wrapText="true" />
                                  </children>
                                  <VBox.margin>
                                     <Insets left="50.0" />
