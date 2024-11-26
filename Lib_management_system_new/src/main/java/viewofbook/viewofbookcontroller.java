@@ -6,12 +6,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Hyperlink;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import model.book;
 import model.loan;
@@ -48,13 +46,17 @@ public class viewofbookcontroller {
     private Button borrowButton;
     @FXML
     private Label averageRatingLabel;
-
+    @FXML
+    private VBox Box;
     @FXML
     private Hyperlink prelink;
 
     @FXML
     private Label bookID;
-
+    @FXML
+    private TextField commentField;
+    @FXML
+    private Button postButton;
     @FXML
     public void setBookDetails(book Book) {
         if (Book.getImageUrl() != null && !Book.getImageUrl().isEmpty()) {
@@ -91,6 +93,8 @@ public class viewofbookcontroller {
             }
         });
         descriptionLabel.setText(Book.getDescription());
+
+
     }
     private void openLinkInBrowser(String url) {
         if (java.awt.Desktop.isDesktopSupported()) {
