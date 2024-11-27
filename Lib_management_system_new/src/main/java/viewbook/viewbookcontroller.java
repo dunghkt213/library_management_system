@@ -78,32 +78,31 @@ public class viewbookcontroller {
     }
 
     private void searchBooks(String searchOption, String keyword, int pageNumber, int pageSize) {
-        if (keyword.trim().isEmpty()) {
-            showAlert(AlertType.ERROR, "Lỗi", "Vui lòng nhập từ khóa tìm kiếm.");
-            return;
-        }
+        // Lấy keyword từ ô tìm kiếm
+        keyword = searchField.getText().trim();
+        searchOption = searchOptionChoiceBox.getValue();
 
-        long startTime = System.currentTimeMillis();
-        CompletableFuture<ArrayList<book>> futureBooks = bookController.searchBooksOnlineOrCache(searchOption, keyword, pageNumber, pageSize);
-        futureBooks.thenAccept(books -> javafx.application.Platform.runLater(() -> {
-            if (books == null || books.isEmpty()) {
-                showAlert(AlertType.ERROR, "Không có kết quả", "Không tìm thấy sách với từ khóa đã nhập.");
-            } else {
-                allFetchedBooks.addAll(books);
-                loadBooksFromCache();
-                // Pre-fetching next page
-                prefetchNextPages(searchOption, keyword, pageNumber, pageSize);
-            }
-            System.out.println("Time taken: " + (System.currentTimeMillis() - startTime) + " ms");
-        })).exceptionally(ex -> {
-            javafx.application.Platform.runLater(() -> showAlert(AlertType.ERROR, "Lỗi", "Đã xảy ra lỗi khi tìm kiếm."));
-            return null;
+        // Xóa danh sách hiển thị cũ
+        resultsListView.getItems().clear();
+
+        // Gọi API hoặc cache
+        bookController.searchBooksAndUpdateUI(searchOption, keyword, pageNumber, pageSize, book -> {
+            Platform.runLater(() -> resultsListView.getItems().add(book)); // Cập nhật UI với dữ liệu mới
         });
     }
 
+
     private void prefetchNextPages(String searchOption, String keyword, int pageNumber, int pageSize) {
         if (allFetchedBooks.size() < maxBooksLimit) {
-            bookController.searchBooksOnlineOrCache(searchOption, keyword, pageNumber + 1, pageSize);
+            bookController.searchBooksOnlineOrCache(searchOption, keyword, pageNumber + 1, pageSize)
+                    .thenAccept(books -> {
+                        if (books != null && !books.isEmpty()) {
+                            Platform.runLater(() -> allFetchedBooks.addAll(books)); // Lưu dữ liệu tải trước
+                        }
+                    }).exceptionally(ex -> {
+                        ex.printStackTrace();
+                        return null;
+                    });
         }
     }
 
@@ -159,16 +158,23 @@ public class viewbookcontroller {
 
     @FXML
     private void handleNextAction(ActionEvent event) {
-        if ((currentPage + 1) * pageSize < maxBooksLimit && (currentPage + 1) * pageSize < allFetchedBooks.size()) {
-            currentPage++;
-            loadBooksFromCache();
-        } else if ((currentPage + 1) * pageSize < maxBooksLimit) {
-            currentPage++;
-            searchBooks(searchOptionChoiceBox.getValue(), searchField.getText(), currentPage, pageSize);
-        } else {
-            showAlert(AlertType.SUCCESS, "Giới hạn", "Đã đạt đến giới hạn của 12 cuốn sách.");
+        if ((currentPage + 1) * pageSize < maxBooksLimit) {
+            currentPage++; // Chuyển đến trang tiếp theo
+
+            // Kiểm tra nếu dữ liệu đã được tải trước
+            int start = currentPage * pageSize;
+            if (start < allFetchedBooks.size()) {
+                loadBooksFromCache(); // Hiển thị dữ liệu đã tải trước
+            } else {
+                // Gọi API nếu dữ liệu chưa có
+                searchBooks(searchOptionChoiceBox.getValue(), searchField.getText(), currentPage, pageSize);
+            }
+
+            // Tải trước dữ liệu trang tiếp theo (nếu cần)
+            prefetchNextPages(searchOptionChoiceBox.getValue(), searchField.getText(), currentPage, pageSize);
         }
     }
+
 
     @FXML
     private void handlePrevAction(ActionEvent event) {

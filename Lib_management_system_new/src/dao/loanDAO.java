@@ -52,9 +52,9 @@ public class loanDAO implements DAOInterface<loan> {
     @Override
     public int delete(loan loan) {
         int result = 0;
-        String sql = "DELETE FROM loans WHERE loansID = ?";
+        String sql = "DELETE FROM loans WHERE bookID = ?";
         try (Connection conn = JDBCUtil.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setString(1, loan.getLoansID());
+            pstmt.setString(1, loan.getBookID());
             result = pstmt.executeUpdate();
             System.out.println("Câu lệnh đã được thực thi thành công. Có " + result + " dòng đã bị xóa.");
         } catch (SQLException e) {

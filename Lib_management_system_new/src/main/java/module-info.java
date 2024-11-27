@@ -21,6 +21,8 @@ module com.example.libarary_management_system {
     requires google.api.services.gmail.v1.rev110;
     requires com.google.api.client.json.jackson2;
     requires mail;
+    requires com.google.zxing;
+    requires com.google.zxing.javase;
 
     exports API;
 

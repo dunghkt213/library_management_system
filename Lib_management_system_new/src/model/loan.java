@@ -21,8 +21,8 @@ public class loan {
         this.bookID = bookID;
     }
 
-    public loan(String loansID){
-        this.loansID = loansID;
+    public loan(String bookID) {
+        this.bookID = bookID;
     }
 
     public loan(String studentID, String bookID){

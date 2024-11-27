@@ -23,14 +23,14 @@
             <VBox prefHeight="1110.0" prefWidth="511.0" style="-fx-background-color: transparent;" stylesheets="@../trendingbook/style.css">
                <children>
                   <AnchorPane prefHeight="38.0" prefWidth="816.0" />
-                  <Label fx:id="titleLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="70.0" prefWidth="490.0" text=" The Pragmatic Programmer">
+                  <Label fx:id="titleLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="70.0" prefWidth="489.0" text=" The Pragmatic Programmer">
                      <font>
-                        <Font name="Berlin Sans FB Demi Bold" size="33.0" />
+                        <Font name="Berlin Sans FB Demi Bold" size="30.0" />
                      </font>
                   </Label>
                   <VBox alignment="TOP_CENTER" prefHeight="887.0" prefWidth="526.0" spacing="20">
                      <children>
-                        <ImageView fx:id="bookImageView" fitHeight="388.0" fitWidth="347.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="bookImageView" fitHeight="340.0" fitWidth="275.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../trendingbook/ThePragmaticProgrammer.jpg" />
                            </image>
@@ -61,6 +61,7 @@
                                     <Insets left="-5.0" />
                                  </VBox.margin>
                               </Hyperlink>
+                              <ImageView fx:id="qrCodeImageView" fitHeight="150" fitWidth="150" pickOnBounds="true" preserveRatio="true" />
                               <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Mô tả:" />
                               <Label fx:id="descriptionLabel" alignment="TOP_LEFT" prefHeight="744.0" prefWidth="458.0" style="-fx-font-size: 14px;" text="Cuốn sách nổi tiếng này cung cấp các kỹ thuật và triết lý thực tế để cải thiện kỹ năng lập trình và phát triển phần mềm của bạn. Được viết bởi hai nhà phát triển phần mềm kỳ cựu, sách phù hợp cho mọi cấp độ từ mới bắt đầu đến chuyên gia." wrapText="true" />
                            </children>

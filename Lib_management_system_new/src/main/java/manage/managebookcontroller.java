@@ -1,6 +1,7 @@
 package manage;
 
 import dao.bookDAO;
+import dao.loanDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -13,6 +14,7 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Stage;
 import javafx.util.converter.IntegerStringConverter;
 import model.book;
+import model.loan;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -109,6 +111,8 @@ public class managebookcontroller {
         book selectedBook = bookTableView.getSelectionModel().getSelectedItem();
         if (selectedBook != null) {
             try {
+                /*loan newLoan = new loan(selectedBook.getBookID());
+                int result2 = loanDAO.getInstance().delete(newLoan);*/
                 int result = bookDAO.getInstance().delete(selectedBook);
                 if (result == 0) {
                     showAlert("Error occurred while deleting the book: " + selectedBook.getBookID());
