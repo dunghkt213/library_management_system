@@ -42,11 +42,11 @@
             <AnchorPane prefHeight="700.0" prefWidth="242.0" HBox.hgrow="ALWAYS" />
             <ScrollPane prefHeight="700.0" prefWidth="1071.0" style="-fx-background-color: transparent;">
                <content>
-                  <VBox fx:id="Box" prefHeight="1073.0" prefWidth="816.0" style="-fx-background-color: transparent;" stylesheets="@../trendingbook/style.css">
+                  <VBox fx:id="Box" style="-fx-background-color: transparent;" stylesheets="@../trendingbook/style.css">
                      <children>
                         <!-- Header hoặc không gian trống -->
                         <AnchorPane prefHeight="38.0" prefWidth="816.0" />
-                        <Label fx:id="titleLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="279.0" prefWidth="816.0" text=" The Pragmatic Programmer">
+                        <Label fx:id="titleLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="91.0" prefWidth="816.0" text=" The Pragmatic Programmer">
                            <font>
                               <Font name="Berlin Sans FB Demi Bold" size="33.0" />
                            </font>

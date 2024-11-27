@@ -29,6 +29,10 @@ public class comment {
         this.createdAt = createdAt;
     }
 
+    public comment() {
+
+    }
+
     // Getter and Setter methods
     public int getId() {
         return id;

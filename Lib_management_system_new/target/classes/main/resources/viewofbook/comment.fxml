@@ -7,38 +7,52 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-
-<VBox prefHeight="151.0" prefWidth="805.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="151.0" prefWidth="805.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewofbook.commentcontroller">
    <children>
-      <HBox alignment="CENTER_LEFT" prefHeight="47.0" prefWidth="719.0" spacing="10.0" style="-fx-background-radius: 50;">
-         <children>
-            <ImageView fitHeight="36.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../java/viewofbook/426599446_1060526138363460_4231514582602082523_n.jpg" />
-               </image>
-               <HBox.margin>
-                  <Insets left="30.0" />
-               </HBox.margin>
-            </ImageView>
-            <Label prefHeight="33.0" prefWidth="151.0" text="Nguyễn Anh Dũng" />
-         </children>
-      </HBox>
-      <AnchorPane prefHeight="0.0" prefWidth="805.0" />
-      <HBox prefHeight="100.0" prefWidth="757.0">
-         <children>
-            <AnchorPane prefHeight="100.0" prefWidth="0.0" HBox.hgrow="ALWAYS" />
-            <VBox prefHeight="100.0" prefWidth="653.0">
-               <children>
-                  <Label prefHeight="101.0" prefWidth="701.0" style="-fx-background-radius: 20; -fx-background-color: #E0E0E0;" styleClass="lightgrey-background" stylesheets="@style.css" text="Rất bổ ích">
-                     <padding>
-                        <Insets left="20.0" />
-                     </padding>
-                  </Label>
-               </children>
-            </VBox>
-            <AnchorPane prefHeight="100.0" prefWidth="0.0" HBox.hgrow="ALWAYS" />
-         </children>
-      </HBox>
+   <HBox alignment="CENTER_LEFT" prefHeight="47.0" prefWidth="719.0" spacing="10.0" style="-fx-background-radius: 50;">
+      <children>
+         <ImageView fx:id="studentImage" fitHeight="36.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@../../java/viewofbook/426599446_1060526138363460_4231514582602082523_n.jpg" />
+            </image>
+            <HBox.margin>
+               <Insets left="30.0" />
+            </HBox.margin>
+         </ImageView>
+         <Label fx:id="studentName" prefHeight="33.0" prefWidth="531.0" text="Nguyễn Anh Dũng" />
+         <Label fx:id="date" prefHeight="47.0" prefWidth="133.0" text="2024-11-01">
+            <font>
+               <Font name="Calibri Light" size="14.0" />
+            </font>
+         </Label>
+      </children>
+   </HBox>
+   <AnchorPane prefHeight="0.0" prefWidth="805.0" />
+   <HBox prefHeight="100.0" prefWidth="757.0">
+   <children>
+      <AnchorPane prefHeight="100.0" prefWidth="0.0" HBox.hgrow="ALWAYS" />
+      <VBox prefHeight="100.0" prefWidth="653.0">
+      <children>
+         <Label fx:id="commentField"
+                style="-fx-background-radius: 20; -fx-background-color: #E0E0E0;"
+                styleClass="lightgrey-background"
+                stylesheets="@style.css"
+                wrapText="true"
+                minWidth="645.0"
+         minHeight="83.0"
+         maxHeight="Infinity"
+         prefHeight="83.0"
+         prefWidth="645.0">
+         <padding>
+            <Insets left="20.0" />
+         </padding>
+      </Label>
    </children>
 </VBox>
+<AnchorPane prefHeight="100.0" prefWidth="0.0" HBox.hgrow="ALWAYS" />
+        </children>
+        </HBox>
+        </children>
+        </VBox>
