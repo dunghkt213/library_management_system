@@ -2,14 +2,11 @@
 
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import org.controlsfx.control.Rating?>
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="343.0" prefWidth="180.0" style="-fx-background-radius: 10;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="trendingbook.BookController">
    <children>
@@ -36,17 +33,6 @@
             <Insets bottom="6.0" left="10.0" top="-7.0" />
          </VBox.margin>
       </Label>
-      <Rating prefHeight="0.0" prefWidth="176.0" rating="5.0">
-         <VBox.margin>
-            <Insets bottom="6.0" left="2.0" />
-         </VBox.margin>
-         <effect>
-            <ColorAdjust brightness="-0.02" contrast="0.8" />
-         </effect>
-         <cursor>
-            <Cursor fx:constant="DEFAULT" />
-         </cursor>
-      </Rating>
    </children>
    <styleClass>
       <String fx:value="shadow" />
