@@ -1,7 +1,5 @@
 module com.example.libarary_management_system {
-    requires javafx.controls;
     requires javafx.fxml;
-    requires javafx.graphics;
 
     requires com.dlsc.formsfx;
     requires mysql.connector.j;
@@ -9,9 +7,7 @@ module com.example.libarary_management_system {
     requires com.google.gson;
     requires java.sql;
     requires com.github.benmanes.caffeine;
-    requires java.desktop;
     requires java.smartcardio;
-    requires java.net.http;
     requires org.json;
     requires com.google.api.client.auth;
     requires google.api.client;
@@ -21,6 +17,9 @@ module com.example.libarary_management_system {
     requires google.api.services.gmail.v1.rev110;
     requires com.google.api.client.json.jackson2;
     requires java.mail;
+    requires org.controlsfx.controls;
+    requires java.desktop;
+    requires java.net.http;
 
     exports API;
 

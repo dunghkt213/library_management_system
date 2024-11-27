@@ -10,6 +10,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import model.book;
+import org.controlsfx.control.Rating;
 
 import java.io.IOException;
 
@@ -44,6 +45,8 @@ public class viewofbookcontroller {
     private Hyperlink prelink;
     @FXML
     private Label bookID;
+    @FXML
+    private Rating rating;
 
     public void setBookDetails(book Book) {
         if (Book.getImageUrl() != null && !Book.getImageUrl().isEmpty()) {

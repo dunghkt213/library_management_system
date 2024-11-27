@@ -11,6 +11,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import model.book;
+import org.controlsfx.control.Rating;
 import viewofbook.viewofbookcontroller;
 
 import java.io.IOException;
@@ -26,7 +27,8 @@ public class cardcontroller {
     private Label authorName;
     @FXML
     private ImageView bookImage;
-
+    @FXML
+    private Rating  bookRating;
     private String[] colors = {"B9E5FF", "BDB2FE", "FB9AA8", "FF5056"};
 
     public void setData(book Book) {
@@ -34,6 +36,11 @@ public class cardcontroller {
         bookName.setText(Book.getBookTitle());
         authorName.setText(Book.getBookAuthor());
 
+        if (bookRating != null) {
+            bookRating.setRating((double) Book.getAverageRating());
+        } else {
+            bookRating.setRating(5);
+        }
         // Thiết lập hình ảnh sách
         if (Book.getImageUrl().startsWith("http")) {
             Image image = new Image(Book.getImageUrl());

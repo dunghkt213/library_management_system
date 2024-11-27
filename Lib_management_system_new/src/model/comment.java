@@ -7,12 +7,12 @@ public class comment {
     private int id;
     private String bookID;
     private int studentID;
-    private int rating;
+    private double rating;
     private String comment;
     private LocalDateTime createdAt;
-
+    private int countoflike;
     // Constructor
-    public comment(int id, String bookID, int studentID, int rating, String comment, LocalDateTime createdAt) {
+    public comment(int id, String bookID, int studentID, double rating, String comment, LocalDateTime createdAt) {
         this.id = id;
         this.bookID = bookID;
         this.studentID = studentID;
@@ -20,8 +20,16 @@ public class comment {
         this.comment = comment;
         this.createdAt = createdAt;
     }
-
-    public comment(String bookID, int studentID, int rating, String comment, LocalDateTime createdAt) {
+    public comment(int id, String bookID, int studentID, double rating, String comment, LocalDateTime createdAt, int countoflike) {
+        this.id = id;
+        this.bookID = bookID;
+        this.studentID = studentID;
+        this.rating = rating;
+        this.comment = comment;
+        this.createdAt = createdAt;
+        this.countoflike = countoflike;
+    }
+    public comment(String bookID, int studentID, double rating, String comment, LocalDateTime createdAt) {
         this.bookID = bookID;
         this.studentID = studentID;
         this.rating = rating;
@@ -58,11 +66,11 @@ public class comment {
         this.studentID = studentID;
     }
 
-    public int getRating() {
+    public double getRating() {
         return rating;
     }
 
-    public void setRating(int rating) {
+    public void setRating(double rating) {
         this.rating = rating;
     }
 
@@ -92,5 +100,13 @@ public class comment {
                 ", comment='" + comment + '\'' +
                 ", createdAt=" + createdAt +
                 '}';
+    }
+
+    public int getCountoflike() {
+        return countoflike;
+    }
+
+    public void setCountoflike(int count) {
+        this.countoflike = count;
     }
 }

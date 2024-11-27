@@ -21,6 +21,8 @@ public class book {
     private String maturityRating;
     private String previewLink;
     private int countOfBorrow = 0;
+    private int countOfRating = 0;
+    private double totalRating;
     public String getCategoryName() {
         return categoryName;
     }
@@ -207,5 +209,21 @@ public class book {
 
     public void setCountOfBorrow(int countOfBorrow) {
         this.countOfBorrow = countOfBorrow;
+    }
+
+    public int getCountOfRating() {
+        return countOfRating;
+    }
+
+    public void setCountOfRating(int countOfRating) {
+        this.countOfRating = countOfRating;
+    }
+
+    public double getTotalRating() {
+        return totalRating;
+    }
+
+    public void setTotalRating(double totalRating) {
+        this.totalRating = totalRating;
     }
 }

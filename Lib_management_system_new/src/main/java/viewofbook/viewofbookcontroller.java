@@ -21,6 +21,7 @@ import model.book;
 import model.comment;
 import model.loan;
 import model.student;
+import org.controlsfx.control.Rating;
 import trendingbook.BookController;
 import trendingbook.cardcontroller;
 import viewbook.viewbookcontroller;
@@ -71,6 +72,10 @@ public class viewofbookcontroller {
     private TextField commentField;
     @FXML
     private Button postButton;
+    @FXML
+    private Rating rating;
+    @FXML
+    private Rating bookRating;
 
     @FXML
     public void setBookDetails(book Book) {
@@ -93,7 +98,11 @@ public class viewofbookcontroller {
         publisherLabel.setText("Nhà xuất bản: " + Book.getBookPublisher());
         categoryLabel.setText("Thể loại: " + Book.getCategoryName());
         languageLabel.setText("Ngôn ngữ: " + Book.getLanguage());
-
+        if (bookRating != null) {
+            bookRating.setRating((double) Book.getAverageRating());
+        } else {
+            bookRating.setRating(5);
+        }
         if (Book.getPreviewLink() != null && !Book.getPreviewLink().isEmpty()) {
             prelink.setText(Book.getPreviewLink());
             prelink.setOnAction(event -> openLinkInBrowser(Book.getPreviewLink()));
@@ -115,6 +124,7 @@ public class viewofbookcontroller {
                 throw new RuntimeException(e);
             }
         });
+
         descriptionLabel.setText(Book.getDescription());
         comment tempcomment = new comment();
 
@@ -161,7 +171,6 @@ public class viewofbookcontroller {
     protected void handletrendingbook() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/trendingbook/trendingbook.fxml"));
 
-        // Lấy Stage hiện tại và thay đổi Scene
         Stage stage = (Stage) bookImageView.getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setScene(scene);
@@ -169,8 +178,8 @@ public class viewofbookcontroller {
     }
     protected void handleBorrow(book selectedBook) throws IOException {
         student currentStudent = student.getInstance();
-        LocalDate loanDate1 = LocalDate.now(); // Ngày hiện tại
-        LocalDate dueDate1 = loanDate1.plusDays(50); // Ngày trả là 50 ngày sau
+        LocalDate loanDate1 = LocalDate.now();
+        LocalDate dueDate1 = loanDate1.plusDays(50);
 
         loan newLoan = new loan("Active", dueDate1.toString(), loanDate1.toString(), currentStudent.getStudentID(), selectedBook.getBookID());
 
@@ -201,13 +210,26 @@ public class viewofbookcontroller {
            String commenttext = commentField.getText();
            if (commenttext.isEmpty()) {
                showAlert(viewbookcontroller.AlertType.ERROR,"Lỗi","không được để trống nội dung. ");
+               return;
            }
         comment newComment = new comment();
         newComment.setBookID(book.getBookID());
         newComment.setStudentID(Integer.parseInt(student.getInstance().getStudentID()));
-        newComment.setRating(5);
+        double rate = rating.getRating();
+        book.setTotalRating(book.getTotalRating() + rate);
+        book.setCountOfRating(book.getCountOfRating()+1);
+        book.setAverageRating((float) (book.getTotalRating()/book.getCountOfRating()));
+        System.out.println((float) book.getAverageRating() + (float)rate/(book.getCountOfRating()+1));
+        bookDAO.getInstance().update(book);
+        if (bookRating != null) {
+            bookRating.setRating((double) book.getAverageRating());
+        } else {
+            bookRating.setRating(5);
+        }
+        newComment.setRating(rate);
         newComment.setComment(commenttext);
-        newComment.setCreatedAt(LocalDateTime.now());
+        LocalDateTime date = LocalDateTime.now();
+        newComment.setCreatedAt(date);
         int result = commentDAO.getInstance().insert(newComment);
         if (result < 0) {
             showAlert(viewbookcontroller.AlertType.ERROR,"Lỗi","không thể đăng bình luận ");
@@ -216,11 +238,15 @@ public class viewofbookcontroller {
             showAlert(viewbookcontroller.AlertType.SUCCESS, "Thành công", "đã đăng bình luận ");
             commentField.setText("");
         }
+        comment tempcomment = new comment();
+        tempcomment.setCreatedAt(date);
+        ArrayList<comment> listcommnet = commentDAO.getInstance().getByCondition(tempcomment);
+        System.out.println(listcommnet.size() + "size");
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("comment.fxml"));
         try {
             VBox cardcomment = fxmlLoader.load();
             commentcontroller commentcontroller =  fxmlLoader.getController();
-            commentcontroller.setData(newComment);
+            commentcontroller.setData(listcommnet.get(0));
 
             Platform.runLater(() -> {
                 ((VBox) Box).getChildren().add(cardcomment);

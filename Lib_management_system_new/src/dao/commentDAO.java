@@ -23,7 +23,7 @@ public class commentDAO implements DAOInterface<comment> {
 
             pstmt.setString(1, comment.getBookID());
             pstmt.setInt(2, comment.getStudentID());
-            pstmt.setInt(3, comment.getRating());
+            pstmt.setDouble(3, comment.getRating());
             pstmt.setString(4, comment.getComment());
             pstmt.setTimestamp(5, Timestamp.valueOf(comment.getCreatedAt())); // created_at là loại DATETIME
 
@@ -42,15 +42,15 @@ public class commentDAO implements DAOInterface<comment> {
     @Override
     public int update(comment comment) {
         int result = 0;
-        String sql = "UPDATE comments SET rating = ?, comment = ?, created_at = ? WHERE id = ?";
+        String sql = "UPDATE comments SET rating = ?, comment = ?, created_at = ?, countoflike = ? WHERE id = ?";
 
         try (Connection conn = JDBCUtil.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
-            pstmt.setInt(1, comment.getRating());
+            pstmt.setDouble(1, comment.getRating());
             pstmt.setString(2, comment.getComment());
             pstmt.setTimestamp(3, Timestamp.valueOf(comment.getCreatedAt()));
-            pstmt.setInt(4, comment.getId());
-
+            pstmt.setInt(4, comment.getCountoflike());
+            pstmt.setInt(5, comment.getId());
             result = pstmt.executeUpdate();
             System.out.println("Số dòng thay đổi: " + result);
 
@@ -93,11 +93,11 @@ public class commentDAO implements DAOInterface<comment> {
                 int id = rs.getInt("id");
                 String bookID = rs.getString("bookID");
                 int studentID = rs.getInt("studentID");
-                int rating = rs.getInt("rating");
+                double rating = rs.getDouble("rating");
                 String commentText = rs.getString("comment");
                 Timestamp createdAt = rs.getTimestamp("created_at");
-
-                comment commentObj = new comment(id, bookID, studentID, rating, commentText, createdAt.toLocalDateTime());
+                int countoflike = rs.getInt("countoflike");
+                comment commentObj = new comment(id, bookID, studentID, rating, commentText, createdAt.toLocalDateTime(), countoflike);
                 commentList.add(commentObj);
             }
 
@@ -118,13 +118,15 @@ public class commentDAO implements DAOInterface<comment> {
             pstmt.setInt(1, comment.getId());
             try (ResultSet rs = pstmt.executeQuery()) {
                 if (rs.next()) {
+                    int id = rs.getInt("id");
                     String bookID = rs.getString("bookID");
                     int studentID = rs.getInt("studentID");
-                    int rating = rs.getInt("rating");
+                    double rating = rs.getDouble("rating");
                     String commentText = rs.getString("comment");
                     Timestamp createdAt = rs.getTimestamp("created_at");
-
-                    commentObj = new comment(comment.getId(), bookID, studentID, rating, commentText, createdAt.toLocalDateTime());
+                    int countoflike = rs.getInt("countoflike");
+                    commentObj = new comment(studentID, bookID, studentID, rating, commentText, createdAt.toLocalDateTime(), countoflike);
+                    commentObj.setId(id);
                 }
             }
 
@@ -149,6 +151,9 @@ public class commentDAO implements DAOInterface<comment> {
         if (searchCriteria.getRating() != 0) {
             sql.append(" AND rating = ?");
         }
+        if (searchCriteria.getCreatedAt() != null) {
+            sql.append(" AND created_at = ?");
+        }
 
         try (Connection conn = JDBCUtil.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql.toString())) {
 
@@ -161,7 +166,10 @@ public class commentDAO implements DAOInterface<comment> {
                 pstmt.setInt(index++, searchCriteria.getStudentID());
             }
             if (searchCriteria.getRating() != 0) {
-                pstmt.setInt(index++, searchCriteria.getRating());
+                pstmt.setDouble(index++, searchCriteria.getRating());
+            }
+            if (searchCriteria.getCreatedAt() != null) {
+                pstmt.setTimestamp(index++, Timestamp.valueOf(searchCriteria.getCreatedAt()));
             }
 
             try (ResultSet rs = pstmt.executeQuery()) {
@@ -169,11 +177,12 @@ public class commentDAO implements DAOInterface<comment> {
                     int id = rs.getInt("id");
                     String bookID = rs.getString("bookID");
                     int studentID = rs.getInt("studentID");
-                    int rating = rs.getInt("rating");
+                    double rating = rs.getDouble("rating");
                     String commentText = rs.getString("comment");
                     Timestamp createdAt = rs.getTimestamp("created_at");
-
-                    comment commentObj = new comment(id, bookID, studentID, rating, commentText, createdAt.toLocalDateTime());
+                    int countoflike = rs.getInt("countoflike");
+                    comment commentObj = new comment(studentID, bookID, studentID, rating, commentText, createdAt.toLocalDateTime(), countoflike);
+                    commentObj.setId(id);
                     commentList.add(commentObj);
                 }
             }
@@ -187,7 +196,6 @@ public class commentDAO implements DAOInterface<comment> {
 
     @Override
     public String getStatusbyId(comment comment) {
-        // Thực hiện các thao tác liên quan đến trạng thái (nếu cần)
         return "";
     }
 }
