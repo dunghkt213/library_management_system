@@ -15,8 +15,8 @@ public class bookDAO implements DAOInterface<book> {
     @Override
     public int insert(book book) {
         int result = 0;
-        String sql = "INSERT INTO Books (bookID, bookTitle, bookAuthor, bookPublisher, edition, language, quantity, remainingBooks, categoryName,description,imgUrl,countofborrow,preURL) "
-                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Books (bookID, bookTitle, bookAuthor, bookPublisher, edition, language, quantity, remainingBooks, categoryName, description, imgUrl, countofborrow, preURL, averageRating, countOfRating, totalRating) "
+                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = JDBCUtil.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
@@ -30,10 +30,14 @@ public class bookDAO implements DAOInterface<book> {
             pstmt.setInt(7, book.getQuantity());
             pstmt.setInt(8, book.getRemainingBooks());
             pstmt.setString(9, book.getCategoryName());
-            pstmt.setString(10, book.getDescription());;
-            pstmt.setString(11, book.getImageUrl());;
-            pstmt.setInt(12,book.getCountOfBorrow());
-            pstmt.setString(13,book.getPreviewLink());
+            pstmt.setString(10, book.getDescription());
+            pstmt.setString(11, book.getImageUrl());
+            pstmt.setInt(12, book.getCountOfBorrow());
+            pstmt.setString(13, book.getPreviewLink());
+            pstmt.setDouble(14, book.getAverageRating()); // Cập nhật averageRating
+            pstmt.setInt(15, book.getCountOfRating()); // Cập nhật countOfRating
+            pstmt.setDouble(16, book.getTotalRating()); // Cập nhật totalRating
+
             // Thực thi câu lệnh INSERT
             result = pstmt.executeUpdate();
 
@@ -50,26 +54,29 @@ public class bookDAO implements DAOInterface<book> {
     @Override
     public int update(book book) {
         int result = 0;
-        String sql = "UPDATE books SET bookTitle = ?, bookAuthor = ?, bookPublisher = ?, edition = ?, " +
-                "language = ?, quantity = ?, remainingBooks = ?, availability = ?, " +
-                "categoryName = ?, description = ?, imgUrl = ?, countofborrow = ? WHERE bookID = ?";
+        String sql = "UPDATE books SET bookTitle = ?, bookAuthor = ?, bookPublisher = ?, edition = ?, "
+                + "language = ?, quantity = ?, remainingBooks = ?, availability = ?, "
+                + "categoryName = ?, description = ?, imgUrl = ?, countofborrow = ?, averageRating = ?, countOfRating = ?, totalRating = ? WHERE bookID = ?";
 
-        try (PreparedStatement updateStatement = JDBCUtil.getConnection().prepareStatement(sql)) {
-            updateStatement.setString(1, book.getBookTitle());
-            updateStatement.setString(2, book.getBookAuthor());
-            updateStatement.setString(3, book.getBookPublisher());
-            updateStatement.setString(4, book.getEdition());
-            updateStatement.setString(5, book.getLanguage());
-            updateStatement.setInt(6, book.getQuantity());
-            updateStatement.setInt(7, book.getRemainingBooks());
-            updateStatement.setString(8, book.getAvailability());
-            updateStatement.setString(9, book.getCategoryName());
-            updateStatement.setString(10, book.getDescription());
-            updateStatement.setString(11, book.getImageUrl());
-            updateStatement.setInt(12, book.getCountOfBorrow());
-            updateStatement.setString(13, book.getBookID());
+        try (Connection conn = JDBCUtil.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, book.getBookTitle());
+            pstmt.setString(2, book.getBookAuthor());
+            pstmt.setString(3, book.getBookPublisher());
+            pstmt.setString(4, book.getEdition());
+            pstmt.setString(5, book.getLanguage());
+            pstmt.setInt(6, book.getQuantity());
+            pstmt.setInt(7, book.getRemainingBooks());
+            pstmt.setString(8, book.getAvailability());
+            pstmt.setString(9, book.getCategoryName());
+            pstmt.setString(10, book.getDescription());
+            pstmt.setString(11, book.getImageUrl());
+            pstmt.setInt(12, book.getCountOfBorrow());
+            pstmt.setDouble(13, book.getAverageRating()); // Cập nhật averageRating
+            pstmt.setInt(14, book.getCountOfRating()); // Cập nhật countOfRating
+            pstmt.setDouble(15, book.getTotalRating()); // Cập nhật totalRating
+            pstmt.setString(16, book.getBookID());
 
-            result = updateStatement.executeUpdate();
+            result = pstmt.executeUpdate();
             System.out.println("Số dòng thay đổi: " + result);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -80,24 +87,20 @@ public class bookDAO implements DAOInterface<book> {
 
     @Override
     public int delete(book book) {
-        int KetQua = 0;
+        int result = 0;
         String sql = "DELETE FROM Books WHERE bookID = ?";
 
         try (Connection conn = JDBCUtil.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
-
             pstmt.setString(1, book.getBookID());
-
-            KetQua = pstmt.executeUpdate();
+            result = pstmt.executeUpdate();
 
             System.out.println("Câu lệnh đã được thực thi thành công.");
-            System.out.println("Có " + KetQua + " dòng đã bị xóa.");
-
+            System.out.println("Có " + result + " dòng đã bị xóa.");
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return KetQua;
-
+        return result;
     }
 
     @Override
@@ -124,10 +127,18 @@ public class bookDAO implements DAOInterface<book> {
                 String description = rs.getString("description");
                 String imageURL = rs.getString("imgURL");
                 int countOfBorrow = rs.getInt("countOfBorrow");
-                String prelink = rs.getString("preURL");
+                String previewLink = rs.getString("preURL");
+                double averageRating = rs.getDouble("averageRating");
+                int countOfRating = rs.getInt("countOfRating");
+                double totalRating = rs.getDouble("totalRating"); // Lấy totalRating từ CSDL
+
                 book bookObj = new book(bookID, categoryID, availability, remainingBooks, language, edition, bookAuthor
-                        , bookTitle, bookPublisher, quantity, categoryName,description,imageURL,countOfBorrow);
-                bookObj.setPreviewLink(prelink);
+                        , bookTitle, bookPublisher, quantity, categoryName, description, imageURL, countOfBorrow);
+                bookObj.setPreviewLink(previewLink);
+                bookObj.setAverageRating((float) averageRating); // Cập nhật averageRating
+                bookObj.setCountOfRating(countOfRating); // Cập nhật countOfRating
+                bookObj.setTotalRating(totalRating); // Cập nhật totalRating
+
                 bookList.add(bookObj);
             }
 
@@ -163,8 +174,15 @@ public class bookDAO implements DAOInterface<book> {
                     String description = rs.getString("description");
                     String imageURL = rs.getString("imgUrl");
                     int countofborrow = rs.getInt("countofborrow");
+                    double averageRating = rs.getDouble("averageRating");
+                    int countOfRating = rs.getInt("countOfRating");
+                    double totalRating = rs.getDouble("totalRating"); // Lấy totalRating từ CSDL
+
                     bookObj = new book(bookID, categoryID, availability, remainingBooks, language, edition, bookAuthor, bookTitle
-                            , bookPublisher, quantity, categoryName,description,imageURL,countofborrow);
+                            , bookPublisher, quantity, categoryName, description, imageURL, countofborrow);
+                    bookObj.setAverageRating((float) averageRating); // Cập nhật averageRating
+                    bookObj.setCountOfRating(countOfRating); // Cập nhật countOfRating
+                    bookObj.setTotalRating(totalRating); // Cập nhật totalRating
                 }
             }
 
@@ -178,7 +196,6 @@ public class bookDAO implements DAOInterface<book> {
     @Override
     public ArrayList<book> getByCondition(book searchCriteria) {
         ArrayList<book> bookList = new ArrayList<>();
-
 
         StringBuilder sql = new StringBuilder("SELECT * FROM Books WHERE 1=1");
 
@@ -205,6 +222,7 @@ public class bookDAO implements DAOInterface<book> {
             if (searchCriteria.getBookAuthor() != null && !searchCriteria.getBookAuthor().isEmpty()) {
                 pstmt.setString(index++, "%" + searchCriteria.getBookAuthor() + "%");
             }
+
             try (ResultSet rs = pstmt.executeQuery()) {
                 while (rs.next()) {
                     String bookID = rs.getString("bookID");
@@ -219,9 +237,20 @@ public class bookDAO implements DAOInterface<book> {
                     int categoryID = rs.getInt("categoryID");
                     String categoryName = rs.getString("categoryName");
                     String description = rs.getString("description");
-                    String imageURL = rs.getString("imgUrl");
-                    int countofborrow = rs.getInt("countofborrow");
-                    book bookObj = new book(bookID, categoryID, availability, remainingBooks, language, edition, bookAuthor, bookTitle, bookPublisher, quantity, categoryName,description,imageURL,countofborrow);
+                    String imageURL = rs.getString("imgURL");
+                    int countOfBorrow = rs.getInt("countOfBorrow");
+                    String previewLink = rs.getString("preURL");
+                    double averageRating = rs.getDouble("averageRating");
+                    int countOfRating = rs.getInt("countOfRating");
+                    double totalRating = rs.getDouble("totalRating"); // Lấy totalRating từ CSDL
+
+                    book bookObj = new book(bookID, categoryID, availability, remainingBooks, language, edition, bookAuthor
+                            , bookTitle, bookPublisher, quantity, categoryName, description, imageURL, countOfBorrow);
+                    bookObj.setPreviewLink(previewLink);
+                    bookObj.setAverageRating((float) averageRating);
+                    bookObj.setCountOfRating(countOfRating);
+                    bookObj.setTotalRating(totalRating);
+
                     bookList.add(bookObj);
                 }
             }

@@ -1,25 +1,38 @@
 package viewofbook;
 
+import dao.commentDAO;
 import dao.bookDAO;
 import dao.loanDAO;
+import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Hyperlink;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import model.book;
+import model.comment;
 import model.loan;
 import model.student;
+import org.controlsfx.control.Rating;
+import trendingbook.BookController;
+import trendingbook.cardcontroller;
 import viewbook.viewbookcontroller;
 
 import java.io.IOException;
+import java.net.URL;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ResourceBundle;
 
 public class viewofbookcontroller {
 
@@ -48,15 +61,25 @@ public class viewofbookcontroller {
     private Button borrowButton;
     @FXML
     private Label averageRatingLabel;
-
+    @FXML
+    private VBox Box;
     @FXML
     private Hyperlink prelink;
 
     @FXML
     private Label bookID;
+    @FXML
+    private TextField commentField;
+    @FXML
+    private Button postButton;
+    @FXML
+    private Rating rating;
+    @FXML
+    private Rating bookRating;
 
     @FXML
     public void setBookDetails(book Book) {
+
         if (Book.getImageUrl() != null && !Book.getImageUrl().isEmpty()) {
             if (Book.getImageUrl().startsWith("http") || Book.getImageUrl().startsWith("https")) {
                 bookImageView.setImage(new Image(Book.getImageUrl()));
@@ -75,7 +98,11 @@ public class viewofbookcontroller {
         publisherLabel.setText("Nhà xuất bản: " + Book.getBookPublisher());
         categoryLabel.setText("Thể loại: " + Book.getCategoryName());
         languageLabel.setText("Ngôn ngữ: " + Book.getLanguage());
-
+        if (bookRating != null) {
+            bookRating.setRating((double) Book.getAverageRating());
+        } else {
+            bookRating.setRating(5);
+        }
         if (Book.getPreviewLink() != null && !Book.getPreviewLink().isEmpty()) {
             prelink.setText(Book.getPreviewLink());
             prelink.setOnAction(event -> openLinkInBrowser(Book.getPreviewLink()));
@@ -90,7 +117,45 @@ public class viewofbookcontroller {
                 throw new RuntimeException(e);
             }
         });
+        postButton.setOnAction(event -> {
+            try {
+                handlepostcomment(Book);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
+
         descriptionLabel.setText(Book.getDescription());
+        comment tempcomment = new comment();
+
+        tempcomment.setBookID(Book.getBookID());
+        ArrayList<comment> listcommnet = commentDAO.getInstance().getByCondition(tempcomment);
+        loadBooksAsync(listcommnet);
+
+    }
+    private void loadBooksAsync(List<comment> comments) {
+        Task<Void> task = new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+                for (comment comment : comments) {
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("comment.fxml"));
+                    try {
+                        VBox cardcomment = fxmlLoader.load();
+                        commentcontroller commentcontroller =  fxmlLoader.getController();
+                        commentcontroller.setData(comment);
+
+                        Platform.runLater(() -> {
+                            ((VBox) Box).getChildren().add(cardcomment);
+                        });
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+                return null;
+            }
+        };
+
+        new Thread(task).start();
     }
     private void openLinkInBrowser(String url) {
         if (java.awt.Desktop.isDesktopSupported()) {
@@ -106,7 +171,6 @@ public class viewofbookcontroller {
     protected void handletrendingbook() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/trendingbook/trendingbook.fxml"));
 
-        // Lấy Stage hiện tại và thay đổi Scene
         Stage stage = (Stage) bookImageView.getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setScene(scene);
@@ -114,8 +178,8 @@ public class viewofbookcontroller {
     }
     protected void handleBorrow(book selectedBook) throws IOException {
         student currentStudent = student.getInstance();
-        LocalDate loanDate1 = LocalDate.now(); // Ngày hiện tại
-        LocalDate dueDate1 = loanDate1.plusDays(50); // Ngày trả là 50 ngày sau
+        LocalDate loanDate1 = LocalDate.now();
+        LocalDate dueDate1 = loanDate1.plusDays(50);
 
         loan newLoan = new loan("Active", dueDate1.toString(), loanDate1.toString(), currentStudent.getStudentID(), selectedBook.getBookID());
 
@@ -140,6 +204,56 @@ public class viewofbookcontroller {
     public enum AlertType {
         SUCCESS,
         ERROR
+    }
+
+    protected void handlepostcomment(book book) throws IOException {
+           String commenttext = commentField.getText();
+           if (commenttext.isEmpty()) {
+               showAlert(viewbookcontroller.AlertType.ERROR,"Lỗi","không được để trống nội dung. ");
+               return;
+           }
+        comment newComment = new comment();
+        newComment.setBookID(book.getBookID());
+        newComment.setStudentID(Integer.parseInt(student.getInstance().getStudentID()));
+        double rate = rating.getRating();
+        book.setTotalRating(book.getTotalRating() + rate);
+        book.setCountOfRating(book.getCountOfRating()+1);
+        book.setAverageRating((float) (book.getTotalRating()/book.getCountOfRating()));
+        System.out.println((float) book.getAverageRating() + (float)rate/(book.getCountOfRating()+1));
+        bookDAO.getInstance().update(book);
+        if (bookRating != null) {
+            bookRating.setRating((double) book.getAverageRating());
+        } else {
+            bookRating.setRating(5);
+        }
+        newComment.setRating(rate);
+        newComment.setComment(commenttext);
+        LocalDateTime date = LocalDateTime.now();
+        newComment.setCreatedAt(date);
+        int result = commentDAO.getInstance().insert(newComment);
+        if (result < 0) {
+            showAlert(viewbookcontroller.AlertType.ERROR,"Lỗi","không thể đăng bình luận ");
+        }
+        else {
+            showAlert(viewbookcontroller.AlertType.SUCCESS, "Thành công", "đã đăng bình luận ");
+            commentField.setText("");
+        }
+        comment tempcomment = new comment();
+        tempcomment.setCreatedAt(date);
+        ArrayList<comment> listcommnet = commentDAO.getInstance().getByCondition(tempcomment);
+        System.out.println(listcommnet.size() + "size");
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("comment.fxml"));
+        try {
+            VBox cardcomment = fxmlLoader.load();
+            commentcontroller commentcontroller =  fxmlLoader.getController();
+            commentcontroller.setData(listcommnet.get(0));
+
+            Platform.runLater(() -> {
+                ((VBox) Box).getChildren().add(cardcomment);
+            });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void showAlert(viewbookcontroller.AlertType type, String title, String message) {
