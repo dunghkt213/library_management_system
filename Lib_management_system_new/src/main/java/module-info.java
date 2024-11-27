@@ -20,7 +20,7 @@ module com.example.libarary_management_system {
     requires com.google.api.client.extensions.jetty.auth;
     requires google.api.services.gmail.v1.rev110;
     requires com.google.api.client.json.jackson2;
-    requires mail;
+    requires java.mail;
 
     exports API;
 
