@@ -1,6 +1,5 @@
 package issuebook;
 
-import dao.bookDAO;
 import dao.loanDAO;
 import database.JDBCUtil;
 import javafx.collections.FXCollections;
@@ -11,29 +10,21 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Stage;
-import manage.managebookcontroller;
-import model.book;
-import model.bookloan;
 import model.loan;
 import model.student;
+import model.bookloan;
 
 import java.io.IOException;
 import java.sql.*;
 import java.time.LocalDate;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
 import java.util.ArrayList;
-import java.util.Objects;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class issuebookforstudentcontroller {
-
-    @FXML
-    private TextField textField;
-
     @FXML
     private TableView<bookloan> viewTable;
 
@@ -44,7 +35,7 @@ public class issuebookforstudentcontroller {
     @FXML
     private TableColumn<bookloan, String> colAuthor;
     @FXML
-    private TableColumn<bookloan, Integer> colQuantity;
+    private TableColumn<bookloan, String> colStatus;
     @FXML
     private TableColumn<bookloan, String> colCategory;
     @FXML
@@ -57,7 +48,7 @@ public class issuebookforstudentcontroller {
 
     public ArrayList<bookloan> getAllBookLoan() throws SQLException {
         ArrayList<bookloan> list = new ArrayList<>();
-        String query = "SELECT books.bookID, books.bookTitle, books.bookAuthor, books.quantity, " +
+        String query = "SELECT books.bookID, books.bookTitle, books.bookAuthor, loans.status, " +
                 "books.categoryName, loans.loanDate, loans.dueDate " +
                 "FROM books LEFT JOIN loans ON books.bookID = loans.bookID " +
                 "WHERE loans.studentID = ?";
@@ -70,7 +61,7 @@ public class issuebookforstudentcontroller {
                         resultSet.getString("bookID"),
                         resultSet.getString("bookTitle"),
                         resultSet.getString("bookAuthor"),
-                        resultSet.getInt("quantity"),
+                        resultSet.getString("status"),
                         resultSet.getString("categoryName"),
                         resultSet.getString("loanDate"),
                         resultSet.getString("dueDate")
@@ -91,7 +82,7 @@ public class issuebookforstudentcontroller {
         colID.setCellValueFactory(new PropertyValueFactory<>("bookID"));
         colBookTitle.setCellValueFactory(new PropertyValueFactory<>("bookTitle"));
         colAuthor.setCellValueFactory(new PropertyValueFactory<>("bookAuthor"));
-        colQuantity.setCellValueFactory(new PropertyValueFactory<>("quantity"));
+        colStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
         colCategory.setCellValueFactory(new PropertyValueFactory<>("categoryName"));
         colIssuedDate.setCellValueFactory(new PropertyValueFactory<>("loanDate"));
         colDueDate.setCellValueFactory(new PropertyValueFactory<>("dueDate"));
@@ -100,6 +91,26 @@ public class issuebookforstudentcontroller {
     private void loadBookData() {
         try {
             ArrayList<bookloan> bookloans = getAllBookLoan();
+            Collections.sort(bookloans, new Comparator<bookloan>() {
+                @Override
+                public int compare(bookloan o1, bookloan o2) {
+                    int priority1 = getStatusPriority(o1.getStatus());
+                    int priority2 = getStatusPriority(o2.getStatus());
+                    return Integer.compare(priority1, priority2);
+                }
+                private int getStatusPriority(String status) {
+                    switch (status) {
+                        case "Active":
+                            return 1;
+                        case "Returned":
+                            return 2;
+                        case "OverDue":
+                            return 3;
+                        default:
+                            return 4;
+                    }
+                }
+            });
             observableBookLoan = FXCollections.observableArrayList(bookloans);
             viewTable.setItems(observableBookLoan);
         } catch (Exception e) {
@@ -118,8 +129,34 @@ public class issuebookforstudentcontroller {
 
     @FXML
     protected void handlereturnbook() {
-        String id = textField.getText();
+        bookloan selectedBook = viewTable.getSelectionModel().getSelectedItem();
 
+        if (selectedBook != null) {
+            try {
+                LocalDate loanDate = LocalDate.parse(selectedBook.getLoanDate());
+                LocalDate dueDate = LocalDate.parse(selectedBook.getDueDate());
+                LocalDate currentDate = LocalDate.now();
+                student currentStudent = student.getInstance();
+
+                if (!currentDate.isBefore(loanDate) && !currentDate.isAfter(dueDate)) {
+                    selectedBook.setStatus("Returned");
+                    showAlert("Sách đã được trả đúng hạn.");
+                } else if (currentDate.isAfter(dueDate)) {
+                    long overdueDays = java.time.temporal.ChronoUnit.DAYS.between(dueDate, currentDate);
+                    long fine = overdueDays * 5000; // Tính tiền phạt 5k/ngày
+                    selectedBook.setStatus("OverDue");
+                    showAlert("Bạn đã trả sách muộn " + overdueDays + " ngày. Số tiền phạt của bạn là: " + fine + " VND");
+                }
+
+                loan newLoan = new loan(selectedBook.getStatus(), selectedBook.getDueDate(), selectedBook.getLoanDate(), currentStudent.getStudentID(), selectedBook.getBookID());
+                int result = loanDAO.getInstance().update(newLoan);
+                loadBookData();
+                System.out.println("Có " + result + " thay đổi trả sách");
+            } catch (Exception e) {
+                LOGGER.log(Level.SEVERE, "Error processing return book", e);
+                showAlert("Error processing book return. Please try again.");
+            }
+        }
     }
 
     @FXML
@@ -205,5 +242,4 @@ public class issuebookforstudentcontroller {
         stage.setTitle("Dashboard");
         stage.show();
     }
-
 }

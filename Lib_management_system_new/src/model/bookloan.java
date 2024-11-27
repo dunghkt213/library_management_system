@@ -4,16 +4,16 @@ public class bookloan {
     private String bookID;
     private String bookTitle;
     private String bookAuthor;
-    private int quantity;
+    private String status;
     private String categoryName;
     private String loanDate;
     private String dueDate;
 
-    public bookloan(String bookID, String bookTitle, String bookAuthor, int quantity, String categoryName, String loanDate, String dueDate) {
+    public bookloan(String bookID, String bookTitle, String bookAuthor, String status, String categoryName, String loanDate, String dueDate) {
         this.bookID = bookID;
         this.bookTitle = bookTitle;
         this.bookAuthor = bookAuthor;
-        this.quantity = quantity;
+        this.status = status;
         this.categoryName = categoryName;
         this.loanDate = loanDate;
         this.dueDate = dueDate;
@@ -29,10 +29,6 @@ public class bookloan {
 
     public String getBookAuthor() {
         return bookAuthor;
-    }
-
-    public int getQuantity() {
-        return quantity;
     }
 
     public String getCategoryName() {
@@ -59,10 +55,6 @@ public class bookloan {
         this.bookAuthor = bookAuthor;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
     public void setCategoryName(String categoryName) {
         this.categoryName = categoryName;
     }
@@ -73,5 +65,13 @@ public class bookloan {
 
     public void setDueDate(String dueDate) {
         this.dueDate = dueDate;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }
