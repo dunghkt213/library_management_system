@@ -2,13 +2,16 @@
 
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import org.controlsfx.control.Rating?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="330.0" prefWidth="180.0" style="-fx-background-radius: 10;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="trendingbook.BookController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="343.0" prefWidth="180.0" style="-fx-background-radius: 10;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="trendingbook.BookController">
    <children>
       <ImageView fx:id="bookImage" fitHeight="219.0" fitWidth="160.0" pickOnBounds="true" preserveRatio="true">
          <VBox.margin>
@@ -17,7 +20,7 @@
          <image>
             <Image url="@C%23.jpg" />
          </image></ImageView>
-      <Label fx:id="bookName" prefHeight="270.0" prefWidth="277.0" text="C# Programming">
+      <Label fx:id="bookName" prefHeight="61.0" prefWidth="170.0" text="C# Programming">
          <font>
             <Font name="Berlin Sans FB Bold" size="18.0" />
          </font>
@@ -30,17 +33,20 @@
             <Font name="Berlin Sans FB" size="14.0" />
          </font>
          <VBox.margin>
-            <Insets left="10.0" top="-7.0" />
+            <Insets bottom="6.0" left="10.0" top="-7.0" />
          </VBox.margin>
       </Label>
-      <ImageView fitHeight="26.0" fitWidth="168.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@fivestars.png" />
-         </image>
+      <Rating prefHeight="0.0" prefWidth="176.0" rating="5.0">
          <VBox.margin>
-            <Insets left="5.0" />
+            <Insets bottom="6.0" left="2.0" />
          </VBox.margin>
-      </ImageView>
+         <effect>
+            <ColorAdjust brightness="-0.02" contrast="0.8" />
+         </effect>
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+      </Rating>
    </children>
    <styleClass>
       <String fx:value="shadow" />

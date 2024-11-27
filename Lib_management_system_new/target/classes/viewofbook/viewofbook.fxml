@@ -8,12 +8,15 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
+<?import org.controlsfx.control.Rating?>
 
 <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" styleClass="textgradient" stylesheets="@style.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewofbook.viewofbookcontroller">
    <children>
@@ -51,6 +54,14 @@
                               <Font name="Berlin Sans FB Demi Bold" size="33.0" />
                            </font>
                         </Label>
+                        <Rating fx:id="bookRating" partialRating="true" rating="5.0">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                           <padding>
+                              <Insets bottom="19.0" left="322.0" />
+                           </padding>
+                        </Rating>
                         <VBox alignment="TOP_CENTER" prefHeight="1073.0" prefWidth="816.0" spacing="20">
                            <children>
                               <ImageView fx:id="bookImageView" fitHeight="388.0" fitWidth="324.0" pickOnBounds="true" preserveRatio="true">
@@ -91,6 +102,18 @@
                                     <Insets left="50.0" />
                                  </VBox.margin>
                               </VBox>
+                              <Rating fx:id="rating" partialRating="true" rating="5.0">
+                                 <VBox.margin>
+                                    <Insets bottom="-30.0" left="-30.0" />
+                                 </VBox.margin>
+                                 <effect>
+                                    <DropShadow>
+                                       <color>
+                                          <Color red="1.0" green="1.0" blue="1.0" />
+                                       </color>
+                                    </DropShadow>
+                                 </effect>
+                              </Rating>
                               <HBox alignment="CENTER" prefHeight="98.0" prefWidth="816.0" spacing="10.0">
                                  <children>
                                     <TextField fx:id="commentField" prefHeight="58.0" prefWidth="439.0" promptText="What'on your mind ?" styleClass="text_field" stylesheets="@../post/style.css">
