@@ -17,16 +17,30 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
+import java.util.logging.Logger;
 
 public class GoogleBooksService {
+    private static final Logger logger = Logger.getLogger(GoogleBooksService.class.getName());
+
     private static final String API_KEY = "AIzaSyAgPQrYLC2kJzbT4Lh9PpUxUWgkpzlxrHw";
 
     private static String encodeValue(String value) {
         return URLEncoder.encode(value, StandardCharsets.UTF_8);
     }
 
-    public static CompletableFuture<ArrayList<book>> searchBooksAsync(String searchOption, String query, int pageNumber, int pageSize) {
-        return CompletableFuture.supplyAsync(() -> searchBooks(searchOption, query, pageNumber, pageSize));
+    public static CompletableFuture<Void> searchAndProcessBooksByItem(
+            String searchOption, String query, int pageNumber, int pageSize, int maxBooks, java.util.function.Consumer<book> onBookReceived) {
+
+        return CompletableFuture.supplyAsync(() -> searchBooks(searchOption, query, pageNumber, pageSize))
+                .thenApply(books -> {
+                    int count = 0;
+                    for (book b : books) {
+                        if (count >= maxBooks) break; // Dừng khi đã nhận đủ sách
+                        onBookReceived.accept(b); // Xử lý từng cuốn sách
+                        count++;
+                    }
+                    return null;
+                });
     }
 
     public static ArrayList<book> searchBooks(String searchOption, String query, int pageNumber, int pageSize) {

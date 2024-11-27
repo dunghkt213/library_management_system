@@ -16,10 +16,16 @@ module com.example.libarary_management_system {
     requires com.google.api.client.extensions.jetty.auth;
     requires google.api.services.gmail.v1.rev110;
     requires com.google.api.client.json.jackson2;
+<<<<<<< HEAD
+    requires mail;
+    requires com.google.zxing;
+    requires com.google.zxing.javase;
+=======
     requires java.mail;
     requires org.controlsfx.controls;
     requires java.desktop;
     requires java.net.http;
+>>>>>>> 290c4e570f84498a1017e5ed85bb7c9fe63e7d7e
 
     exports API;
 

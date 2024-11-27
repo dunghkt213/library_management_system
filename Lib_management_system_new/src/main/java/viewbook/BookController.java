@@ -41,9 +41,9 @@ public class BookController {
                 booksCache.putBooks(searchOption + ":" + keyword, pageNumber, pageSize, books);
 
                 // Prefetch next page for better user experience
-                if (books.size() == pageSize) {
+                /*if (books.size() == pageSize) {
                     prefetchNextPage(searchOption, keyword, pageNumber + 1, pageSize);
-                }
+                }*/
             }
         } catch (Exception ex) {
             logger.log(Level.SEVERE, "Error searching books: ", ex);
@@ -51,23 +51,18 @@ public class BookController {
         return books;
     }
 
-    private void prefetchNextPage(String searchOption, String keyword, int nextPageNumber, int pageSize) {
-        CompletableFuture.runAsync(() -> {
+    public void searchBooksAndUpdateUI(String searchOption, String keyword, int pageNumber, int pageSize, java.util.function.Consumer<book> updateUI) {
+        executorService.submit(() -> {
             try {
-                GoogleBooksService.searchBooksAsync(searchOption, keyword, nextPageNumber, pageSize)
-                        .thenAccept(nextBooks -> {
-                            if (nextBooks != null && !nextBooks.isEmpty()) {
-                                booksCache.putBooks(searchOption + ":" + keyword, nextPageNumber, pageSize, nextBooks);
-                            }
-                        })
+                GoogleBooksService.searchAndProcessBooksByItem(searchOption, keyword, pageNumber, pageSize, pageSize, updateUI)
                         .exceptionally(ex -> {
-                            logger.log(Level.SEVERE, "Error prefetching next page: ", ex);
+                            logger.log(Level.SEVERE, "Error in searchBooksAndUpdateUI: ", ex);
                             return null;
                         });
             } catch (Exception ex) {
-                logger.log(Level.SEVERE, "Exception in prefetching next page: ", ex);
+                logger.log(Level.SEVERE, "Exception in searchBooksAndUpdateUI: ", ex);
             }
-        }, executorService);
+        });
     }
 
     public void shutdown() {
