@@ -10,7 +10,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import model.book;
-<<<<<<< HEAD
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.WriterException;
 import com.google.zxing.client.j2se.MatrixToImageWriter;
@@ -21,9 +20,6 @@ import javafx.scene.image.Image;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-=======
-import org.controlsfx.control.Rating;
->>>>>>> 290c4e570f84498a1017e5ed85bb7c9fe63e7d7e
 
 import java.io.IOException;
 
@@ -50,11 +46,7 @@ public class viewofbookcontroller {
     @FXML
     private Label bookID;
     @FXML
-<<<<<<< HEAD
     private ImageView qrCodeImageView;
-=======
-    private Rating rating;
->>>>>>> 290c4e570f84498a1017e5ed85bb7c9fe63e7d7e
 
     public void setBookDetails(book Book) {
         if (Book.getImageUrl() != null && !Book.getImageUrl().isEmpty()) {
