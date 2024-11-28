@@ -51,6 +51,15 @@ public class issuebookforstudentcontroller {
     private Button playGame;
 
     @FXML
+    private void handleAskAI() throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/chatbot/chatBot.fxml"));
+        Stage stage = (Stage) playGame.getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
     private void handleIntroGame() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/game/introGame.fxml"));
         Stage stage = (Stage) playGame.getScene().getWindow();
