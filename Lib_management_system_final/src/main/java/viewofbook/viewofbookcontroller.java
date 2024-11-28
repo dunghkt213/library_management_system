@@ -214,6 +214,7 @@ public class viewofbookcontroller {
            }
         comment newComment = new comment();
         newComment.setBookID(book.getBookID());
+        System.out.println(student.getInstance().getStudentID() + "IDSTUDENTS");
         newComment.setStudentID(Integer.parseInt(student.getInstance().getStudentID()));
         double rate = rating.getRating();
         book.setTotalRating(book.getTotalRating() + rate);
@@ -237,23 +238,25 @@ public class viewofbookcontroller {
         else {
             showAlert(viewbookcontroller.AlertType.SUCCESS, "Thành công", "đã đăng bình luận ");
             commentField.setText("");
-        }
-        comment tempcomment = new comment();
-        tempcomment.setCreatedAt(date);
-        ArrayList<comment> listcommnet = commentDAO.getInstance().getByCondition(tempcomment);
-        System.out.println(listcommnet.size() + "size");
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("comment.fxml"));
-        try {
-            VBox cardcomment = fxmlLoader.load();
-            commentcontroller commentcontroller =  fxmlLoader.getController();
-            commentcontroller.setData(listcommnet.get(0));
+            comment tempcomment = new comment();
+            tempcomment.setCreatedAt(date);
+            tempcomment.toString();
+            ArrayList<comment> listcommnet = commentDAO.getInstance().getByCondition(tempcomment);
+            System.out.println(listcommnet.size() + "size");
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("comment.fxml"));
+            try {
+                VBox cardcomment = fxmlLoader.load();
+                commentcontroller commentcontroller =  fxmlLoader.getController();
+                commentcontroller.setData(listcommnet.get(0));
 
-            Platform.runLater(() -> {
-                ((VBox) Box).getChildren().add(cardcomment);
-            });
-        } catch (IOException e) {
-            e.printStackTrace();
+                Platform.runLater(() -> {
+                    ((VBox) Box).getChildren().add(cardcomment);
+                });
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
+
     }
 
     private void showAlert(viewbookcontroller.AlertType type, String title, String message) {

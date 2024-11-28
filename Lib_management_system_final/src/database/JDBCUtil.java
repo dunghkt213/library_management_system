@@ -12,7 +12,7 @@ public class JDBCUtil {
 
             com.mysql.jdbc.Driver driver = new com.mysql.jdbc.Driver();
             DriverManager.registerDriver(driver);
-            String url = "jdbc:mysql://localhost:3306/lib";
+            String url = "jdbc:mysql://localhost:3306/libb";
             String username = "root";
             String password = "";
             c=DriverManager.getConnection(url, username, password);

@@ -49,6 +49,8 @@ public class signupcontroller {
         System.out.println("Email: " + email);
         System.out.println("Contact: " + contact);
         System.out.println("studentID: " + studentID);
+        student.getInstance().setStudentID(studentID);
+        student.getInstance().setPassword(password);
         student student = new student(studentID, username, password, email, contact,"");
         studentDAO.getInstance().insert(student);
         try {

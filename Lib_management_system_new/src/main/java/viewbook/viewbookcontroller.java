@@ -236,6 +236,9 @@ public class viewbookcontroller {
 
             int result2 = bookDAO.getInstance().insert(selectedBook);
 
+            if (result2 <= 0) {
+                showAlert(AlertType.ERROR, "Lỗi", "Sách đã có trong thư viện bạn hãy mượn chúng ở mục Books.");
+            }
 
             LocalDate loanDate1 = LocalDate.now(); // Ngày hiện tại
             LocalDate dueDate1 = loanDate1.plusDays(50); // Ngày trả là 50 ngày sau
@@ -251,13 +254,7 @@ public class viewbookcontroller {
             }
 
             if (result > 0) {
-                if (result2 <= 0) {
-                    book book = bookDAO.getInstance().getById(selectedBook);
-                    book.setCountOfBorrow(book.getCountOfBorrow() + 1);
-                    book.setQuantity(book.getQuantity() - 1);
-                    bookDAO.getInstance().update(book);
-                    showAlert(AlertType.SUCCESS, "Thành công", "đã mượn thành công.");
-                }
+                showAlert(AlertType.SUCCESS, "Thành công","Sách đã được mượn thành công.");
             } else {
                 showAlert(AlertType.ERROR, "Lỗi", "Bạn không thể mượn cuốn sách này.");
             }
