@@ -211,7 +211,7 @@
                         <Font name="System Bold" size="12.0" />
                     </font>
                 </Label>
-                <ImageView fitHeight="47.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fx:id="ImageView" fitHeight="47.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@../admindashboard/user.png" />
                     </image>
@@ -354,7 +354,7 @@
                 </Label>
             </children>
         </VBox>
-        <TableView fx:id="bookTableView" layoutX="575.0" layoutY="155.0" prefHeight="530.0" prefWidth="674.0" style="-fx-background-radius: 20;" stylesheets="@../admindashboard/admindashboard.css">
+        <TableView fx:id="bookTableView" layoutX="575.0" layoutY="155.0" prefHeight="530.0" prefWidth="621.0" style="-fx-background-radius: 20;" stylesheets="@../admindashboard/admindashboard.css">
             <columns>
                 <TableColumn fx:id="colBookID" prefWidth="114.39996337890625" text="ID" />
                 <TableColumn fx:id="colBookTitle" prefWidth="348.0" text="Book Title" />

@@ -3,6 +3,7 @@ package forgetpassword;
 import dao.studentDAO;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -42,22 +43,57 @@ public class forgetpasswordController {
 
     @FXML
     public void sendOtp() {
+        // Vô hiệu hóa nút Get OTP
         getOtpButton.setDisable(true);
+
+        // Khởi động bộ đếm thời gian
         startCountdown();
+
+        // Tạo một đối tượng Student mới và lấy thông tin email từ cơ sở dữ liệu
         student newstudent = new student();
         newstudent.setStudentID(studentIDField.getText());
         student student = studentDAO.getInstance().getById(newstudent);
         String email = student.getEmail();
+
+        // Tạo OTP ngẫu nhiên
         Random random = new Random();
-
-
         int randomNumber = 100000 + random.nextInt(900000);
+
+        // Lưu OTP vào đối tượng forgetpassword
         forgetpassword.getinstance().setOtp(String.valueOf(randomNumber));
-        SimpleMailer.sendEmail(email,"OTP Reset Password", "OTP của bạn là: " + String.valueOf(randomNumber));
 
+        // Tạo và thực thi tác vụ gửi email trong một luồng phụ
+        Task<Void> sendOtpTask = new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+                // Gửi OTP qua email
+                SimpleMailer.sendEmail(email, "OTP Reset Password", "OTP của bạn là: " + randomNumber);
+                return null;
+            }
 
-        startCountdown();
+            @Override
+            protected void succeeded() {
+                super.succeeded();
+                // Khi gửi email thành công, kích hoạt lại nút Get OTP nếu cần
+                showAlert(viewbookcontroller.AlertType.SUCCESS, "Thành công", "OTP đã được gửi đến email của bạn.");
+            }
+
+            @Override
+            protected void failed() {
+                super.failed();
+                // Nếu có lỗi trong quá trình gửi email, hiển thị thông báo lỗi
+                showAlert(viewbookcontroller.AlertType.ERROR, "Lỗi", "Không thể gửi OTP. Vui lòng thử lại.");
+                // Kích hoạt lại nút Get OTP
+                getOtpButton.setDisable(false);
+            }
+        };
+
+        // Bắt đầu tác vụ trong một luồng riêng
+        Thread sendOtpThread = new Thread(sendOtpTask);
+        sendOtpThread.setDaemon(true);  // Đảm bảo rằng luồng này không gây rối khi ứng dụng đóng
+        sendOtpThread.start();
     }
+
     @FXML
     protected void handleConfirm() throws IOException {
 
@@ -102,7 +138,7 @@ public class forgetpasswordController {
 
         if (seconds == 0) {
             getOtpButton.setDisable(false);
-            timerText.setText("00:30");
+            timerText.setText("");
             seconds = 60;
         }
     }

@@ -16,7 +16,7 @@ public class bookDAO implements DAOInterface<book> {
     public int insert(book book) {
         int result = 0;
         String sql = "INSERT INTO Books (bookID, bookTitle, bookAuthor, bookPublisher, edition, language, quantity, remainingBooks, categoryName, description, imgUrl, countofborrow, preURL, averageRating, countOfRating, totalRating) "
-                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = JDBCUtil.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
 

@@ -182,6 +182,24 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
+            <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handleGame" prefHeight="50.0" prefWidth="250.0" styleClass="button-left" stylesheets="@../admindashboard/admindashboard.css" text="GAME" textFill="WHITE">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../chatbot/ai.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="10.0" top="10.0" />
+               </padding>
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
             <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handlelogout" prefHeight="50.0" prefWidth="250.0" styleClass="button-left" stylesheets="@../admindashboard/admindashboard.css" text="Log Out" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
@@ -228,7 +246,7 @@
                   <URL value="@../viewofbook/style.css" />
                </stylesheets>
             </Label>
-            <ImageView fitHeight="47.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="avatar" fitHeight="47.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../admindashboard/user.png" />
                </image>
@@ -236,7 +254,7 @@
                   <Insets left="700.0" />
                </HBox.margin>
             </ImageView>
-            <Label prefHeight="38.0" prefWidth="139.0" text="Welcome Student" textFill="#a36361">
+            <Label prefHeight="38.0" prefWidth="139.0" text="Welcome" textFill="#a36361">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>

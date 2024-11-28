@@ -5,9 +5,11 @@
       <root url="jar://$PROJECT_DIR$/src/lib_JDBC/mysql-connector-java-8.0.28.jar!/" />
       <root url="jar://$PROJECT_DIR$/src/lib_JDBC/protobuf-java-3.11.4.jar!/" />
       <root url="file://$PROJECT_DIR$/src/lib_JDBC" />
+      <root url="file://$PROJECT_DIR$/src/lib_JDBC" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
+    <jarDirectory url="file://$PROJECT_DIR$/src/lib_JDBC" recursive="false" />
     <jarDirectory url="file://$PROJECT_DIR$/src/lib_JDBC" recursive="false" />
   </library>
 </component>

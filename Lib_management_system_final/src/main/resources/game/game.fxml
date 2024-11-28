@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
@@ -11,15 +13,30 @@
 
 <AnchorPane prefHeight="660.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.gameController">
    <children>
+      <Button fx:id="QuitDashboard" layoutX="22.0" layoutY="18.0" mnemonicParsing="false" onAction="#handleQuitGameButton1" prefHeight="36.0" prefWidth="82.0" style="-fx-background-radius: 30;" stylesheets="@../issuebook/issuebook.css" text="Exit">
+         <styleClass>
+            <String fx:value="button-background" />
+            <String fx:value="button-border" />
+         </styleClass>
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="19.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@exit.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
       <Label fx:id="question" alignment="CENTER" layoutX="282.0" layoutY="89.0" prefHeight="76.0" prefWidth="681.0" text="1" textAlignment="CENTER">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <HBox layoutX="673.0" layoutY="259.0" prefHeight="100.0" prefWidth="74.0" />
       <HBox alignment="CENTER" layoutX="179.0" layoutY="330.0" prefHeight="181.0" prefWidth="886.0">
          <children>
-            <Button fx:id="option1" mnemonicParsing="false" onAction="#handleOption1" prefHeight="100.0" prefWidth="300.0">
+            <Button fx:id="option1" mnemonicParsing="false" onAction="#handleOption1" prefHeight="100.0" prefWidth="300.0" stylesheets="@game.css" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -33,7 +50,7 @@
                   <Insets right="20.0" />
                </padding>
             </Button>
-            <Button fx:id="option2" mnemonicParsing="false" onAction="#handleOption2" prefHeight="100.0" prefWidth="300.0">
+            <Button fx:id="option2" mnemonicParsing="false" onAction="#handleOption2" prefHeight="100.0" prefWidth="300.0" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -51,7 +68,7 @@
       </HBox>
       <HBox alignment="CENTER" layoutX="283.0" layoutY="497.0">
          <children>
-            <Button fx:id="option3" mnemonicParsing="false" onAction="#handleOption3" prefHeight="100.0" prefWidth="300.0">
+            <Button fx:id="option3" mnemonicParsing="false" onAction="#handleOption3" prefHeight="100.0" prefWidth="300.0" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -65,7 +82,7 @@
                   <Insets right="20.0" />
                </padding>
             </Button>
-            <Button fx:id="option4" mnemonicParsing="false" onAction="#handleOption4" prefHeight="100.0" prefWidth="300.0">
+            <Button fx:id="option4" mnemonicParsing="false" onAction="#handleOption4" prefHeight="100.0" prefWidth="300.0" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -79,10 +96,10 @@
          </children>
       </HBox>
       <ImageView fx:id="image" fitHeight="150.0" fitWidth="168.0" layoutX="539.0" layoutY="165.0" pickOnBounds="true" preserveRatio="true" />
-      <AnchorPane layoutX="852.0" layoutY="265.0">
+      <AnchorPane layoutX="853.0" layoutY="248.0" prefHeight="100.0" prefWidth="136.0">
          <children>
-            <ImageView fx:id="getScore" fitHeight="100.0" fitWidth="112.0" pickOnBounds="true" preserveRatio="true" />
-            <Label fx:id="score" layoutX="25.0" layoutY="25.0" prefHeight="50.0" prefWidth="61.0">
+            <ImageView fx:id="getScore" fitHeight="93.0" fitWidth="92.0" layoutX="44.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="score" layoutX="17.0" layoutY="25.0" prefHeight="50.0" prefWidth="102.0" text="1">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
@@ -90,5 +107,27 @@
          </children>
       </AnchorPane>
       <ImageView fx:id="Timer" fitHeight="111.0" fitWidth="112.0" layoutX="50.0" layoutY="242.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="QuitGameButton" layoutX="498.0" layoutY="312.0" mnemonicParsing="false" onAction="#handleQuitGameButton" prefHeight="36.0" prefWidth="112.0" style="-fx-background-radius: 30;" stylesheets="@../issuebook/issuebook.css" text="Rank">
+         <styleClass>
+            <String fx:value="button-background" />
+            <String fx:value="button-border" />
+         </styleClass>
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+      <Button fx:id="PlayAgainGameButton" layoutX="636.0" layoutY="312.0" mnemonicParsing="false" onAction="#handlePlayAgainButton" prefHeight="36.0" prefWidth="112.0" style="-fx-background-radius: 30;" stylesheets="@../issuebook/issuebook.css" text="Play again">
+         <styleClass>
+            <String fx:value="button-background" />
+            <String fx:value="button-border" />
+         </styleClass>
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+      <Button fx:id="MusicOnOff" layoutX="1084.0" layoutY="5.0" mnemonicParsing="false" onAction="#musicOnOff" prefHeight="62.0" prefWidth="74.0" style="-fx-background-color: transperant;">
+         <graphic>
+            <ImageView fx:id="musicMuteOrPlay" fitHeight="47.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true" />
+         </graphic>
+      </Button>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="714.0" layoutY="90.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>

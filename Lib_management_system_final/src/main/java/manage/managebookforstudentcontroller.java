@@ -2,6 +2,7 @@ package manage;
 
 import dao.bookDAO;
 import dao.loanDAO;
+import database.ImageStorage;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -14,6 +15,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.util.converter.IntegerStringConverter;
 import model.book;
@@ -45,7 +47,8 @@ public class managebookforstudentcontroller {
     private TableColumn<book, String> colBookTitle;
     @FXML
     private TableColumn<book, String> colBookAuthor;
-
+    @FXML
+    private ImageView ImageView;
     private ObservableList<book> observableBooks;
     private ObservableList<book> observableSearchResults;
     private static final Logger LOGGER = Logger.getLogger(managebookcontroller.class.getName());
@@ -53,6 +56,7 @@ public class managebookforstudentcontroller {
     public void initialize() {
         setupTableColumns();
         loadBookData();
+        ImageStorage.loadStudentImage(student.getInstance().getStudentID(),ImageView);
     }
 
     private void setupTableColumns() {
