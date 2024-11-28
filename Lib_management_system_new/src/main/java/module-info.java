@@ -23,6 +23,7 @@ module com.example.libarary_management_system {
     requires com.google.zxing;
     requires com.google.zxing.javase;
     requires java.desktop;
+    requires javafx.media;
 
     exports API;
 
