@@ -1,4 +1,5 @@
 package trendingbook;
+import database.ImageStorage;
 import javafx.application.Platform;
 
 import dao.bookDAO;
@@ -9,13 +10,16 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import model.TrendingBooks;
 import model.book;
+import model.student;
 import viewofbook.viewofbookcontroller;
 
 import javax.smartcardio.Card;
@@ -34,6 +38,33 @@ public class studenttrendingbookcontroller implements Initializable {
 
     private List<book> recentlyAddedd;
     private List<book> Recommend;
+
+    @FXML
+    private ImageView avatar;
+
+    @FXML
+    private Button playGame;
+
+    @FXML
+    private Button AksAI;
+
+    @FXML
+    private void handleAskAI() throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/chatbot/chatBot.fxml"));
+        Stage stage = (Stage) AksAI.getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    private void handleIntroGame() throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/game/introGame.fxml"));
+        Stage stage = (Stage) playGame.getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
 
     @FXML
     protected void handletrendingbook() throws IOException {
@@ -130,6 +161,7 @@ public class studenttrendingbookcontroller implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        ImageStorage.loadStudentImage(student.getInstance().getStudentID(),avatar);
         ArrayList<book> listbook = bookDAO.getInstance().getAll();
         recentlyAddedd = TrendingBooks.getTopTrendingBooks(listbook,Math.min(listbook.size(),5));
         Recommend = new ArrayList<>(books());
@@ -210,74 +242,10 @@ public class studenttrendingbookcontroller implements Initializable {
 
     private List<book> books(){
         List<book> ls = new ArrayList<book>();
-        book Book = new book();
-/*        Book.setBookID("9780307887917");
-        book Book2 = bookDAO.getInstance().getById(Book);
-        Book2.printinfo();
-        ls.add(Book2);*/
-
-        Book = new book();
-        Book.setBookTitle("TOOLS OF TITANS");
-        Book.setBookAuthor("TIM FERRISS");
-        Book.setImageUrl("/trendingbook/theToolOfTitan.jpg");
-        ls.add(Book);
-
-        Book = new book();
-        Book.setBookTitle("The WARREN \n BUFFET  WAY");
-        Book.setBookAuthor("ROBERT G.HAGSTROM");
-        Book.setImageUrl("/trendingbook/theWarrenBuffetWay.jpg");
-        ls.add(Book);
-
-        Book = new book();
-        Book.setBookTitle("Kí Sự Code Dạo");
-        Book.setBookAuthor("Phạm Huy Hoàng");
-        Book.setImageUrl("/trendingbook/CodeDaoKiSu.jpg");
-        ls.add(Book);
-
-
-        Book = new book();
-        Book.setBookTitle("Rich Dad\nPoor Dad");
-        Book.setBookAuthor("RoBert T.Kiosaki");
-        Book.setImageUrl("/trendingbook/richDadPoorDad.jpg");
-        ls.add(Book);
-
-        Book = new book();
-        Book.setBookTitle("Harry Potter and \n" +
-                "the Sorcerer*s Stone");
-        Book.setBookAuthor("J. K. Rowling");
-        Book.setImageUrl("/trendingbook/Harry-Potter-va-Hon-da-Phu-thuy.jpg");
-        if (Book.getImageUrl() != null) {
-            Image image = new Image(getClass().getResourceAsStream(Book.getImageUrl()));
-            if (image.isError()) {
-                System.out.println("Lỗi khi tải hình ảnh: " + Book.getImageUrl());
-            } else {
-                // Đặt hình ảnh vào ImageView của card
-            }
+        List<book> lsbook = bookDAO.getInstance().getAll();
+        for(int i= 0 ; i<Math.min(10,lsbook.size());i++){
+            ls.add(lsbook.get(i));
         }
-        ls.add(Book);
-        Book = new book();
-        Book.setBookTitle("Nhà Giả Kim");
-        Book.setBookAuthor("Paulo");
-        Book.setImageUrl("/trendingbook/nhagiakim.jpg");
-        ls.add(Book);
-
-        Book = new book();
-        Book.setBookTitle("C#");
-        Book.setBookAuthor("Rob Miles");
-        Book.setImageUrl("/trendingbook/C.jpg");
-        ls.add(Book);
-
-        Book = new book();
-        Book.setBookTitle("The Pragmatic \n Programmer");
-        Book.setBookAuthor("David Thomas");
-        Book.setImageUrl("/trendingbook/ThePragmaticProgrammer.jpg");
-        ls.add(Book);
-
-        Book = new book();
-        Book.setBookTitle("Những tấm lòng \n cao cả");
-        Book.setBookAuthor("EDMONDO DE AMICIS");
-        Book.setImageUrl("/trendingbook/nhungTamLongCaoCa.jpg");
-        ls.add(Book);
         return ls;
     }
 }

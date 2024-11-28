@@ -1,6 +1,7 @@
 package issuebook;
 
 import dao.loanDAO;
+import database.ImageStorage;
 import database.JDBCUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -10,6 +11,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import model.loan;
 import model.student;
@@ -42,6 +44,29 @@ public class issuebookforstudentcontroller {
     private TableColumn<bookloan, String> colIssuedDate;
     @FXML
     private TableColumn<bookloan, String> colDueDate;
+    @FXML
+    private ImageView avatar;
+
+    @FXML
+    private Button playGame;
+
+    @FXML
+    private void handleAskAI() throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/chatbot/chatBot.fxml"));
+        Stage stage = (Stage) playGame.getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    private void handleIntroGame() throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/game/introGame.fxml"));
+        Stage stage = (Stage) playGame.getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
 
     private ObservableList<bookloan> observableBookLoan = FXCollections.observableArrayList();
     private static final Logger LOGGER = Logger.getLogger(issuebookforstudentcontroller.class.getName());
@@ -76,6 +101,7 @@ public class issuebookforstudentcontroller {
     public void initialize() {
         setupTableColumns();
         loadBookData();
+        ImageStorage.loadStudentImage(student.getInstance().getStudentID(), avatar);
     }
 
     private void setupTableColumns() {

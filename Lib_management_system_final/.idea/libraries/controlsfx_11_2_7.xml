@@ -2,6 +2,8 @@
   <library name="controlsfx-11.2.7">
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/src/lib_JDBC/controlsfx-11.2.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/lib_JDBC/mysql-connector-java-8.0.28.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/lib_JDBC/protobuf-java-3.11.4.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

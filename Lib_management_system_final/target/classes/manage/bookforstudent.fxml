@@ -40,28 +40,7 @@
                         <Cursor fx:constant="HAND" />
                     </cursor>
                 </Button>
-                <Button alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" styleClass="button-left" stylesheets="@../admindashboard/admindashboard.css" text="LMS Dashboard" textFill="WHITE">
-                    <graphic>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../admindashboard/menu.png" />
-                            </image>
-                        </ImageView>
-                    </graphic>
-                    <VBox.margin>
-                        <Insets />
-                    </VBox.margin>
-                    <padding>
-                        <Insets left="10.0" top="10.0" />
-                    </padding>
-                    <font>
-                        <Font name="System Bold" size="13.0" />
-                    </font>
-                    <cursor>
-                        <Cursor fx:constant="HAND" />
-                    </cursor>
-                </Button>
-            <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handlemanagebook" prefHeight="50.0" prefWidth="250.0" styleClass="button-left" stylesheets="@../admindashboard/admindashboard.css" text="Books" textFill="WHITE">
+            <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handlemanagebook" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: #ffa07a;" styleClass="button-left" stylesheets="@../admindashboard/admindashboard.css" text="Books" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -97,7 +76,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handlemanagestudent" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: #ffa07a;" styleClass="button-left" stylesheets="@../admindashboard/admindashboard.css" text="Student Info" textFill="WHITE">
+            <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handlemanagestudent" prefHeight="50.0" prefWidth="250.0" style="-fx-background-image: #ffa07a;" styleClass="button-left" stylesheets="@../admindashboard/admindashboard.css" text="Student Info" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -133,11 +112,11 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handleviewissuedbook" prefHeight="50.0" prefWidth="250.0" styleClass="button-left" stylesheets="@../admindashboard/admindashboard.css" text="Issued Book" textFill="WHITE">
+            <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handleviewissuedbook" prefHeight="50.0" prefWidth="250.0" styleClass="button-left" stylesheets="@../admindashboard/admindashboard.css" text="Ask AI " textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../admindashboard/warning.png" />
+                        <Image url="@../chatbot/ai.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -151,11 +130,11 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handleviewissuedbook" prefHeight="50.0" prefWidth="250.0" styleClass="button-left" stylesheets="@../admindashboard/admindashboard.css" text="Ask AI " textFill="WHITE">
+            <Button fx:id="playGame" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handleIntroGame" prefHeight="50.0" prefWidth="250.0" styleClass="button-left" stylesheets="@../admindashboard/admindashboard.css" text="GAME" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../chatbot/ai.png" />
+                        <Image url="@../trendingbook/game.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -211,7 +190,7 @@
                         <Font name="System Bold" size="12.0" />
                     </font>
                 </Label>
-                <ImageView fitHeight="47.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fx:id="ImageView" fitHeight="47.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@../admindashboard/user.png" />
                     </image>
@@ -219,7 +198,7 @@
                         <Insets left="700.0" />
                     </HBox.margin>
                 </ImageView>
-                <Label prefHeight="38.0" prefWidth="139.0" text="Welcome You" textFill="CORAL">
+                <Label prefHeight="38.0" prefWidth="139.0" text="Welcome " textFill="CORAL">
                     <font>
                         <Font name="System Bold" size="14.0" />
                     </font>
@@ -234,9 +213,9 @@
         </HBox>
         <AnchorPane layoutX="181.0" layoutY="155.0" prefHeight="530.0" prefWidth="376.0" style="-fx-background-radius: 20;" styleClass="mid-background" stylesheets="@../viewissuedbook/viewissuedbook.css">
             <children>
-                <HBox layoutY="-1.0" prefHeight="362.0" prefWidth="376.0">
+                <HBox alignment="CENTER" layoutY="-1.0" prefHeight="362.0" prefWidth="376.0">
                     <children>
-                        <VBox prefHeight="450.0" prefWidth="177.0" stylesheets="@managebook.css">
+                        <VBox prefHeight="362.0" prefWidth="285.0" stylesheets="@managebook.css">
                             <children>
                                 <Label text="Book Titile">
                                     <VBox.margin>
@@ -302,7 +281,7 @@
                         </VBox>
                     </children>
                 </HBox>
-                <Button layoutX="210.0" layoutY="361.0" mnemonicParsing="false" onAction="#handleClearFindBook" prefHeight="40.0" prefWidth="94.0" style="-fx-background-radius: 50;" stylesheets="@../issuebook/issuebook.css" text="CLEAR FIND" textFill="WHITE">
+                <Button layoutX="252.0" layoutY="349.0" mnemonicParsing="false" onAction="#handleClearFindBook" prefHeight="40.0" prefWidth="94.0" style="-fx-background-radius: 50;" stylesheets="@../issuebook/issuebook.css" text="CLEAR FIND" textFill="WHITE">
                     <cursor>
                         <Cursor fx:constant="HAND" />
                     </cursor>
@@ -314,7 +293,7 @@
                         <String fx:value="button-border" />
                     </styleClass>
                 </Button>
-                <Button layoutX="72.0" layoutY="361.0" mnemonicParsing="false" onAction="#handleFindBook" prefHeight="40.0" prefWidth="80.0" style="-fx-background-radius: 50;" stylesheets="@../issuebook/issuebook.css" text="FIND" textFill="WHITE">
+                <Button layoutX="30.0" layoutY="349.0" mnemonicParsing="false" onAction="#handleFindBook" prefHeight="40.0" prefWidth="94.0" style="-fx-background-radius: 50;" stylesheets="@../issuebook/issuebook.css" text="FIND" textFill="WHITE">
                     <cursor>
                         <Cursor fx:constant="HAND" />
                     </cursor>
@@ -326,7 +305,7 @@
                         <String fx:value="button-border" />
                     </styleClass>
                 </Button>
-            <Button layoutX="148.0" layoutY="427.0" mnemonicParsing="false" onAction="#handleBorrowBook" prefHeight="40.0" prefWidth="80.0" style="-fx-background-radius: 50;" stylesheets="@../issuebook/issuebook.css" text="BORROW" textFill="WHITE">
+            <Button layoutX="140.0" layoutY="349.0" mnemonicParsing="false" onAction="#handleBorrowBook" prefHeight="40.0" prefWidth="94.0" style="-fx-background-radius: 50;" stylesheets="@../issuebook/issuebook.css" text="BORROW" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -354,11 +333,11 @@
                 </Label>
             </children>
         </VBox>
-        <TableView fx:id="bookTableView" layoutX="575.0" layoutY="155.0" prefHeight="530.0" prefWidth="674.0" style="-fx-background-radius: 20;" stylesheets="@../admindashboard/admindashboard.css">
+        <TableView fx:id="bookTableView" layoutX="575.0" layoutY="155.0" prefHeight="530.0" prefWidth="618.0" style="-fx-background-radius: 20;" stylesheets="@../admindashboard/admindashboard.css">
             <columns>
                 <TableColumn fx:id="colBookID" prefWidth="114.39996337890625" text="ID" />
-                <TableColumn fx:id="colBookTitle" prefWidth="348.0" text="Book Title" />
-                <TableColumn fx:id="colBookAuthor" prefWidth="214.39996337890625" text="Author" />
+                <TableColumn fx:id="colBookTitle" prefWidth="300.0" text="Book Title" />
+                <TableColumn fx:id="colBookAuthor" prefWidth="263.0" text="Author" />
             </columns>
         </TableView>
     </children>
