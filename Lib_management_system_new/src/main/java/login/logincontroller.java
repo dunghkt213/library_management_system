@@ -19,6 +19,7 @@ import model.student;
 
 import java.io.IOException;
 import java.util.Objects;
+import java.util.Random;
 
 public class logincontroller {
     @FXML
@@ -85,5 +86,13 @@ public class logincontroller {
         errorMessageLabel.setText(errorMessage);
 
     }
-
+    @FXML
+    protected void handleforgetpassword() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/forgetpassword/forgetpassword.fxml"));
+        Stage stage = (Stage) studentIDField.getScene().getWindow();
+        Scene scene = new Scene(fxmlLoader.load());
+        stage.setScene(scene);
+        stage.setTitle("Forget Password");
+        stage.show();
+    }
 }
