@@ -87,10 +87,13 @@ public class managebookforstudentcontroller {
         loan newLoan = new loan("Active", dueDate1.toString(), loanDate1.toString(), currentStudent.getStudentID(), selectedBook.getBookID());
         int result = 0;
         loan objloan = loanDAO.getInstance().getById(newLoan);
-        if (objloan != null) {
+        if (objloan != null && objloan.getStudentID().equals(student.getInstance().getStudentID())) {
             result = -1;
         } else {
             result = loanDAO.getInstance().insert(newLoan);
+            selectedBook.setQuantity(selectedBook.getQuantity() - 1);
+            selectedBook.setCountOfBorrow(selectedBook.getCountOfBorrow() + 1);
+            bookDAO.getInstance().update(selectedBook);
         }
 
         if (result > 0) {

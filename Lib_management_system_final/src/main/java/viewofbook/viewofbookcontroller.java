@@ -1,5 +1,10 @@
 package viewofbook;
 
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.WriterException;
+import com.google.zxing.client.j2se.MatrixToImageWriter;
+import com.google.zxing.common.BitMatrix;
+import com.google.zxing.qrcode.QRCodeWriter;
 import dao.commentDAO;
 import dao.bookDAO;
 import dao.loanDAO;
@@ -26,6 +31,8 @@ import trendingbook.BookController;
 import trendingbook.cardcontroller;
 import viewbook.viewbookcontroller;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
@@ -77,6 +84,8 @@ public class viewofbookcontroller {
     private Rating rating;
     @FXML
     private Rating bookRating;
+    /*@FXML
+    private ImageView qrCodeImageView;*/
 
     @FXML
     public void setBookDetails(book Book) {
@@ -107,6 +116,15 @@ public class viewofbookcontroller {
         if (Book.getPreviewLink() != null && !Book.getPreviewLink().isEmpty()) {
             prelink.setText(Book.getPreviewLink());
             prelink.setOnAction(event -> openLinkInBrowser(Book.getPreviewLink()));
+
+            //Create QR for previewLink
+            /*try {
+                qrCodeImageView.setImage(generateQRCodeImage(Book.getPreviewLink()));
+            } catch (Exception e) {
+                e.printStackTrace();
+                qrCodeImageView.setImage(new Image(getClass().getResourceAsStream("/viewofbook/noQR.png")));
+            }*/
+
         } else {
             prelink.setText("Không có liên kết xem trước");
             prelink.setDisable(true);
@@ -134,6 +152,17 @@ public class viewofbookcontroller {
         loadBooksAsync(listcommnet);
 
     }
+
+    /*private Image generateQRCodeImage(String content) throws WriterException, IOException {
+        QRCodeWriter qrCodeWriter = new QRCodeWriter();
+        BitMatrix bitMatrix = qrCodeWriter.encode(content, BarcodeFormat.QR_CODE, 150, 150);
+
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        MatrixToImageWriter.writeToStream(bitMatrix, "PNG", outputStream);
+
+        return new Image(new ByteArrayInputStream(outputStream.toByteArray()));
+    }*/
+
     private void loadBooksAsync(List<comment> comments) {
         Task<Void> task = new Task<Void>() {
             @Override

@@ -1,6 +1,8 @@
 package manage;
 
+import dao.loanDAO;
 import dao.studentDAO;
+import database.JDBCUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -11,9 +13,13 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Stage;
+import model.loan;
 import model.student;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.logging.Level;
@@ -114,9 +120,21 @@ public class managestudentcontroller {
 
     }
 
+    private ArrayList<student> getAllStudent() {
+        ArrayList<student> students = studentDAO.getInstance().getAll();
+        ArrayList<student> res = new ArrayList<>();
+        for (student student : students) {
+            String status = studentDAO.getInstance().getStatusbyId(student);
+            if (status.equals("student")) {
+                res.add(student);
+            }
+        }
+        return res;
+    }
+
     private void loadStudentData() {
         try {
-            ArrayList<student> students = studentDAO.getInstance().getAll();
+            ArrayList<student> students = getAllStudent();
             observableStudents = FXCollections.observableArrayList(students);
             studentTableView.setItems(observableStudents);
         } catch (Exception e) {
@@ -130,6 +148,9 @@ public class managestudentcontroller {
         student selectedStudent = studentTableView.getSelectionModel().getSelectedItem();
         if (selectedStudent != null) {
             try {
+                loan newloan = new loan(selectedStudent.getStudentID(), null);
+                int result2 = loanDAO.getInstance().delete(newloan);
+                if (result2 > 0) System.out.println("Xóa thành công danh sách mượn của " + selectedStudent.getStudentID());
                 int result = studentDAO.getInstance().delete(selectedStudent);
                 if (result == 0) {
                     showAlert("Error occurred while deleting the student: " + selectedStudent.getStudentID());

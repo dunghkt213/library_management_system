@@ -147,9 +147,10 @@ public class issuebookforstudentcontroller {
                     selectedBook.setStatus("OverDue");
                     showAlert("Bạn đã trả sách muộn " + overdueDays + " ngày. Số tiền phạt của bạn là: " + fine + " VND");
                 }
+                loan check = loanDAO.getInstance().getById(new loan(currentStudent.getStudentID(), selectedBook.getBookID()));
+                loan newloan = new loan(selectedBook.getStatus(), selectedBook.getDueDate(), selectedBook.getLoanDate(), currentDate.toString(), currentStudent.getStudentID(), selectedBook.getBookID(), check.getLoansID());
 
-                loan newLoan = new loan(selectedBook.getStatus(), selectedBook.getDueDate(), selectedBook.getLoanDate(), currentStudent.getStudentID(), selectedBook.getBookID());
-                int result = loanDAO.getInstance().update(newLoan);
+                int result = loanDAO.getInstance().update(newloan);
                 loadBookData();
                 System.out.println("Có " + result + " thay đổi trả sách");
             } catch (Exception e) {

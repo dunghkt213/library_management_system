@@ -33,7 +33,7 @@ public class loanDAO implements DAOInterface<loan> {
     @Override
     public int update(loan loan) {
         int result = 0;
-        String sql = "UPDATE loans SET bookID = ?, studentID = ?, returnDate = ?, dueDate = ?, status = ? WHERE bookID = ?";
+        String sql = "UPDATE loans SET bookID = ?, studentID = ?, returnDate = ?, dueDate = ?, status = ? WHERE bookID = ? AND studentID = ?";
         try (Connection conn = JDBCUtil.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, loan.getBookID());
             pstmt.setString(2, loan.getStudentID());
@@ -41,6 +41,7 @@ public class loanDAO implements DAOInterface<loan> {
             pstmt.setString(4, loan.getDueDate());
             pstmt.setString(5, loan.getStatus());
             pstmt.setString(6, loan.getBookID());
+            pstmt.setString(7, loan.getStudentID());
             result = pstmt.executeUpdate();
             System.out.println("Câu lệnh đã được thực thi thành công. Có " + result + " dòng đã bị thay đổi.");
         } catch (SQLException e) {
@@ -52,9 +53,9 @@ public class loanDAO implements DAOInterface<loan> {
     @Override
     public int delete(loan loan) {
         int result = 0;
-        String sql = "DELETE FROM loans WHERE bookID = ?";
+        String sql = "DELETE FROM loans WHERE studentID = ?";
         try (Connection conn = JDBCUtil.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setString(1, loan.getBookID());
+            pstmt.setString(1, loan.getStudentID());
             result = pstmt.executeUpdate();
             System.out.println("Câu lệnh đã được thực thi thành công. Có " + result + " dòng đã bị xóa.");
         } catch (SQLException e) {
@@ -89,9 +90,10 @@ public class loanDAO implements DAOInterface<loan> {
     @Override
     public loan getById(loan loan) {
         loan loanObj = null;
-        String sql = "SELECT * FROM loans WHERE bookID = ?";
+        String sql = "SELECT * FROM loans WHERE bookID = ? AND studentID = ?";
         try (Connection conn = JDBCUtil.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, loan.getBookID());
+            pstmt.setString(2, loan.getStudentID());
             try (ResultSet rs = pstmt.executeQuery()) {
                 if (rs.next()) {
                     loanObj = new loan(

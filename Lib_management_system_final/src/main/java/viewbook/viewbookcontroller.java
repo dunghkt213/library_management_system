@@ -215,10 +215,17 @@ public class viewbookcontroller {
             }
             selectedBook.setQuantity(20);
 
-            int result2 = bookDAO.getInstance().insert(selectedBook);
+            book bookCheck = bookDAO.getInstance().getById(selectedBook);
 
-            if (result2 <= 0) {
-                showAlert(AlertType.ERROR, "Lỗi", "Sách đã có trong thư viện bạn hãy mượn chúng ở mục Books.");
+            if (bookCheck != null) {
+                System.out.println("Lỗi: Sách đã có trong thư viện bạn hãy mượn chúng ở mục Books.");
+                showAlert(AlertType.ERROR, "Lỗi: ", "Sách đã có trong thư viện bạn hãy mượn chúng ở mục Books.");
+                return;
+            } else {
+                bookDAO.getInstance().insert(selectedBook);
+                selectedBook.setQuantity(selectedBook.getQuantity() - 1);
+                selectedBook.setCountOfBorrow(selectedBook.getCountOfBorrow() + 1);
+                bookDAO.getInstance().update(selectedBook);
             }
 
             LocalDate loanDate1 = LocalDate.now(); // Ngày hiện tại
@@ -228,7 +235,7 @@ public class viewbookcontroller {
 
             int result = 0;
             loan objloan = loanDAO.getInstance().getById(newLoan);
-            if (objloan != null) {
+            if (objloan != null && objloan.getStudentID().equals(currentStudent.getStudentID())) {
                 result = -1;
             } else {
                 result = loanDAO.getInstance().insert(newLoan);

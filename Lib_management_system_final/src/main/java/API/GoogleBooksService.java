@@ -112,6 +112,8 @@ public class GoogleBooksService {
         newBook.setDescription(getJsonString(bookInfo, "description", "No description available."));
         newBook.setPageCount(getJsonInt(bookInfo, "pageCount", 0));
 
+        newBook.setAvailability("Available");
+
         // Generate bookID if ISBN is not available
         String isbn = getIsbn(bookInfo);
         if ("ISBN Not Available".equals(isbn)) {
