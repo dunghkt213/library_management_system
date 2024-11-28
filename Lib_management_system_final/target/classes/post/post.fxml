@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1"  fx:controller="post.postController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="post.postController">
    <left>
       <AnchorPane prefHeight="465.0" prefWidth="214.0" BorderPane.alignment="CENTER">
          <children>
@@ -33,27 +33,6 @@
                      </graphic>
                      <VBox.margin>
                         <Insets top="30.0" />
-                     </VBox.margin>
-                     <padding>
-                        <Insets left="30.0" top="10.0" />
-                     </padding>
-                     <font>
-                        <Font name="System Bold" size="13.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-                  <Button alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" styleClass="button-left" stylesheets="@../admindashboard/admindashboard.css" text="LMS Dashboard" textFill="WHITE">
-                     <graphic>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../admindashboard/menu.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                     <VBox.margin>
-                        <Insets />
                      </VBox.margin>
                      <padding>
                         <Insets left="30.0" top="10.0" />
@@ -159,27 +138,6 @@
                      </graphic>
                      <VBox.margin>
                         <Insets />
-                     </VBox.margin>
-                     <padding>
-                        <Insets left="30.0" top="10.0" />
-                     </padding>
-                     <font>
-                        <Font name="System Bold" size="13.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-                  <Button alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" styleClass="button-left" stylesheets="@../admindashboard/admindashboard.css" text="View Issued Book" textFill="WHITE">
-                     <graphic>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../admindashboard/warning.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                     <VBox.margin>
-                        <Insets bottom="20.0" />
                      </VBox.margin>
                      <padding>
                         <Insets left="30.0" top="10.0" />

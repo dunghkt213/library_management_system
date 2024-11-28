@@ -82,10 +82,13 @@
                   <URL value="@../signup/signup.css" />
                </stylesheets>
             </PasswordField>
-            <Button mnemonicParsing="false" onAction="#handleforgetpassword" prefHeight="25.0" prefWidth="145.0" style="-fx-background-color: transparent;" styleClass="forget-password-btn" stylesheets="@styles.css" text="forget  pass word ?" textFill="#2b459a">
+            <Button mnemonicParsing="false" onAction="#handleforgetpassword" prefHeight="25.0" prefWidth="145.0" style="-fx-background-color: transparent;" styleClass="forget-password-btn" stylesheets="@styles.css" text="Forget  password ?" textFill="#2b459a">
                <VBox.margin>
-                  <Insets left="30.0" top="-15.0" />
+                  <Insets left="55.0" top="-15.0" />
                </VBox.margin>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
             </Button>
             <Label fx:id="errorMessageLabel" alignment="CENTER" contentDisplay="RIGHT" prefHeight="67.0" prefWidth="338.0" textFill="#bc0000">
                <font>

@@ -41,27 +41,6 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" styleClass="button-left" stylesheets="@../admindashboard/admindashboard.css" text="LMS Dashboard" textFill="WHITE">
-               <graphic>
-                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../admindashboard/menu.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-               <padding>
-                  <Insets left="10.0" top="10.0" />
-               </padding>
-               <font>
-                  <Font name="System Bold" size="13.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
             <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handlemanagebook" prefHeight="50.0" prefWidth="250.0" styleClass="button-left" stylesheets="@../admindashboard/admindashboard.css" text="Manage Books" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
@@ -135,27 +114,6 @@
                </graphic>
                <VBox.margin>
                   <Insets />
-               </VBox.margin>
-               <padding>
-                  <Insets left="10.0" top="10.0" />
-               </padding>
-               <font>
-                  <Font name="System Bold" size="13.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-            <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handleviewissuedbook" prefHeight="50.0" prefWidth="250.0" styleClass="button-left" stylesheets="@../admindashboard/admindashboard.css" text="Issued Book" textFill="WHITE">
-               <graphic>
-                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../admindashboard/warning.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <VBox.margin>
-                  <Insets bottom="20.0" />
                </VBox.margin>
                <padding>
                   <Insets left="10.0" top="10.0" />
@@ -275,7 +233,7 @@
                   </Button>
                </children>
             </HBox>
-            <HBox prefHeight="386.0" prefWidth="426.0">
+            <HBox prefHeight="287.0" prefWidth="426.0">
                <children>
                   <VBox prefHeight="582.0" prefWidth="300.0" stylesheets="@managebook.css">
                      <children>
@@ -403,30 +361,6 @@
                               <String fx:value="text-field-with-icon" />
                            </styleClass>
                         </TextField>
-                        <Label prefHeight="0.0" prefWidth="54.0" text="Password">
-                           <font>
-                              <Font name="System Bold" size="12.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets left="70.0" top="10.0" />
-                           </VBox.margin>
-                        </Label>
-                        <TextField fx:id="addPassword" prefHeight="40.0" prefWidth="450.0" promptText="Enter Password" style="-fx-background-radius: 50;">
-                           <padding>
-                              <Insets left="50.0" />
-                           </padding>
-                           <VBox.margin>
-                              <Insets bottom="30.0" left="20.0" right="20.0" />
-                           </VBox.margin>
-                           <stylesheets>
-                              <URL value="@managebook.css" />
-                              <URL value="@../signup/signup.css" />
-                           </stylesheets>
-                           <styleClass>
-                              <String fx:value="text-field-with-icon" />
-                              <String fx:value="text-field-password-with-icon" />
-                           </styleClass>
-                        </TextField>
                      </children>
                   </VBox>
                </children>
@@ -462,6 +396,24 @@
                   </Button>
                </children>
             </HBox>
+            <Label layoutX="133.0" layoutY="280.0" prefHeight="0.0" prefWidth="54.0" text="Password">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <TextField fx:id="addPassword" layoutX="83.0" layoutY="298.0" prefHeight="40.0" prefWidth="246.0" promptText="Enter Password" style="-fx-background-radius: 50;">
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <stylesheets>
+                  <URL value="@managebook.css" />
+                  <URL value="@../signup/signup.css" />
+               </stylesheets>
+               <styleClass>
+                  <String fx:value="text-field-with-icon" />
+                  <String fx:value="text-field-password-with-icon" />
+               </styleClass>
+            </TextField>
          </children>
       </AnchorPane>
       <VBox alignment="CENTER" layoutX="549.0" layoutY="7.0" prefHeight="147.0" prefWidth="183.0" style="-fx-border-radius: 100%;" stylesheets="@../viewissuedbook/viewissuedbook.css">
