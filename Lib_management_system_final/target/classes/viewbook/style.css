@@ -1,0 +1,45 @@
+.backgroundcolor {
+    -fx-background-color: linear-gradient(
+            from 0% 100% to 0% 0%,
+            #9EABA2,
+            #BDD1C5,
+            #EECC8C,
+            #E8B298,
+            #D3A29D,
+            #A36361
+    );
+}
+
+
+.textgradient {
+    -fx-background-color: linear-gradient(
+            from 0% 100% to 0% 0%,
+            #9EABA2,
+            #BDD1C5,
+            #EECC8C,
+            #E8B298,
+            #D3A29D,
+            #A36361
+    );
+    -fx-text-fill: transparent;
+    -fx-background-clip: text;
+    -fx-text-fill: linear-gradient;
+}
+.rounded-square {
+    -fx-background-radius: 30;
+}
+.white-background {
+    -fx-background-color: white;
+}
+
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+.scroll-pane .scroll-bar {
+    -fx-opacity: 0;
+    -fx-pref-width: 0;
+    -fx-pref-height: 0;
+}
+.lightgrey-background {
+    -fx-background-color: #808080;
+}
