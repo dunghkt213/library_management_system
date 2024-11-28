@@ -219,7 +219,7 @@
                         <Insets left="700.0" />
                     </HBox.margin>
                 </ImageView>
-                <Label prefHeight="38.0" prefWidth="139.0" text="Welcome You" textFill="CORAL">
+                <Label prefHeight="38.0" prefWidth="139.0" text="Welcome " textFill="CORAL">
                     <font>
                         <Font name="System Bold" size="14.0" />
                     </font>
@@ -354,11 +354,11 @@
                 </Label>
             </children>
         </VBox>
-        <TableView fx:id="bookTableView" layoutX="575.0" layoutY="155.0" prefHeight="530.0" prefWidth="621.0" style="-fx-background-radius: 20;" stylesheets="@../admindashboard/admindashboard.css">
+        <TableView fx:id="bookTableView" layoutX="575.0" layoutY="155.0" prefHeight="530.0" prefWidth="618.0" style="-fx-background-radius: 20;" stylesheets="@../admindashboard/admindashboard.css">
             <columns>
                 <TableColumn fx:id="colBookID" prefWidth="114.39996337890625" text="ID" />
-                <TableColumn fx:id="colBookTitle" prefWidth="348.0" text="Book Title" />
-                <TableColumn fx:id="colBookAuthor" prefWidth="214.39996337890625" text="Author" />
+                <TableColumn fx:id="colBookTitle" prefWidth="300.0" text="Book Title" />
+                <TableColumn fx:id="colBookAuthor" prefWidth="263.0" text="Author" />
             </columns>
         </TableView>
     </children>
