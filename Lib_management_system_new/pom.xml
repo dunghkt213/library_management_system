@@ -24,7 +24,7 @@
     <dependency>
       <groupId>org.openjfx</groupId>
       <artifactId>javafx-media</artifactId>
-      <version>20</version> <!-- Chọn phiên bản phù hợp -->
+      <version>20</version>
     </dependency>
 
     <dependency>

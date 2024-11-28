@@ -208,11 +208,11 @@ public class gameController {
     }
 
     private void playWrongSound() {
-        correctSoundPlayer.play();
+        wrongSoundPlayer.play();
     }
 
     private void playCorrectSound() {
-        wrongSoundPlayer.play();
+        correctSoundPlayer.play();
     }
 
     private void showImageCorrectAnswer() {

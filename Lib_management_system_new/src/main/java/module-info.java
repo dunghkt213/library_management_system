@@ -64,6 +64,10 @@ module com.example.libarary_management_system {
 
     opens chatbot to javafx.fxml;
     exports chatbot to javafx.graphics;
+
     opens forgetpassword to javafx.fxml;
     exports forgetpassword to javafx.fxml;
+
+    opens game to javafx.fxml;
+    exports game;
 }
