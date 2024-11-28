@@ -57,9 +57,6 @@ public class gameController {
     private ImageView musicMuteOrPlay;
 
     @FXML
-    private Button QuitGameButton;
-
-    @FXML
     private Button PlayAgainGameButton;
 
     private List<Questions> questions;
@@ -86,7 +83,6 @@ public class gameController {
 
             score.setText("Your Score " + "0");
 
-            QuitGameButton.setVisible(false);
             PlayAgainGameButton.setVisible(false);
         } catch (IOException e) {
             e.printStackTrace();
@@ -127,7 +123,6 @@ public class gameController {
             option3.setVisible(false);
             option4.setVisible(false);
 
-            QuitGameButton.setVisible(true);
             PlayAgainGameButton.setVisible(true);
         }
     }
@@ -149,7 +144,7 @@ public class gameController {
         if (currentIndex < questions.size()) {
             loadCurrentQuestion();
         } else {
-            question.setText("Game Over! Your score: " + scoreOfQuestion);
+            question.setText("Game Over! Well done! Your score: " + scoreOfQuestion);
             Image newImage = new Image(getClass().getResource("/game/ani.gif").toExternalForm());
             image.setImage(newImage);
             score.setText("");
@@ -287,7 +282,6 @@ public class gameController {
         option4.setVisible(true);
         image.setImage(null);
 
-        QuitGameButton.setVisible(false);
         PlayAgainGameButton.setVisible(false);
 
         loadCurrentQuestion();

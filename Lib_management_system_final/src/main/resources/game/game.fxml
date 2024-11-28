@@ -34,7 +34,7 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <HBox alignment="CENTER" layoutX="179.0" layoutY="330.0" prefHeight="181.0" prefWidth="886.0">
+      <HBox alignment="CENTER" layoutX="183.0" layoutY="294.0" prefHeight="250.0" prefWidth="878.0">
          <children>
             <Button fx:id="option1" mnemonicParsing="false" onAction="#handleOption1" prefHeight="100.0" prefWidth="300.0" stylesheets="@game.css" textFill="WHITE">
                <cursor>
@@ -98,7 +98,7 @@
       <ImageView fx:id="image" fitHeight="150.0" fitWidth="168.0" layoutX="539.0" layoutY="165.0" pickOnBounds="true" preserveRatio="true" />
       <AnchorPane layoutX="853.0" layoutY="248.0" prefHeight="100.0" prefWidth="136.0">
          <children>
-            <ImageView fx:id="getScore" fitHeight="93.0" fitWidth="92.0" layoutX="44.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="getScore" fitHeight="200.0" fitWidth="190.0" layoutX="-1.0" layoutY="-52.0" pickOnBounds="true" preserveRatio="true" />
             <Label fx:id="score" layoutX="17.0" layoutY="25.0" prefHeight="50.0" prefWidth="102.0" text="1">
                <font>
                   <Font name="System Bold" size="12.0" />
@@ -107,15 +107,7 @@
          </children>
       </AnchorPane>
       <ImageView fx:id="Timer" fitHeight="111.0" fitWidth="112.0" layoutX="50.0" layoutY="242.0" pickOnBounds="true" preserveRatio="true" />
-      <Button fx:id="QuitGameButton" layoutX="498.0" layoutY="312.0" mnemonicParsing="false" onAction="#handleQuitGameButton" prefHeight="36.0" prefWidth="112.0" style="-fx-background-radius: 30;" stylesheets="@../issuebook/issuebook.css" text="Rank">
-         <styleClass>
-            <String fx:value="button-background" />
-            <String fx:value="button-border" />
-         </styleClass>
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font></Button>
-      <Button fx:id="PlayAgainGameButton" layoutX="636.0" layoutY="312.0" mnemonicParsing="false" onAction="#handlePlayAgainButton" prefHeight="36.0" prefWidth="112.0" style="-fx-background-radius: 30;" stylesheets="@../issuebook/issuebook.css" text="Play again">
+      <Button fx:id="PlayAgainGameButton" layoutX="577.0" layoutY="360.0" mnemonicParsing="false" onAction="#handlePlayAgainButton" prefHeight="36.0" prefWidth="112.0" style="-fx-background-radius: 30;" stylesheets="@../issuebook/issuebook.css" text="Play again">
          <styleClass>
             <String fx:value="button-background" />
             <String fx:value="button-border" />
