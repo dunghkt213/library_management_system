@@ -30,6 +30,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -233,9 +234,7 @@ public class viewofbookcontroller {
         }
         newComment.setRating(rate);
         newComment.setComment(commenttext);
-        LocalDateTime date = LocalDateTime.now();
-        System.out.println(date + "date");
-
+        LocalDateTime date = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);
         newComment.setCreatedAt(date);
         int result = commentDAO.getInstance().insert(newComment);
         if (result < 0) {
@@ -247,9 +246,9 @@ public class viewofbookcontroller {
         }
         comment tempcomment = new comment();
         tempcomment.setCreatedAt(date);
+        System.out.println(tempcomment.getCreatedAt());
         ArrayList<comment> listcommnet = commentDAO.getInstance().getByCondition(tempcomment);
-        System.out.println(listcommnet.size() + "size");
-        System.out.println(listcommnet.get(0).getId());
+
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("comment.fxml"));
         try {
             VBox cardcomment = fxmlLoader.load();

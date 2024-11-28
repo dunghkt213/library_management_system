@@ -23,6 +23,7 @@ module com.example.libarary_management_system {
     requires com.google.zxing;
     requires com.google.zxing.javase;
     requires java.desktop;
+    requires javafx.media;
 
     exports API;
 
@@ -65,4 +66,7 @@ module com.example.libarary_management_system {
     exports chatbot to javafx.graphics;
     opens forgetpassword to javafx.fxml;
     exports forgetpassword to javafx.fxml;
+
+    opens game to javafx.fxml;
+    exports game to javafx.fxml;
 }
