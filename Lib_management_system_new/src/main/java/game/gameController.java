@@ -69,12 +69,6 @@ public class gameController {
 
     public void initialize() {
         try {
-            Media correctSound = new Media(getClass().getResource("/game/correct_answer.mp3").toExternalForm());
-            correctSoundPlayer = new MediaPlayer(correctSound);
-
-            Media wrongSound = new Media(getClass().getResource("/game/wrong_answer.mp3").toExternalForm());
-            wrongSoundPlayer = new MediaPlayer(wrongSound);
-
             Media backgroundMusic = new Media(getClass().getResource("/game/background_music.mp3").toExternalForm());
             backgroundMusicPlayer = new MediaPlayer(backgroundMusic);
             Image music = new Image(getClass().getResource("/game/music.png").toExternalForm());
@@ -119,8 +113,7 @@ public class gameController {
             PauseTransition pause = new PauseTransition(Duration.seconds(100));
             pause.setOnFinished(event -> Timer.setImage(null));
             pause.play();
-        }
-        else {
+        } else {
             question.setText("Game Over! Your score: " + scoreOfQuestion);
             Image newImage = new Image(getClass().getResource("/game/ani.gif").toExternalForm());
             image.setImage(newImage);
@@ -179,11 +172,15 @@ public class gameController {
             scoreOfQuestion++;
             score.setText("Your Score " + String.valueOf(scoreOfQuestion));
             showImageCorrectAnswer();
-            selectedButton.setStyle("-fx-background-color: green");
+            Media correctSound = new Media(getClass().getResource("/game/correct_answer.mp3").toExternalForm());
+            correctSoundPlayer = new MediaPlayer(correctSound);
             playCorrectSound();
+            selectedButton.setStyle("-fx-background-color: green");
         } else {
-            selectedButton.setStyle("-fx-background-color: red");
+            Media wrongSound = new Media(getClass().getResource("/game/wrong_answer.mp3").toExternalForm());
+            wrongSoundPlayer = new MediaPlayer(wrongSound);
             playWrongSound();
+            selectedButton.setStyle("-fx-background-color: red");
         }
 
         selectedButton.setDisable(true);
@@ -208,11 +205,11 @@ public class gameController {
     }
 
     private void playWrongSound() {
-        wrongSoundPlayer.play();
+        if (isMusicPlaying) wrongSoundPlayer.play();
     }
 
     private void playCorrectSound() {
-        correctSoundPlayer.play();
+        if (isMusicPlaying) correctSoundPlayer.play();
     }
 
     private void showImageCorrectAnswer() {
@@ -229,8 +226,7 @@ public class gameController {
             backgroundMusicPlayer.pause();
             Image music = new Image(getClass().getResource("/game/mute.png").toExternalForm());
             musicMuteOrPlay.setImage(music);
-        }
-        else {
+        } else {
             backgroundMusicPlayer.play();
             Image music = new Image(getClass().getResource("/game/music.png").toExternalForm());
             musicMuteOrPlay.setImage(music);
