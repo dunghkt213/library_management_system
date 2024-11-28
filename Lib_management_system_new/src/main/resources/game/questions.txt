@@ -1,30 +1,30 @@
-Câu hỏi: Câu hỏi 1
-A
-B
-C
-D
-A
-Câu hỏi: Câu hỏi 2
-A
-B
-C
-D
-A
-Câu hỏi: Câu hỏi 3
-A
-B
-C
-D
-A
-Câu hỏi: Câu hỏi 4
-A
-B
-C
-D
-A
-Câu hỏi: Câu hỏi 5
-A
-B
-C
-D
-A
+Câu hỏi 1: Tác phẩm nào dưới đây không phải của Nam Cao?
+Chí Phèo
+Đời thừa
+Sống mòn
+Lão Hạc
+Lão Hạc
+Câu hỏi 2: Ai là tác giả của tiểu thuyết "Chiến tranh và hòa bình"?
+Lev Tolstoy
+Victor Hugo
+Fyodor Dostoevsky
+Mark Twain
+Lev Tolstoy
+Câu hỏi 3: Tác phẩm nào sau đây là của Nguyễn Nhật Ánh?
+Mắt biếc
+Truyện Kiều
+Dế mèn phiêu lưu ký
+Lão Hạc
+Mắt biếc
+Câu hỏi 4: Tác phẩm "Bố già" được viết bởi ai?
+Mario Puzo
+Dan Brown
+Haruki Murakami
+Paulo Coelho
+Mario Puzo
+Câu hỏi 5: "Truyện Kiều" của Nguyễn Du gồm bao nhiêu câu thơ?
+3256
+3456
+3000
+3200
+3256
