@@ -16,14 +16,12 @@ module com.example.libarary_management_system {
     requires com.google.api.client.extensions.jetty.auth;
     requires google.api.services.gmail.v1.rev110;
     requires com.google.api.client.json.jackson2;
-    requires java.mail;
-    requires org.controlsfx.controls;
-    requires java.net.http;
-    requires javafx.controls;
+    requires mail;
     requires com.google.zxing;
     requires com.google.zxing.javase;
+    requires org.controlsfx.controls;
+    requires java.net.http;
     requires java.desktop;
-    requires javafx.media;
 
     exports API;
 
@@ -53,7 +51,7 @@ module com.example.libarary_management_system {
 
     opens viewissuedbook to javafx.fxml;
     exports viewissuedbook to javafx.fxml;
-    opens post to javafx.fxml;
+        opens post to javafx.fxml;
     exports post to javafx.fxml;
 
     opens trendingbook to javafx.fxml;
@@ -64,10 +62,4 @@ module com.example.libarary_management_system {
 
     opens chatbot to javafx.fxml;
     exports chatbot to javafx.graphics;
-
-    opens forgetpassword to javafx.fxml;
-    exports forgetpassword to javafx.fxml;
-
-    opens game to javafx.fxml;
-    exports game;
 }
