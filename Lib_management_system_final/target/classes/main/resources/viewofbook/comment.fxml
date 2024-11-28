@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+<?import org.controlsfx.control.Rating?>
+
+<VBox prefHeight="214.0" prefWidth="776.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewofbook.commentcontroller">
+   <children>
+   <HBox alignment="CENTER_LEFT" prefHeight="63.0" prefWidth="754.0" spacing="10.0" style="-fx-background-radius: 50;">
+      <children>
+         <ImageView fx:id="studentImage" fitHeight="36.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@../../java/viewofbook/426599446_1060526138363460_4231514582602082523_n.jpg" />
+            </image>
+            <HBox.margin>
+               <Insets left="30.0" />
+            </HBox.margin>
+         </ImageView>
+         <Label fx:id="studentName" prefHeight="33.0" prefWidth="436.0" text="Nguyễn Anh Dũng" />
+            <VBox prefHeight="42.0" prefWidth="176.0">
+               <HBox.margin>
+                  <Insets top="15.0" />
+               </HBox.margin>
+               <children>
+                  <Rating fx:id="rating" partialRating="true" prefHeight="0.0" prefWidth="176.0" rating="5.0">
+                     <effect>
+                        <DropShadow>
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </DropShadow>
+                     </effect>
+                  </Rating>
+               </children>
+            </VBox>
+      </children>
+   </HBox>
+   <AnchorPane prefHeight="0.0" prefWidth="805.0" />
+   <HBox prefHeight="100.0" prefWidth="757.0">
+   <children>
+      <AnchorPane prefHeight="88.0" prefWidth="2.0" HBox.hgrow="ALWAYS" />
+      <VBox prefHeight="100.0" prefWidth="653.0">
+      <children>
+         <Label fx:id="commentField" maxHeight="Infinity" minHeight="83.0" minWidth="645.0" prefHeight="134.0" prefWidth="653.0" style="-fx-background-radius: 20; -fx-background-color: #E0E0E0;" styleClass="lightgrey-background" stylesheets="@style.css" wrapText="true">
+         <padding>
+            <Insets left="20.0" />
+         </padding>
+      </Label>
+   </children>
+</VBox>
+<AnchorPane prefHeight="88.0" prefWidth="0.0" HBox.hgrow="ALWAYS" />
+        </children>
+        </HBox>
+      <AnchorPane prefHeight="17.0" prefWidth="693.0">
+         <VBox.margin>
+            <Insets left="90.0" />
+         </VBox.margin>
+         <children>
+            <Button fx:id="like" mnemonicParsing="false" prefHeight="27.0" prefWidth="37.0" style="-fx-background-color: transparent;">
+               <graphic>
+                  <ImageView fx:id="heartimgae" fitHeight="26.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@heartEmpty.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Label fx:id="countoflike" layoutX="42.0" layoutY="1.0" prefHeight="33.0" prefWidth="55.0" text="20">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+         <Label fx:id="date" layoutX="386.0" layoutY="3.0" prefHeight="36.0" prefWidth="294.0" text="2024-11-01">
+            <font>
+               <Font name="Calibri Light" size="14.0" />
+            </font>
+               <padding>
+                  <Insets left="90.0" />
+               </padding>
+         </Label>
+         </children>
+      </AnchorPane>
+        </children>
+        </VBox>

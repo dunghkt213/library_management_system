@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+<?import org.controlsfx.control.Rating?>
+
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" styleClass="textgradient" stylesheets="@style.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewofbook.viewofbookcontroller">
+   <children>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+         <children>
+            <Button layoutX="46.0" layoutY="21.0" mnemonicParsing="false" onAction="#handletrendingbook" prefHeight="30.0" prefWidth="21.0" style="-fx-background-color: transparent;">
+               <graphic>
+                  <ImageView fitHeight="22.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../manage/back.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </AnchorPane>
+      <HBox prefHeight="700.0" prefWidth="894.0" stylesheets="@style.css">
+         <styleClass>
+            <String fx:value="white-background" />
+            <String fx:value="rounded-square" />
+         </styleClass>
+         <children>
+            <AnchorPane prefHeight="700.0" prefWidth="242.0" HBox.hgrow="ALWAYS" />
+            <ScrollPane prefHeight="700.0" prefWidth="1071.0" style="-fx-background-color: transparent;">
+               <content>
+                  <VBox fx:id="Box" style="-fx-background-color: transparent;" stylesheets="@../trendingbook/style.css">
+                     <children>
+                        <!-- Header hoặc không gian trống -->
+                        <AnchorPane prefHeight="38.0" prefWidth="816.0" />
+                        <Label fx:id="titleLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="91.0" prefWidth="816.0" text=" The Pragmatic Programmer">
+                           <font>
+                              <Font name="Berlin Sans FB Demi Bold" size="33.0" />
+                           </font>
+                        </Label>
+                        <Rating fx:id="bookRating" partialRating="true" rating="5.0">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                           <padding>
+                              <Insets bottom="19.0" left="322.0" />
+                           </padding>
+                        </Rating>
+                        <VBox alignment="TOP_CENTER" prefHeight="1073.0" prefWidth="816.0" spacing="20">
+                           <children>
+                              <ImageView fx:id="bookImageView" fitHeight="388.0" fitWidth="324.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../trendingbook/ThePragmaticProgrammer.jpg" />
+                                 </image>
+                              </ImageView>
+                              <Button fx:id="borrowButton" mnemonicParsing="false" prefHeight="39.0" prefWidth="97.0" style="-fx-background-radius: 50;" stylesheets="@style.css" text="Borrow" textFill="WHITE">
+                                 <styleClass>
+                                    <String fx:value="button-background" />
+                                    <String fx:value="button-border" />
+                                 </styleClass>
+                              </Button>
+                              <VBox alignment="TOP_LEFT" prefHeight="451.0" prefWidth="766.0" spacing="10">
+                                 <children>
+                                    <Label fx:id="bookID" prefHeight="20.0" prefWidth="929.0" text="ISBN">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="authorLabel" prefHeight="20.0" prefWidth="774.0" style="-fx-font-size: 14px;" text="Tác giả: Andrew Hunt, David Thomas" />
+                                    <Label fx:id="categoryLabel" prefHeight="26.0" prefWidth="766.0" style="-fx-font-size: 14px;" text="Thể loại: Lập trình, Kỹ thuật phần mềm" />
+                                    <Label fx:id="publisherLabel" alignment="TOP_LEFT" prefHeight="20.0" prefWidth="769.0" style="-fx-font-size: 14px;" text="nha xuat ban" />
+                                    <Label fx:id="languageLabel" alignment="TOP_LEFT" prefHeight="20.0" prefWidth="769.0" style="-fx-font-size: 14px;" text="ngon ngu" />
+                                    <Hyperlink fx:id="prelink" text="Hyperlink">
+                                       <graphic>
+                                          <Label text="Prelink: ">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                       </graphic>
+                                    </Hyperlink>
+                                    <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Mô tả:" />
+                                    <Label fx:id="descriptionLabel" alignment="TOP_LEFT" prefHeight="272.0" prefWidth="760.0" style="-fx-font-size: 14px;" text="Cuốn sách nổi tiếng này cung cấp các kỹ thuật và triết lý thực tế để cải thiện kỹ năng lập trình và phát triển phần mềm của bạn. Được viết bởi hai nhà phát triển phần mềm kỳ cựu, sách phù hợp cho mọi cấp độ từ mới bắt đầu đến chuyên gia." wrapText="true" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="50.0" />
+                                 </VBox.margin>
+                              </VBox>
+                              <Rating fx:id="rating" partialRating="true" rating="5.0">
+                                 <VBox.margin>
+                                    <Insets bottom="-30.0" left="-30.0" />
+                                 </VBox.margin>
+                                 <effect>
+                                    <DropShadow>
+                                       <color>
+                                          <Color red="1.0" green="1.0" blue="1.0" />
+                                       </color>
+                                    </DropShadow>
+                                 </effect>
+                              </Rating>
+                              <HBox alignment="CENTER" prefHeight="98.0" prefWidth="816.0" spacing="10.0">
+                                 <children>
+                                    <TextField fx:id="commentField" prefHeight="58.0" prefWidth="439.0" promptText="What'on your mind ?" styleClass="text_field" stylesheets="@../post/style.css">
+                                       <HBox.margin>
+                                          <Insets left="10.0" />
+                                       </HBox.margin>
+                                    </TextField>
+                                    <Button fx:id="postButton" mnemonicParsing="false" prefHeight="39.0" prefWidth="97.0" style="-fx-background-radius: 50;" stylesheets="@style.css" text="post" textFill="WHITE">
+                                       <styleClass>
+                                          <String fx:value="button-background" />
+                                          <String fx:value="button-border" />
+                                       </styleClass>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </VBox>
+               </content>
+            </ScrollPane>
+            <AnchorPane prefHeight="700.0" prefWidth="244.0" HBox.hgrow="ALWAYS" />
+         </children>
+      </HBox>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" stylesheets="@style.css" HBox.hgrow="ALWAYS" />
+   </children>
+</HBox>
