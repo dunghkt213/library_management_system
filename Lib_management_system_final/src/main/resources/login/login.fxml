@@ -100,7 +100,7 @@
             </Label>
             <VBox alignment="BOTTOM_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="112.0" prefWidth="422.0" stylesheets="@login.css">
                <children>
-                  <Button alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#handleloginbutton" prefHeight="47.0" prefWidth="220.0" style="-fx-background-radius: 50;" stylesheets="@login.css" text="LOG IN NOW" textFill="CORAL">
+                  <Button alignment="CENTER" contentDisplay="CENTER" defaultButton="true" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#handleloginbutton" prefHeight="47.0" prefWidth="220.0" style="-fx-background-radius: 50;" stylesheets="@login.css" text="LOG IN NOW" textFill="CORAL">
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>
