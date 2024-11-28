@@ -45,6 +45,7 @@ public class GoogleBooksService {
 
     public static ArrayList<book> searchBooks(String searchOption, String query, int pageNumber, int pageSize) {
         try {
+            long startTime = System.currentTimeMillis();
             query = query.trim();
             String encodedQuery = encodeValue(query);
             String url;
@@ -58,15 +59,18 @@ public class GoogleBooksService {
 
             URL apiURL = URI.create(url).toURL();
             HttpURLConnection connection = (HttpURLConnection) apiURL.openConnection();
-            connection.setConnectTimeout(5000); // 5 seconds to connect
-            connection.setReadTimeout(5000); // 5 seconds to read data
+            /*connection.setConnectTimeout(5000); // 5 seconds to connect
+            connection.setReadTimeout(5000); // 5 seconds to read data*/
             connection.setRequestMethod("GET");
 
             int responseCode = connection.getResponseCode();
-            if (responseCode != 200) {
+            /*if (responseCode != 200) {
                 System.err.println("HTTP GET request not successful. Response Code: " + responseCode);
                 return new ArrayList<>();
-            }
+            }*/
+            long endTime = System.currentTimeMillis();
+            long duration = endTime - startTime;
+            System.out.println(duration);
 
             BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
             StringBuilder response = new StringBuilder();
@@ -75,6 +79,10 @@ public class GoogleBooksService {
                 response.append(line);
             }
             reader.close();
+
+            long endTime2 = System.currentTimeMillis();
+            long duration2 = endTime2 - endTime;
+            System.out.println(duration2);
 
             return processBookSearchResponse(response.toString());
 

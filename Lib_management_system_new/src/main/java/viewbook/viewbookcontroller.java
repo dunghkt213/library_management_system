@@ -47,6 +47,9 @@ public class viewbookcontroller {
     @FXML
     private HBox detailBook;
 
+    private String currentSearchOption = "";
+    private String currentSearchKeyword = "";
+
     private int currentPage = 0;
     private final int pageSize = 6;
     private final int maxBooksLimit = 12; // Giới hạn số sách tối đa
@@ -72,9 +75,13 @@ public class viewbookcontroller {
 
     @FXML
     private void handleSearchAction(ActionEvent event) {
+        String searchOption = searchOptionChoiceBox.getValue();
+        String keyword = searchField.getText();
+
         currentPage = 0;
         allFetchedBooks.clear();
-        searchBooks(searchOptionChoiceBox.getValue(), searchField.getText(), currentPage, pageSize);
+
+        searchBooks(searchOption, keyword, currentPage, pageSize);
     }
 
     private void searchBooks(String searchOption, String keyword, int pageNumber, int pageSize) {
@@ -82,15 +89,18 @@ public class viewbookcontroller {
         keyword = searchField.getText().trim();
         searchOption = searchOptionChoiceBox.getValue();
 
-        // Xóa danh sách hiển thị cũ
+        currentSearchOption = searchOption;
+        currentSearchKeyword = keyword;
+        currentPage = pageNumber;
+
         resultsListView.getItems().clear();
 
-        // Gọi API hoặc cache
         bookController.searchBooksAndUpdateUI(searchOption, keyword, pageNumber, pageSize, book -> {
-            Platform.runLater(() -> resultsListView.getItems().add(book)); // Cập nhật UI với dữ liệu mới
+            // Thêm sách vào bộ nhớ cache và cập nhật giao diện
+            allFetchedBooks.add(book);
+            Platform.runLater(() -> resultsListView.getItems().add(book));
         });
     }
-
 
     private void prefetchNextPages(String searchOption, String keyword, int pageNumber, int pageSize) {
         if (allFetchedBooks.size() < maxBooksLimit) {
@@ -158,23 +168,18 @@ public class viewbookcontroller {
 
     @FXML
     private void handleNextAction(ActionEvent event) {
-        if ((currentPage + 1) * pageSize < maxBooksLimit) {
-            currentPage++; // Chuyển đến trang tiếp theo
+        int nextPageStart = (currentPage + 1) * pageSize;
 
-            // Kiểm tra nếu dữ liệu đã được tải trước
-            int start = currentPage * pageSize;
-            if (start < allFetchedBooks.size()) {
-                loadBooksFromCache(); // Hiển thị dữ liệu đã tải trước
-            } else {
-                // Gọi API nếu dữ liệu chưa có
-                searchBooks(searchOptionChoiceBox.getValue(), searchField.getText(), currentPage, pageSize);
-            }
-
-            // Tải trước dữ liệu trang tiếp theo (nếu cần)
-            prefetchNextPages(searchOptionChoiceBox.getValue(), searchField.getText(), currentPage, pageSize);
+        if (nextPageStart < allFetchedBooks.size()) {
+            currentPage++;
+            loadBooksFromCache(); // Hiển thị sách đã cache
+        } else {
+            currentPage++;
+            searchBooks(currentSearchOption, currentSearchKeyword, currentPage, pageSize); // Gọi API khi không có dữ liệu trong cache
         }
-    }
 
+        prefetchNextPages(currentSearchOption, currentSearchKeyword, currentPage, pageSize);
+    }
 
     @FXML
     private void handlePrevAction(ActionEvent event) {
