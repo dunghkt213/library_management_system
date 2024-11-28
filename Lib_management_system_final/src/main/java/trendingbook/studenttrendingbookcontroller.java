@@ -118,7 +118,15 @@ public class studenttrendingbookcontroller implements Initializable {
         stage.setTitle("Dashboard");
         stage.show();
     }
-
+    @FXML
+    protected void handleGame() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/game/game.fxml"));
+        Stage stage = (Stage) cardLayout.getScene().getWindow();
+        Scene scene = new Scene(fxmlLoader.load());
+        stage.setScene(scene);
+        stage.setTitle("game");
+        stage.show();
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
