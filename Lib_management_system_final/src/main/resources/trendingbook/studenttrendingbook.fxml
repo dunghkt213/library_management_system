@@ -186,7 +186,7 @@
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../chatbot/ai.png" />
+                        <Image url="@game.png" />
                      </image>
                   </ImageView>
                </graphic>
