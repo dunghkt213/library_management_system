@@ -37,7 +37,4 @@ public class SimpleMailer {
         }
     }
 
-    public static void main(String[] args) {
-        sendEmail("11a1nguyenanhdung@gmail.com", "Test Subject", "Hello from SimpleMailer!");
-    }
 }
