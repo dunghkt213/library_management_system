@@ -2,6 +2,7 @@ package viewbook;
 
 import API.GoogleBooksCache;
 import API.GoogleBooksService;
+import javafx.application.Platform;
 import model.book;
 
 import java.util.ArrayList;
@@ -54,11 +55,13 @@ public class BookController {
     public void searchBooksAndUpdateUI(String searchOption, String keyword, int pageNumber, int pageSize, java.util.function.Consumer<book> updateUI) {
         executorService.submit(() -> {
             try {
-                GoogleBooksService.searchAndProcessBooksByItem(searchOption, keyword, pageNumber, pageSize, pageSize, updateUI)
-                        .exceptionally(ex -> {
-                            logger.log(Level.SEVERE, "Error in searchBooksAndUpdateUI: ", ex);
-                            return null;
-                        });
+                // Xử lý từng cuốn sách ngay khi nhận được
+                GoogleBooksService.searchAndProcessBooksByItem(searchOption, keyword, pageNumber, pageSize, pageSize, book -> {
+                    Platform.runLater(() -> updateUI.accept(book)); // Cập nhật giao diện ngay lập tức
+                }).exceptionally(ex -> {
+                    logger.log(Level.SEVERE, "Error in searchBooksAndUpdateUI: ", ex);
+                    return null;
+                });
             } catch (Exception ex) {
                 logger.log(Level.SEVERE, "Exception in searchBooksAndUpdateUI: ", ex);
             }

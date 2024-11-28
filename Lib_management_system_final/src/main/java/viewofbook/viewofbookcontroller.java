@@ -214,8 +214,13 @@ public class viewofbookcontroller {
            }
         comment newComment = new comment();
         newComment.setBookID(book.getBookID());
+
+        System.out.println(student.getInstance().getStudentID() + "STUDENTID");
+        System.out.println("hello");
+
         newComment.setStudentID(Integer.parseInt(student.getInstance().getStudentID()));
         double rate = rating.getRating();
+
         book.setTotalRating(book.getTotalRating() + rate);
         book.setCountOfRating(book.getCountOfRating()+1);
         book.setAverageRating((float) (book.getTotalRating()/book.getCountOfRating()));
@@ -229,6 +234,8 @@ public class viewofbookcontroller {
         newComment.setRating(rate);
         newComment.setComment(commenttext);
         LocalDateTime date = LocalDateTime.now();
+        System.out.println(date + "date");
+
         newComment.setCreatedAt(date);
         int result = commentDAO.getInstance().insert(newComment);
         if (result < 0) {
@@ -242,6 +249,7 @@ public class viewofbookcontroller {
         tempcomment.setCreatedAt(date);
         ArrayList<comment> listcommnet = commentDAO.getInstance().getByCondition(tempcomment);
         System.out.println(listcommnet.size() + "size");
+        System.out.println(listcommnet.get(0).getId());
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("comment.fxml"));
         try {
             VBox cardcomment = fxmlLoader.load();
