@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
@@ -25,6 +26,17 @@ public class changepasswordcontroller {
     private ImageView avatar;
     @FXML
     private ImageView Studentimage;
+    @FXML
+    private Button playGame;
+
+    @FXML
+    private void handleIntroGame() throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/game/introGame.fxml"));
+        Stage stage = (Stage) playGame.getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
     @FXML
     public void initialize(){
         ImageStorage.loadStudentImage(student.getInstance().getStudentID(), Studentimage);

@@ -10,6 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
@@ -40,6 +41,19 @@ public class studenttrendingbookcontroller implements Initializable {
 
     @FXML
     private ImageView avatar;
+
+    @FXML
+    private Button playGame;
+
+    @FXML
+    private void handleIntroGame() throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/game/introGame.fxml"));
+        Stage stage = (Stage) playGame.getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
     @FXML
     protected void handletrendingbook() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/trendingbook/studenttrendingbook.fxml"));
