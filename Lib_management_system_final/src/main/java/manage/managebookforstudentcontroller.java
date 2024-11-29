@@ -97,6 +97,12 @@ public class managebookforstudentcontroller {
             showAlert("No book selected");
             return;
         }
+
+        if (selectedBook.getQuantity() < 1) {
+            showAlert("Hiện nay thư viện đã hết sách này!");
+            return;
+        }
+
         LocalDate loanDate1 = LocalDate.now(); // Ngày hiện tại
         LocalDate dueDate1 = loanDate1.plusDays(50); // Ngày trả là 50 ngày sau
 
@@ -105,7 +111,34 @@ public class managebookforstudentcontroller {
         loan newLoan = new loan("Active", dueDate1.toString(), loanDate1.toString(), currentStudent.getStudentID(), selectedBook.getBookID());
         int result = 0;
         loan objloan = loanDAO.getInstance().getById(newLoan);
-        if (objloan != null && objloan.getStudentID().equals(student.getInstance().getStudentID())) {
+
+        if (objloan != null && objloan.getStudentID().equals(student.getInstance().getStudentID())
+            && objloan.getStatus().equals("Returned")) {
+
+            objloan.setStatus("Active");
+            objloan.setLoanDate(loanDate1.toString());
+            objloan.setDueDate(dueDate1.toString());
+
+            selectedBook.setQuantity(selectedBook.getQuantity() - 1);
+            selectedBook.setCountOfBorrow(selectedBook.getCountOfBorrow() + 1);
+            result = loanDAO.getInstance().update(objloan);
+            bookDAO.getInstance().update(selectedBook);
+
+        } else if (objloan != null && objloan.getStudentID().equals(student.getInstance().getStudentID())
+                && objloan.getStatus().equals("Overdue")) {
+
+            objloan.setStatus("Active");
+            objloan.setLoanDate(loanDate1.toString());
+            objloan.setDueDate(dueDate1.toString());
+
+            selectedBook.setQuantity(selectedBook.getQuantity() - 1);
+            selectedBook.setCountOfBorrow(selectedBook.getCountOfBorrow() + 1);
+            result = loanDAO.getInstance().update(objloan);
+            bookDAO.getInstance().update(selectedBook);
+
+        }
+        else if (objloan != null && objloan.getStudentID().equals(student.getInstance().getStudentID())
+                && objloan.getStatus().equals("Active")) {
             result = -1;
         } else {
             result = loanDAO.getInstance().insert(newLoan);
