@@ -233,8 +233,8 @@ public class managebookforstudentcontroller {
 
 
     @FXML
-    protected void handleviewissuedbook() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/viewissuedbook/issuedforstudent.fxml"));
+    protected void handleAI() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/chatbot/chatBot.fxml"));
         Stage stage = (Stage) addBookTitle.getScene().getWindow();
         Scene scene = new Scene(fxmlLoader.load());
         stage.setScene(scene);
