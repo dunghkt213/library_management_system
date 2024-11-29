@@ -34,6 +34,10 @@ public class book {
     public book() {
     }
 
+    public book(String bookID) {
+        this.bookID = bookID;
+    }
+
     public book(String bookID, int categoryID, String availability, int remainingBooks
             , String language, String edition, String bookAuthor, String bookTitle
             , String bookPublisher, int quantity, String categoryName, String description,String imageUrl,int countOfBorrow) {

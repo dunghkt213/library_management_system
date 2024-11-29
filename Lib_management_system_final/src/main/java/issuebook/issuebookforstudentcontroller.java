@@ -1,5 +1,6 @@
 package issuebook;
 
+import dao.bookDAO;
 import dao.loanDAO;
 import database.ImageStorage;
 import database.JDBCUtil;
@@ -13,6 +14,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import model.book;
 import model.loan;
 import model.student;
 import model.bookloan;
@@ -166,11 +168,25 @@ public class issuebookforstudentcontroller {
 
                 if (!currentDate.isBefore(loanDate) && !currentDate.isAfter(dueDate)) {
                     selectedBook.setStatus("Returned");
+
+                    book newbook = new book(selectedBook.getBookID());
+                    book bookCheck = bookDAO.getInstance().getById(newbook);
+                    bookCheck.setQuantity(bookCheck.getQuantity() + 1);
+                    bookCheck.setCountOfBorrow(bookCheck.getCountOfBorrow() - 1);
+                    bookDAO.getInstance().update(bookCheck);
+
                     showAlert("Sách đã được trả đúng hạn.");
                 } else if (currentDate.isAfter(dueDate)) {
                     long overdueDays = java.time.temporal.ChronoUnit.DAYS.between(dueDate, currentDate);
                     long fine = overdueDays * 5000; // Tính tiền phạt 5k/ngày
                     selectedBook.setStatus("OverDue");
+
+                    book newbook = new book(selectedBook.getBookID());
+                    book bookCheck = bookDAO.getInstance().getById(newbook);
+                    bookCheck.setQuantity(bookCheck.getQuantity() + 1);
+                    bookCheck.setCountOfBorrow(bookCheck.getCountOfBorrow() - 1);
+                    bookDAO.getInstance().update(bookCheck);
+
                     showAlert("Bạn đã trả sách muộn " + overdueDays + " ngày. Số tiền phạt của bạn là: " + fine + " VND");
                 }
                 loan check = loanDAO.getInstance().getById(new loan(currentStudent.getStudentID(), selectedBook.getBookID()));
