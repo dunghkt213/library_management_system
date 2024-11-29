@@ -49,7 +49,17 @@ This Library Management System (LMS) is a comprehensive and efficient applicatio
 - **Backend:** Java for implementing core functionalities like user and book management, searching, ratings, and reviews.
 - **Database:** MySQL for managing and storing data persistently, including user data, book catalog, ratings, and game scores.
 - **Chatbot:** A chatbot to interact with users, provide book recommendations, answer questions, and engage in casual conversation.
+- 
+## Installation Guide
 
+1. **Clone the project from the repository.**
+2. **Open the project in your IDE.**
+3. **Install MySQL**  
+   Make sure that MySQL is installed and properly configured on your system. You can follow the installation instructions for MySQL based on your operating system [here](https://dev.mysql.com/doc/refman/8.0/en/installing.html).
+   
+4. **Configure MySQL**  
+   After installing MySQL, set up a database and ensure that it is accessible by your project. You may need to create a user with appropriate permissions.
+5. **Run the project**
 ##Demo
 ![image](https://github.com/user-attachments/assets/5e34c736-c69e-42eb-8bf8-db7acffcfe1b)
 
