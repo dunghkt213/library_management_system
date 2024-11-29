@@ -85,8 +85,8 @@ public class viewofbookcontroller {
     private Rating rating;
     @FXML
     private Rating bookRating;
-    /*@FXML
-    private ImageView qrCodeImageView;*/
+    @FXML
+    private ImageView qrCodeImageView;
 
     @FXML
     public void setBookDetails(book Book) {
@@ -119,12 +119,12 @@ public class viewofbookcontroller {
             prelink.setOnAction(event -> openLinkInBrowser(Book.getPreviewLink()));
 
             //Create QR for previewLink
-            /*try {
+            try {
                 qrCodeImageView.setImage(generateQRCodeImage(Book.getPreviewLink()));
             } catch (Exception e) {
                 e.printStackTrace();
                 qrCodeImageView.setImage(new Image(getClass().getResourceAsStream("/viewofbook/noQR.png")));
-            }*/
+            }
 
         } else {
             prelink.setText("Không có liên kết xem trước");
@@ -154,7 +154,7 @@ public class viewofbookcontroller {
 
     }
 
-    /*private Image generateQRCodeImage(String content) throws WriterException, IOException {
+    private Image generateQRCodeImage(String content) throws WriterException, IOException {
         QRCodeWriter qrCodeWriter = new QRCodeWriter();
         BitMatrix bitMatrix = qrCodeWriter.encode(content, BarcodeFormat.QR_CODE, 150, 150);
 
@@ -162,7 +162,7 @@ public class viewofbookcontroller {
         MatrixToImageWriter.writeToStream(bitMatrix, "PNG", outputStream);
 
         return new Image(new ByteArrayInputStream(outputStream.toByteArray()));
-    }*/
+    }
 
     private void loadBooksAsync(List<comment> comments) {
         Task<Void> task = new Task<Void>() {
