@@ -45,6 +45,10 @@ public class managebookforstudentcontroller {
     @FXML
     private TableColumn<book, String> colBookAuthor;
     @FXML
+    private TableColumn<book, String> colBookPublisher;
+    @FXML
+    private TableColumn<book, String> colBookCategory;
+    @FXML
     private ImageView ImageView;
     @FXML
     private Button playGame;
@@ -71,6 +75,8 @@ public class managebookforstudentcontroller {
         colBookID.setCellValueFactory(new PropertyValueFactory<>("bookID"));
         colBookTitle.setCellValueFactory(new PropertyValueFactory<>("bookTitle"));
         colBookAuthor.setCellValueFactory(new PropertyValueFactory<>("bookAuthor"));
+        colBookPublisher.setCellValueFactory(new PropertyValueFactory<>("bookPublisher"));
+        colBookCategory.setCellValueFactory(new PropertyValueFactory<>("categoryName"));
     }
 
     private void loadBookData() {

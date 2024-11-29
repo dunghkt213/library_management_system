@@ -335,9 +335,11 @@
         </VBox>
         <TableView fx:id="bookTableView" layoutX="575.0" layoutY="155.0" prefHeight="530.0" prefWidth="618.0" style="-fx-background-radius: 20;" stylesheets="@../admindashboard/admindashboard.css">
             <columns>
-                <TableColumn fx:id="colBookID" prefWidth="114.39996337890625" text="ID" />
-                <TableColumn fx:id="colBookTitle" prefWidth="300.0" text="Book Title" />
-                <TableColumn fx:id="colBookAuthor" prefWidth="263.0" text="Author" />
+                <TableColumn fx:id="colBookID" prefWidth="93.5999755859375" text="ID" />
+                <TableColumn fx:id="colBookTitle" prefWidth="169.60003662109375" text="Book Title" />
+                <TableColumn fx:id="colBookAuthor" prefWidth="132.7999267578125" text="Author" />
+            <TableColumn fx:id="colBookPublisher" prefWidth="104.79998779296875" text="Publisher" />
+            <TableColumn fx:id="colBookCategory" prefWidth="116.80002441406248" text="Category" />
             </columns>
         </TableView>
     </children>
