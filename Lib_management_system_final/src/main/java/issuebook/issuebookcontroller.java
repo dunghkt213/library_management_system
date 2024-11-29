@@ -1,6 +1,7 @@
 package issuebook;
 
 import dao.loanDAO;
+import database.JDBCUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -17,6 +18,9 @@ import javafx.stage.Stage;
 import model.loan;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -122,13 +126,27 @@ public class issuebookcontroller {
             System.out.println("No loan selected to update.");
         }
     }
+
+    public int deletebyID(loan loan) {
+        int result = 0;
+        String sql = "DELETE FROM loans WHERE loansID = ?";
+        try (Connection conn = JDBCUtil.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, loan.getLoansID());
+            result = pstmt.executeUpdate();
+            System.out.println("Câu lệnh đã được thực thi thành công. Có " + result + " dòng đã bị xóa.");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
     @FXML
     protected void handleDelete() {
         loan selectedLoan = viewTable.getSelectionModel().getSelectedItem();
 
         if (selectedLoan != null) {
             viewTable.getItems().remove(selectedLoan);
-            loanDAO.getInstance().delete(selectedLoan);
+            deletebyID(selectedLoan);
 
             System.out.println("Loan deleted successfully!");
         } else {
