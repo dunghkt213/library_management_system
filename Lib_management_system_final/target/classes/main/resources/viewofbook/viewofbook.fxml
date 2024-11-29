@@ -33,6 +33,9 @@
                      </cursor>
                   </ImageView>
                </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
          </children>
       </AnchorPane>
@@ -74,6 +77,9 @@
                                     <String fx:value="button-background" />
                                     <String fx:value="button-border" />
                                  </styleClass>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
                               </Button>
                               <VBox alignment="TOP_LEFT" prefHeight="451.0" prefWidth="766.0" spacing="10">
                                  <children>
@@ -95,6 +101,11 @@
                                           </Label>
                                        </graphic>
                                     </Hyperlink>
+                                    <ImageView fx:id="qrCodeImageView" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@noImage.png" />
+                                       </image>
+                                    </ImageView>
                                     <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Mô tả:" />
                                     <Label fx:id="descriptionLabel" alignment="TOP_LEFT" prefHeight="272.0" prefWidth="760.0" style="-fx-font-size: 14px;" text="Cuốn sách nổi tiếng này cung cấp các kỹ thuật và triết lý thực tế để cải thiện kỹ năng lập trình và phát triển phần mềm của bạn. Được viết bởi hai nhà phát triển phần mềm kỳ cựu, sách phù hợp cho mọi cấp độ từ mới bắt đầu đến chuyên gia." wrapText="true" />
                                  </children>
