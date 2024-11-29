@@ -20,6 +20,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class gameController {
@@ -79,6 +80,8 @@ public class gameController {
             backgroundMusicPlayer.play();
 
             questions = QuizApp.loadQuestions("./src/main/resources/game/questions.txt");
+            Collections.shuffle(questions);
+            questions = questions.subList(0, 10);
             loadCurrentQuestion();
 
             score.setText("Your Score " + "0");
@@ -269,6 +272,18 @@ public class gameController {
         stage.show();
     }
 
+    private void reloadQuestions() {
+        try {
+            List<Questions> allQuestions = QuizApp.loadQuestions("./src/main/resources/game/questions.txt");
+
+            Collections.shuffle(allQuestions);
+
+            questions = allQuestions.subList(0, Math.min(10, allQuestions.size()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     @FXML
     private void handlePlayAgainButton() {
@@ -283,7 +298,7 @@ public class gameController {
         image.setImage(null);
 
         PlayAgainGameButton.setVisible(false);
-
+        reloadQuestions();
         loadCurrentQuestion();
     }
 }
