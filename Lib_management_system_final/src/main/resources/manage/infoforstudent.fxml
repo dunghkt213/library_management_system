@@ -120,7 +120,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handleviewissuedbook" prefHeight="50.0" prefWidth="250.0" styleClass="button-left" stylesheets="@../admindashboard/admindashboard.css" text="Ask AI " textFill="WHITE">
+            <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handleAI" prefHeight="50.0" prefWidth="250.0" styleClass="button-left" stylesheets="@../admindashboard/admindashboard.css" text="Ask AI " textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
