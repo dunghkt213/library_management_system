@@ -8,6 +8,7 @@ import com.google.zxing.qrcode.QRCodeWriter;
 import dao.commentDAO;
 import dao.bookDAO;
 import dao.loanDAO;
+import dao.studentDAO;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
@@ -199,8 +200,14 @@ public class viewofbookcontroller {
 
     @FXML
     protected void handletrendingbook() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/trendingbook/trendingbook.fxml"));
 
+        Parent root = null;
+        if("student".equals(studentDAO.getInstance().getStatusbyId(student.getInstance())))
+        {
+             root = FXMLLoader.load(getClass().getResource("/trendingbook/studenttrendingbook.fxml"));
+        } else {
+             root = FXMLLoader.load(getClass().getResource("/trendingbook/trendingbook.fxml"));
+        }
         Stage stage = (Stage) bookImageView.getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setScene(scene);
