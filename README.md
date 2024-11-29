@@ -50,4 +50,25 @@ This Library Management System (LMS) is a comprehensive and efficient applicatio
 - **Database:** MySQL for managing and storing data persistently, including user data, book catalog, ratings, and game scores.
 - **Chatbot:** A chatbot to interact with users, provide book recommendations, answer questions, and engage in casual conversation.
 
-This application is designed to enhance the library management experience for both administrators and users, offering features that streamline operations and provide users with a seamless and enjoyable interface.
+##Demo
+![image](https://github.com/user-attachments/assets/5e34c736-c69e-42eb-8bf8-db7acffcfe1b)
+
+![image](https://github.com/user-attachments/assets/95c68ef5-5e86-4e79-8aa3-61c35c69cad5)
+
+![image](https://github.com/user-attachments/assets/d0ba5301-3d19-4d94-ab52-00c2d0689758)
+
+![image](https://github.com/user-attachments/assets/f6b161db-2222-4877-b9b4-07e4cb0dde8d)
+
+![image](https://github.com/user-attachments/assets/46420cba-4816-473d-90ee-6713a87ed9e9)
+
+![image](https://github.com/user-attachments/assets/ba423149-aa35-4cc5-ba98-32f888dd8b81)
+
+
+![image](https://github.com/user-attachments/assets/391b9785-94a6-4ffe-8d22-dcbd6e1a8c62)
+
+![image](https://github.com/user-attachments/assets/b8ca19b5-28ee-41d3-b4ca-77e3289d5a6d)
+## Future improvements
+
+
+
+
