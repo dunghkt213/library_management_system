@@ -1,0 +1,37 @@
+#notificationPane {
+    -fx-background-color: #FFEB3B;
+    -fx-background-radius: 10px;
+    -fx-padding: 10px;
+    -fx-border-color: #FFC107;
+    -fx-border-width: 2px;
+    -fx-border-radius: 10px;
+
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0, 0, 5);
+}
+
+#notificationPane .label {
+    -fx-text-fill: #333333;
+    -fx-font-weight: bold;
+}
+
+.forget-password-btn {
+    -fx-background-color: transparent;
+    -fx-text-fill: #2b459a;
+    -fx-font-size: 14px;
+    -fx-padding: 5px 10px;
+    -fx-border-color: transparent;
+    -fx-cursor: hand;
+    -fx-transition: all 0.3s ease;
+}
+
+.forget-password-btn:hover {
+    -fx-text-fill: #ffff;
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+}
+
+/* Hiệu ứng khi nhấn */
+.forget-password-btn:pressed {
+    -fx-text-fill: #ffffff;
+    -fx-background-color: #2b459a;
+}

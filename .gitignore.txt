@@ -1,0 +1,2 @@
+# Ignore a specific directory (database folder in src)
+Lib_management_system_new/src/database/JDBCUtil.java
