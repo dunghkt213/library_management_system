@@ -197,7 +197,7 @@
             <Insets bottom="20.0" />
          </padding>
       </HBox>
-      <ScrollPane layoutX="181.0" layoutY="97.0" prefHeight="199.0" prefWidth="965.0" style="-fx-background-color: transparent;" stylesheets="@../post/style.css">
+      <ScrollPane layoutX="181.0" layoutY="97.0" prefHeight="199.0" prefWidth="998.0" style="-fx-background-color: transparent;" stylesheets="@../post/style.css">
          <content>
             <HBox fx:id="cardLayout" alignment="CENTER" prefHeight="184.0" prefWidth="1141.0" spacing="20.0" />
          </content>
@@ -221,7 +221,7 @@
             <Font name="Berlin Sans FB" size="23.0" />
          </font>
       </Label>
-      <ScrollPane layoutX="165.0" layoutY="331.0" prefHeight="369.0" prefWidth="965.0" style="-fx-background-color: transparent;" stylesheets="@style.css">
+      <ScrollPane layoutX="165.0" layoutY="331.0" prefHeight="369.0" prefWidth="1018.0" style="-fx-background-color: transparent;" stylesheets="@style.css">
          <content>
             <GridPane fx:id="bookContainer" prefHeight="5.0" prefWidth="1.0">
               <rowConstraints>
