@@ -60,7 +60,9 @@ This Library Management System (LMS) is a comprehensive and efficient applicatio
 4. **Configure MySQL**  
    After installing MySQL, set up a database and ensure that it is accessible by your project. You may need to create a user with appropriate permissions.
 5. **Run the project**
-##Demo
+   Enjoy it.
+   
+### Demo
 ![image](https://github.com/user-attachments/assets/5e34c736-c69e-42eb-8bf8-db7acffcfe1b)
 
 ![image](https://github.com/user-attachments/assets/95c68ef5-5e86-4e79-8aa3-61c35c69cad5)
