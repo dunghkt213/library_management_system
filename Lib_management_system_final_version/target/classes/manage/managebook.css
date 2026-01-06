@@ -1,0 +1,99 @@
+.back-button{
+    -fx-background-color: transparent;
+}
+
+.text-field-id-with-icon {
+    -fx-background-image: url("id.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: contain;
+    -fx-background-insets: 0 0 0 0;
+}
+
+.text-field-author-with-icon {
+    -fx-background-image: url("author.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: contain;
+    -fx-background-insets: 0 0 0 0;
+}
+.text-field-pub-with-icon {
+    -fx-background-image: url("publisher.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: contain;
+    -fx-background-insets: 0 0 0 0;
+}
+
+.text-field-qua-with-icon {
+    -fx-background-image: url("quantity.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: contain;
+    -fx-background-insets: 0 0 0 0;
+}
+
+.text-field-title-with-icon {
+    -fx-background-image: url("title.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: contain;
+    -fx-background-insets: 0 0 0 0;
+}
+
+.text-field-cateid-with-icon {
+    -fx-background-image: url("menu.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: contain;
+    -fx-background-insets: 0 0 0 0;
+}
+
+.text-field-catename-with-icon {
+    -fx-background-image: url("catagory.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: contain;
+    -fx-background-insets: 0 0 0 0;
+}
+
+.text-field-language-with-icon {
+    -fx-background-image: url("languages.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: contain;
+    -fx-background-insets: 0 0 0 0;
+}
+
+.text-field-contact-with-icon {
+    -fx-background-image: url("contact.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: contain;
+    -fx-background-insets: 0 0 0 0;
+}
+
+.text-field-birthday-with-icon {
+    -fx-background-image: url("birthday.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: contain;
+    -fx-background-insets: 0 0 0 0;
+}
+
+.text-field-major-with-icon {
+    -fx-background-image: url("major.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: contain;
+    -fx-background-insets: 0 0 0 0;
+}
+
+.text-field-email-with-icon {
+    -fx-background-image: url("email.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: contain;
+    -fx-background-insets: 0 0 0 0;
+}
+
+.text-field-with-icon:hover {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.35), 12, 0.3, 0, 4);
+    -fx-background-color: linear-gradient(from 0% 50% to 100% 50%, #F0F0F0, #D9D9D9);
+}
+
+.text-field-with-icon:pressed {
+    -fx-background-color: linear-gradient(from 0% 50% to 100% 50%, #F0F0F0, #D9D9D9);
+}
+
+.Anchor-background {
+    -fx-background-color: white;
+}

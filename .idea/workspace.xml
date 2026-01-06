@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="e49a9400-e478-43a6-876e-f1e229043db2" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/library_management_system.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib_management_system/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib_management_system/database/testbookDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib_management_system/test/testBookDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dao/BookDAO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dao/DAOInterface.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/JDBCUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib_management_system/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib_management_system/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/Staff.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib_management_system/model/staff.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/book.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib_management_system/model/book.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/student.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib_management_system/model/student.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 3
+}</component>
+  <component name="ProjectId" id="2nHnpJ9Q0NsSOx4N5LFPmxeqjg5" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.ProjectApplication.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "delta",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/library_management_system/lib_management_system",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql_aurora"
+    ]
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.23339.11" />
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.23339.11" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e49a9400-e478-43a6-876e-f1e229043db2" name="Changes" comment="" />
+      <created>1728639051402</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1728639051402</updated>
+      <workItem from="1728639052175" duration="108000" />
+      <workItem from="1728643268129" duration="633000" />
+      <workItem from="1728975824344" duration="2838000" />
+      <workItem from="1729062787210" duration="37000" />
+      <workItem from="1729211532638" duration="1782000" />
+      <workItem from="1729213337767" duration="2377000" />
+      <workItem from="1729216635708" duration="882000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

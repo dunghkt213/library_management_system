@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="700.0" prefWidth="1200.0" styleClass="Anchor-background" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login.logincontroller">
+   <children>
+      <VBox alignment="CENTER_LEFT" layoutX="799.2" layoutY="1.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" styleClass="Vbox-background" stylesheets="@login.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="799.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label alignment="CENTER" prefHeight="18.0" prefWidth="439.0" text="Login Page" textFill="WHITE">
+               <VBox.margin>
+                  <Insets top="-60.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="System Bold" size="36.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="18.0" prefWidth="439.0" text="Welcome, Login To Your Account" textFill="WHITE">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label prefHeight="18.0" prefWidth="74.0" text="StudentID" textFill="WHITE">
+               <VBox.margin>
+                  <Insets left="70.0" top="60.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <TextField fx:id="studentIDField" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="450.0" promptText="Enter StudentID..." style="-fx-background-radius: 50;">
+               <VBox.margin>
+                  <Insets bottom="20.0" left="20.0" right="40.0" />
+               </VBox.margin>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <styleClass>
+                  <String fx:value="text-field-user-with-icon" />
+                  <String fx:value="text-field-with-icon" />
+               </styleClass>
+               <stylesheets>
+                  <URL value="@login.css" />
+                  <URL value="@../signup/signup.css" />
+               </stylesheets>
+            </TextField>
+            <Label prefHeight="18.0" prefWidth="74.0" text="Password" textFill="WHITE">
+               <VBox.margin>
+                  <Insets left="70.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <PasswordField fx:id="passwordField" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="450.0" promptText="Enter Password..." style="-fx-background-radius: 50;">
+               <VBox.margin>
+                  <Insets bottom="20.0" left="20.0" right="40.0" />
+               </VBox.margin>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <styleClass>
+                  <String fx:value="text-field-password-with-icon" />
+                  <String fx:value="text-field-with-icon" />
+               </styleClass>
+               <stylesheets>
+                  <URL value="@login.css" />
+                  <URL value="@../signup/signup.css" />
+               </stylesheets>
+            </PasswordField>
+            <Button mnemonicParsing="false" onAction="#handleforgetpassword" prefHeight="25.0" prefWidth="145.0" style="-fx-background-color: transparent;" styleClass="forget-password-btn" stylesheets="@styles.css" text="forget  pass word ?" textFill="#2b459a">
+               <VBox.margin>
+                  <Insets left="30.0" top="-15.0" />
+               </VBox.margin>
+            </Button>
+            <Label fx:id="errorMessageLabel" alignment="CENTER" contentDisplay="RIGHT" prefHeight="67.0" prefWidth="338.0" textFill="#bc0000">
+               <font>
+                  <Font name="Arial Bold" size="17.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="60.0" right="50.0" top="-10.0" />
+               </VBox.margin>
+            </Label>
+            <VBox alignment="BOTTOM_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="112.0" prefWidth="422.0" stylesheets="@login.css">
+               <children>
+                  <Button alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#handleloginbutton" prefHeight="47.0" prefWidth="220.0" style="-fx-background-radius: 50;" stylesheets="@login.css" text="LOG IN NOW" textFill="CORAL">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <styleClass>
+                        <String fx:value="button-signup" />
+                        <String fx:value="button-border" />
+                     </styleClass>
+                  </Button>
+                  <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#handlesignupbutton" prefHeight="40.0" prefWidth="220.0" style="-fx-background-radius: 50;" text="SIGN UP" textFill="CORAL">
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <styleClass>
+                        <String fx:value="button-login" />
+                        <String fx:value="button-border" />
+                     </styleClass>
+                  </Button>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+      <ImageView fitHeight="700.0" fitWidth="807.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@login.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="321.0" layoutY="26.0" prefHeight="35.0" prefWidth="178.0" text="WELCOME TO" textFill="LIGHTCORAL">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="204.0" layoutY="61.0" prefHeight="54.0" prefWidth="621.0" text="LIBRARY MANAGEMENT SYSTEM" textFill="LIGHTCORAL">
+         <font>
+            <Font name="System Bold" size="27.0" />
+         </font>
+      </Label>
+   </children>
+   <stylesheets>
+      <URL value="@login.css" />
+      <URL value="@../signup/signup.css" />
+   </stylesheets>
+</AnchorPane>

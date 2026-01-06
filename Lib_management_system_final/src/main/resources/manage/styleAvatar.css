@@ -1,0 +1,13 @@
+.avatar-container {
+    -fx-shape: "M 100, 100 m -100, 0 a 100,100 0 1,0 200,0 a 100,100 0 1,0 -200,0"; /* Hình tròn */
+    -fx-background-color: transparent;
+    -fx-border-radius: 100; /* Viền tròn */
+    -fx-border-color: #ccc;
+    -fx-border-width: 3;
+    -fx-background-radius: 100; /* Làm tròn nền */
+    -fx-overflow: hidden; /* Giới hạn vùng hiển thị */
+}
+
+.avatar-container ImageView {
+    -fx-background-radius: 100;
+}

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.Insets?>
+
+<?import javafx.scene.control.Label?>
+<VBox xmlns:fx="http://javafx.com/fxml/1" spacing="10" padding="20">
+    <Slider fx:id="ratingSlider" min="1" max="5" value="3" blockIncrement="1" showTickMarks="true" showTickLabels="true" majorTickUnit="1"/>
+    <Label fx:id="ratingLabel" text="Rating: 3"/>
+</VBox>

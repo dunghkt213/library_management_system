@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<HBox prefHeight="682.0" prefWidth="530.0" style="-fx-background-radius: 20;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewbook.viewofbookcontroller">
+   <styleClass>
+      <String fx:value="white-background" />
+      <String fx:value="rounded-square" />
+   </styleClass>
+   <children>
+      <ScrollPane prefHeight="682.0" prefWidth="531.0" style="-fx-background-color: transparent;">
+         <content>
+            <VBox prefHeight="1110.0" prefWidth="511.0" style="-fx-background-color: transparent;" stylesheets="@../trendingbook/style.css">
+               <children>
+                  <AnchorPane prefHeight="38.0" prefWidth="816.0" />
+                  <Label fx:id="titleLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="70.0" prefWidth="489.0" text=" The Pragmatic Programmer">
+                     <font>
+                        <Font name="Berlin Sans FB Demi Bold" size="30.0" />
+                     </font>
+                  </Label>
+                  <VBox alignment="TOP_CENTER" prefHeight="887.0" prefWidth="526.0" spacing="20">
+                     <children>
+                        <ImageView fx:id="bookImageView" fitHeight="340.0" fitWidth="275.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../trendingbook/ThePragmaticProgrammer.jpg" />
+                           </image>
+                        </ImageView>
+                        <VBox alignment="TOP_LEFT" prefHeight="479.0" prefWidth="329.0" spacing="10">
+                           <children>
+                              <Label fx:id="bookID" prefHeight="20.0" prefWidth="509.0" text="ISBN">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="authorLabel" prefHeight="20.0" prefWidth="392.0" style="-fx-font-size: 14px;" text="Tác giả: Andrew Hunt, David Thomas" />
+                              <Label fx:id="categoryLabel" prefHeight="20.0" prefWidth="411.0" style="-fx-font-size: 14px;" text="Thể loại: Lập trình, Kỹ thuật phần mềm" />
+                              <Label fx:id="publisherLabel" alignment="TOP_LEFT" prefHeight="20.0" prefWidth="446.0" style="-fx-font-size: 14px;" text="nha xuat ban" />
+                              <Label fx:id="languageLabel" alignment="TOP_LEFT" prefHeight="20.0" prefWidth="769.0" style="-fx-font-size: 14px;" text="ngon ngu" />
+                              <Hyperlink fx:id="prelink" text="prelink:">
+                                 <graphic>
+                                    <Label prefHeight="20.0" prefWidth="56.0" text="PreLink:">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                 </graphic>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <VBox.margin>
+                                    <Insets left="-5.0" />
+                                 </VBox.margin>
+                              </Hyperlink>
+                              <ImageView fx:id="qrCodeImageView" fitHeight="150" fitWidth="150" pickOnBounds="true" preserveRatio="true" />
+                              <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Mô tả:" />
+                              <Label fx:id="descriptionLabel" alignment="TOP_LEFT" prefHeight="744.0" prefWidth="458.0" style="-fx-font-size: 14px;" text="Cuốn sách nổi tiếng này cung cấp các kỹ thuật và triết lý thực tế để cải thiện kỹ năng lập trình và phát triển phần mềm của bạn. Được viết bởi hai nhà phát triển phần mềm kỳ cựu, sách phù hợp cho mọi cấp độ từ mới bắt đầu đến chuyên gia." wrapText="true" />
+                           </children>
+                           <VBox.margin>
+                              <Insets left="50.0" />
+                           </VBox.margin>
+                        </VBox>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+         </content>
+      </ScrollPane>
+   </children>
+</HBox>

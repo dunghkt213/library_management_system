@@ -1,0 +1,45 @@
+.button-left {
+    -fx-background-color: transparent;
+}
+
+.button-left:hover {
+    -fx-background-color: #ffa07a;
+}
+
+.pane-border-shadow {
+    -fx-background-color: white;
+    -fx-effect: dropshadow(gaussian, lightgray, 7, 0.3, 3, 3);
+    -fx-background-insets: 10;
+}
+
+.left-background {
+    -fx-background-color: #F08080;
+}
+
+.left-rounded-corner {
+    -fx-background-radius: 0 30 0 0;
+}
+
+.round-button{
+    -fx-background-radius: 50;
+    -fx-background-color: #F0F2F5;
+}
+.text_field{
+    -fx-background-color: #F0F2F5;
+    -fx-background-radius: 50;
+}
+.post-background{
+    -fx-background-color: #ffff;
+    -fx-background-radius: 15;
+    -fx-effect: dropShadow(three-pass-box,rgba(0,0,0,0.1),5.0,0.0,0.0,5.0);
+}
+.body-background{
+    -fx-background-color: #F0F2F5;
+}
+
+.scroll-pane > .viewport{
+    -fx-background-color: transparent;
+}
+.shadow{
+    -fx-effect: dropShadow(three-pass-box, rgba(0,0,0,0),10,0,0,10);
+}

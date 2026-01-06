@@ -1,0 +1,16 @@
+#notificationPane {
+    -fx-background-color: #FFEB3B;      /* Màu nền vàng nổi bật */
+    -fx-background-radius: 10px;        /* Góc bo tròn */
+    -fx-padding: 10px;                  /* Khoảng cách giữa nội dung và cạnh */
+    -fx-border-color: #FFC107;          /* Màu viền */
+    -fx-border-width: 2px;              /* Độ dày viền */
+    -fx-border-radius: 10px;            /* Góc bo tròn của viền */
+
+    /* Đổ bóng */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0, 0, 5);
+}
+
+#notificationPane .label {
+    -fx-text-fill: #333333;             /* Màu chữ */
+    -fx-font-weight: bold;              /* Chữ đậm */
+}
